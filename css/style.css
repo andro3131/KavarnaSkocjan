@@ -152,6 +152,7 @@ a:hover {
     align-items: center;
     justify-content: space-between;
     height: var(--nav-height);
+    position: relative;
 }
 
 .nav-logo {
@@ -175,6 +176,9 @@ a:hover {
     display: flex;
     list-style: none;
     gap: 2rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .nav-links a {
@@ -345,15 +349,7 @@ a:hover {
     margin-top: calc(var(--nav-height) + 3vh);
 }
 
-/* CTA button pinned to bottom */
-.hero-cta {
-    position: absolute;
-    bottom: 5rem;
-    left: 0;
-    right: 0;
-    text-align: center;
-    z-index: 2;
-}
+/* CTA button — inline within hero content */
 
 /* Hero staggered entrance animations */
 .hero-anim {
@@ -950,6 +946,7 @@ a:hover {
     .nav-links {
         position: fixed;
         top: 0;
+        left: auto;
         right: -100%;
         width: 280px;
         height: 100vh;
@@ -960,6 +957,7 @@ a:hover {
         align-items: center;
         gap: 2rem;
         transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        transform: none;
         z-index: 1000;
     }
 
@@ -1016,9 +1014,6 @@ a:hover {
         font-size: 1.1rem;
     }
 
-    .hero-cta {
-        bottom: 4rem;
-    }
 }
 
 /* Mobile */
@@ -1042,10 +1037,6 @@ a:hover {
 
     .hero-content {
         padding: 1.5rem 1rem;
-    }
-
-    .hero-cta {
-        bottom: 3.5rem;
     }
 
     .hero-subtitle {

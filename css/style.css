@@ -301,16 +301,15 @@ a:hover {
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    text-align: left;
+    flex-direction: column;
     overflow: hidden;
-    padding: 0 0 4rem 3rem;
 }
 
 .hero-bg {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    flex: 1 1 60%;
+    min-height: 55vh;
+    overflow: hidden;
     z-index: 0;
 }
 
@@ -318,23 +317,27 @@ a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 30%;
     transition: transform 8s ease;
     filter: saturate(1.15) brightness(1.05);
 }
 
 /* Slow Ken Burns zoom on hero background */
 .hero.loaded .hero-bg-img {
-    transform: scale(1.08);
+    transform: scale(1.06);
 }
 
+/* Gradient only at bottom edge of image for smooth transition */
 .hero-overlay {
     position: absolute;
-    inset: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
     background: linear-gradient(
         to bottom,
-        rgba(15, 13, 10, 0.05) 0%,
-        rgba(15, 13, 10, 0.15) 40%,
-        rgba(15, 13, 10, 0.7) 100%
+        rgba(15, 13, 10, 0) 0%,
+        rgba(15, 13, 10, 1) 100%
     );
     z-index: 1;
 }
@@ -342,14 +345,10 @@ a:hover {
 .hero-content {
     position: relative;
     z-index: 2;
-    padding: 2rem 2.5rem;
-    background: rgba(15, 13, 10, 0.3);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 16px;
-    border: 1px solid rgba(200, 169, 126, 0.12);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    max-width: 440px;
+    padding: 2.5rem 1.5rem 3rem;
+    text-align: center;
+    background: var(--color-bg);
+    margin-top: -1px;
 }
 
 /* Hero staggered entrance animations */
@@ -372,17 +371,18 @@ a:hover {
 .hero.loaded .hero-anim-5 { transition-delay: 1.3s; }
 
 .hero-logo {
-    max-width: 200px;
-    margin: 0 0 1.2rem;
-    border-radius: 10px;
+    max-width: 240px;
+    margin: 0 auto 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* Decorative divider under logo */
 .hero-divider {
-    width: 50px;
+    width: 60px;
     height: 2px;
-    background: linear-gradient(90deg, var(--color-accent), transparent);
-    margin: 0 0 1.2rem;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    margin: 0 auto 1.5rem;
 }
 
 .hero-subtitle {
@@ -397,7 +397,7 @@ a:hover {
 .hero-location {
     font-size: 1rem;
     color: var(--color-text-muted);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     font-style: italic;
 }
 
@@ -449,7 +449,7 @@ a:hover {
 /* Hero scroll indicator */
 .hero-scroll {
     position: absolute;
-    bottom: 2rem;
+    bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
@@ -1004,18 +1004,8 @@ a:hover {
         height: 300px;
     }
 
-    .hero-content {
-        margin: 0;
-        padding: 1.5rem 1.5rem;
-        max-width: none;
-    }
-
-    .hero {
-        padding: 0 0 3rem 1.5rem;
-    }
-
     .hero-logo {
-        max-width: 180px;
+        max-width: 200px;
     }
 
     .hero-subtitle {
@@ -1038,17 +1028,12 @@ a:hover {
         font-size: 1.7rem;
     }
 
-    .hero {
-        padding: 0 0 2.5rem 1rem;
+    .hero-logo {
+        max-width: 170px;
     }
 
     .hero-content {
-        margin: 0;
-        padding: 1.25rem 1.25rem;
-    }
-
-    .hero-logo {
-        max-width: 150px;
+        padding: 2rem 1rem 2.5rem;
     }
 
     .hero-subtitle {

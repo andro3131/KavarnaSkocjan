@@ -157,6 +157,8 @@ a:hover {
 .nav-logo {
     display: flex;
     align-items: center;
+    margin-left: 1.5rem;
+    margin-top: 4px;
     transition: transform var(--transition);
 }
 
@@ -167,6 +169,7 @@ a:hover {
 .logo-img {
     height: 70px;
     width: auto;
+    border-radius: 4px;
 }
 
 .nav-links {

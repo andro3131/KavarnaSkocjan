@@ -318,6 +318,7 @@ a:hover {
     height: 100%;
     object-fit: cover;
     transition: transform 8s ease;
+    filter: saturate(1.15) brightness(1.05);
 }
 
 /* Slow Ken Burns zoom on hero background */
@@ -330,9 +331,9 @@ a:hover {
     inset: 0;
     background: linear-gradient(
         to bottom,
-        rgba(15, 13, 10, 0.4) 0%,
-        rgba(15, 13, 10, 0.55) 50%,
-        rgba(15, 13, 10, 0.92) 100%
+        rgba(15, 13, 10, 0.05) 0%,
+        rgba(15, 13, 10, 0.15) 40%,
+        rgba(15, 13, 10, 0.7) 100%
     );
     z-index: 1;
 }
@@ -340,7 +341,14 @@ a:hover {
 .hero-content {
     position: relative;
     z-index: 2;
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 2.5rem;
+    background: rgba(15, 13, 10, 0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 16px;
+    border: 1px solid rgba(200, 169, 126, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    max-width: 520px;
 }
 
 /* Hero staggered entrance animations */
@@ -363,10 +371,9 @@ a:hover {
 .hero.loaded .hero-anim-5 { transition-delay: 1.3s; }
 
 .hero-logo {
-    max-width: 280px;
+    max-width: 240px;
     margin: 0 auto 1.5rem;
     border-radius: 12px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* Decorative divider under logo */
@@ -996,8 +1003,14 @@ a:hover {
         height: 300px;
     }
 
+    .hero-content {
+        margin: 0 1rem;
+        padding: 2rem 1.5rem;
+        max-width: none;
+    }
+
     .hero-logo {
-        max-width: 220px;
+        max-width: 200px;
     }
 
     .hero-subtitle {
@@ -1020,8 +1033,13 @@ a:hover {
         font-size: 1.7rem;
     }
 
+    .hero-content {
+        margin: 0 0.75rem;
+        padding: 1.5rem 1.25rem;
+    }
+
     .hero-logo {
-        max-width: 180px;
+        max-width: 160px;
     }
 
     .hero-subtitle {

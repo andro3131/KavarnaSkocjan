@@ -302,14 +302,15 @@ a:hover {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
     overflow: hidden;
 }
 
 .hero-bg {
-    position: relative;
-    flex: 1 1 60%;
-    min-height: 55vh;
-    overflow: hidden;
+    position: absolute;
+    inset: 0;
     z-index: 0;
 }
 
@@ -327,28 +328,31 @@ a:hover {
     transform: scale(1.06);
 }
 
-/* Gradient only at bottom edge of image for smooth transition */
+/* Light overlay — just enough for text readability */
 .hero-overlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 40%;
-    background: linear-gradient(
-        to bottom,
-        rgba(15, 13, 10, 0) 0%,
-        rgba(15, 13, 10, 1) 100%
-    );
+    inset: 0;
+    background:
+        radial-gradient(ellipse at center 25%, rgba(15, 13, 10, 0.45) 0%, transparent 70%),
+        linear-gradient(to bottom, rgba(15, 13, 10, 0.15) 0%, rgba(15, 13, 10, 0.05) 40%, rgba(15, 13, 10, 0.6) 100%);
     z-index: 1;
 }
 
+/* Main content — upper 1/3 */
 .hero-content {
     position: relative;
     z-index: 2;
-    padding: 2.5rem 1.5rem 3rem;
-    text-align: center;
-    background: var(--color-bg);
-    margin-top: -1px;
+    padding: 2rem 1.5rem;
+    margin-top: calc(var(--nav-height) + 3vh);
+}
+
+/* CTA button pinned to bottom */
+.hero-cta {
+    position: absolute;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
 }
 
 /* Hero staggered entrance animations */
@@ -1011,6 +1015,10 @@ a:hover {
     .hero-subtitle {
         font-size: 1.1rem;
     }
+
+    .hero-cta {
+        bottom: 4rem;
+    }
 }
 
 /* Mobile */
@@ -1033,7 +1041,11 @@ a:hover {
     }
 
     .hero-content {
-        padding: 2rem 1rem 2.5rem;
+        padding: 1.5rem 1rem;
+    }
+
+    .hero-cta {
+        bottom: 3.5rem;
     }
 
     .hero-subtitle {

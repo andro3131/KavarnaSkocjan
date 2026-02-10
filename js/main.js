@@ -48,16 +48,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ============ NAVBAR SCROLL BEHAVIOR ============
+    // ============ HERO ENTRANCE ANIMATION ============
+
+    const hero = document.querySelector('.hero');
+    // Small delay to let browser paint, then trigger entrance
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            hero.classList.add('loaded');
+        });
+    });
+
+    // ============ NAVBAR — SCROLL + HIDE ON SCROLL DOWN ============
 
     const navbar = document.getElementById('navbar');
+    let lastScrollY = window.scrollY;
+    let ticking = false;
 
-    function handleNavScroll() {
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    function handleNavbar() {
+        const currentScrollY = window.scrollY;
+
+        // Add/remove solid background
+        navbar.classList.toggle('scrolled', currentScrollY > 50);
+
+        // Hide on scroll down, show on scroll up (only after hero)
+        if (currentScrollY > window.innerHeight) {
+            if (currentScrollY > lastScrollY && currentScrollY - lastScrollY > 5) {
+                navbar.classList.add('hidden');
+            } else if (lastScrollY - currentScrollY > 5) {
+                navbar.classList.remove('hidden');
+            }
+        } else {
+            navbar.classList.remove('hidden');
+        }
+
+        lastScrollY = currentScrollY;
+        ticking = false;
     }
 
-    window.addEventListener('scroll', handleNavScroll, { passive: true });
-    handleNavScroll();
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(handleNavbar);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    handleNavbar();
 
     // ============ MOBILE NAVIGATION TOGGLE ============
 
@@ -96,6 +131,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // ============ PARALLAX ON HERO BACKGROUND ============
+
+    const heroBg = document.querySelector('.hero .hero-bg-img');
+    if (heroBg) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY < window.innerHeight) {
+                heroBg.style.transform = `scale(1.08) translateY(${window.scrollY * 0.3}px)`;
+            }
+        }, { passive: true });
+    }
+
+    // ============ PARALLAX ON HOURS BACKGROUND ============
+
+    const hoursSection = document.querySelector('.hours');
+    const hoursBg = hoursSection ? hoursSection.querySelector('.hero-bg-img') : null;
+    if (hoursBg) {
+        window.addEventListener('scroll', () => {
+            const rect = hoursSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                hoursBg.style.transform = `translateY(${(progress - 0.5) * 60}px)`;
+            }
+        }, { passive: true });
+    }
+
     // ============ SCROLL-TRIGGERED ANIMATIONS ============
 
     const observerOptions = {
@@ -113,9 +173,71 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.section, .menu-card, .contact-item, .gallery-item').forEach(el => {
+    // Section titles — animate with decoration line
+    document.querySelectorAll('.section-title.has-decoration').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Sections — fade up
+    document.querySelectorAll('.section').forEach(el => {
         el.classList.add('animate-on-scroll');
         observer.observe(el);
+    });
+
+    // Menu cards — staggered fade up
+    document.querySelectorAll('.menu-card').forEach(el => {
+        el.classList.add('animate-on-scroll');
+        observer.observe(el);
+    });
+
+    // About text — slide from left
+    document.querySelectorAll('.about-text').forEach(el => {
+        el.classList.add('animate-slide-left');
+        observer.observe(el);
+    });
+
+    // About image — slide from right
+    document.querySelectorAll('.about-image').forEach(el => {
+        el.classList.add('animate-slide-right');
+        observer.observe(el);
+    });
+
+    // Gallery items — scale up
+    document.querySelectorAll('.gallery-item').forEach(el => {
+        el.classList.add('animate-scale');
+        observer.observe(el);
+    });
+
+    // Contact items — slide from left
+    document.querySelectorAll('.contact-item').forEach(el => {
+        el.classList.add('animate-slide-left');
+        observer.observe(el);
+    });
+
+    // Hours table — fade up
+    document.querySelectorAll('.hours-table-wrapper').forEach(el => {
+        el.classList.add('animate-on-scroll');
+        observer.observe(el);
+    });
+
+    // ============ ACTIVE NAV LINK ON SCROLL ============
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinkItems = document.querySelectorAll('.nav-links a');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinkItems.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                });
+            }
+        });
+    }, { root: null, rootMargin: '-30% 0px -70% 0px', threshold: 0 });
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
     });
 
 });

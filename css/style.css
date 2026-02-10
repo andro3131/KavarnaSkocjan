@@ -147,7 +147,7 @@ a:hover {
 .nav-container {
     max-width: none;
     margin: 0;
-    padding: 0 2rem 0 1rem;
+    padding: 0 2.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -157,7 +157,6 @@ a:hover {
 .nav-logo {
     display: flex;
     align-items: center;
-    margin-left: 1.5rem;
     margin-top: 8px;
     transition: transform var(--transition);
 }
@@ -350,8 +349,9 @@ a:hover {
 .hero-cta {
     position: absolute;
     bottom: 5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    text-align: center;
     z-index: 2;
 }
 

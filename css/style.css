@@ -158,7 +158,7 @@ a:hover {
     display: flex;
     align-items: center;
     margin-left: 1.5rem;
-    margin-top: 4px;
+    margin-top: 8px;
     transition: transform var(--transition);
 }
 

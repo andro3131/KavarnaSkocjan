@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galerija – Kavarna Škocjan">
+    <title>Galerija – Kavarna Škocjan</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dewf3zos0/image/upload/w_32,h_32,c_fit/v1770800196/faviconpravi_p0fheb.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/dewf3zos0/image/upload/w_16,h_16,c_fit/v1770800196/faviconpravi_p0fheb.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/dewf3zos0/image/upload/w_180,h_180,c_fit/v1770800196/faviconpravi_p0fheb.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html#hero" class="nav-logo">
+                <img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770760263/copy_of_605776169_122115412293117458_8893329591289245217_n_hi5stq_00857c.jpg" alt="Kavarna Škocjan" class="logo-img">
+            </a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Odpri meni">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html#about" data-lang-sl="O nas" data-lang-en="About">O nas</a></li>
+                <li><a href="index.html#menu" data-lang-sl="Ponudba" data-lang-en="Menu">Ponudba</a></li>
+                <li><a href="index.html#hours" data-lang-sl="Odpiralni čas" data-lang-en="Opening Hours">Odpiralni čas</a></li>
+                <li><a href="index.html#gallery" class="active" data-lang-sl="Galerija" data-lang-en="Gallery">Galerija</a></li>
+                <li><a href="index.html#contact" data-lang-sl="Kontakt" data-lang-en="Contact">Kontakt</a></li>
+            </ul>
+            <button class="lang-toggle" id="lang-toggle" aria-label="Zamenjaj jezik">
+                <span class="lang-option" data-lang="sl">SL</span>
+                <span class="lang-separator">|</span>
+                <span class="lang-option" data-lang="en">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- GALLERY PAGE -->
+    <main class="gallery-page">
+        <div class="container">
+            <h1 class="gallery-page-title" data-lang-sl="Galerija" data-lang-en="Gallery">Galerija</h1>
+            <p class="gallery-page-subtitle" data-lang-sl="Utrinki iz Kavarne Škocjan" data-lang-en="Moments from Café Škocjan">Utrinki iz Kavarne Škocjan</p>
+
+            <!-- Category filters -->
+            <div class="gallery-filters">
+                <button class="gallery-filter active" data-category="all">
+                    <span data-lang-sl="Vse" data-lang-en="All">Vse</span>
+                </button>
+                <button class="gallery-filter" data-category="kavarna">
+                    <span data-lang-sl="Kavarna" data-lang-en="Café">Kavarna</span>
+                </button>
+                <button class="gallery-filter" data-category="hrana">
+                    <span data-lang-sl="Hrana & Pijača" data-lang-en="Food & Drinks">Hrana & Pijača</span>
+                </button>
+                <button class="gallery-filter" data-category="dogodki">
+                    <span data-lang-sl="Dogodki" data-lang-en="Events">Dogodki</span>
+                </button>
+                <button class="gallery-filter" data-category="ambient">
+                    <span data-lang-sl="Ambient" data-lang-en="Ambience">Ambient</span>
+                </button>
+            </div>
+
+            <!-- Gallery grid -->
+            <div class="gallery-full-grid" id="gallery-grid">
+                <!-- Kavarna -->
+                <div class="gallery-full-item" data-category="kavarna">
+                    <img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770758361/630422587_122122523457117458_1754449191949839673_n_xycl1f.jpg" alt="Notranjost kavarne" loading="lazy">
+                </div>
+                <div class="gallery-full-item" data-category="kavarna">
+                    <img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770758374/594065419_122110466517117458_8379733489552135022_n_urgely.jpg" alt="Kavarna od zunaj" loading="lazy">
+                </div>
+                <div class="gallery-full-item" data-category="kavarna">
+                    <img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770757554/otvoritev_l7fwmm.jpg" alt="Otvoritev kavarne" loading="lazy">
+                </div>
+                <!-- Hrana & Pijača -->
+                <div class="gallery-full-item" data-category="hrana">
+                    <img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770758187/585326208_122104632561117458_8846184001248425990_n_tbfqi1.jpg" alt="Kava" loading="lazy">
+                </div>
+                <div class="gallery-full-item" data-category="hrana">
+                    <img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770757609/597902673_122111886585117458_6163739642467159890_n_pgjkqx.jpg" alt="Kava" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" aria-label="Zapri">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <button class="lightbox-nav lightbox-prev" aria-label="Prejšnja">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightbox-img">
+        </div>
+        <button class="lightbox-nav lightbox-next" aria-label="Naslednja">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770760263/copy_of_605776169_122115412293117458_8893329591289245217_n_hi5stq_00857c.jpg" alt="Kavarna Škocjan" class="footer-logo">
+                <p>&copy; 2025 Kavarna Škocjan. <span data-lang-sl="Vse pravice pridržane." data-lang-en="All rights reserved.">Vse pravice pridržane.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/gallery.js"></script>
+</body>
+</html>

@@ -1246,7 +1246,7 @@ a:hover {
     overflow: hidden;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
     opacity: 0;
-    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .event-float-left {

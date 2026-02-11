@@ -225,14 +225,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const eventFloat = document.getElementById('event-float');
     if (eventFloat) {
         const storageKey = 'kavarna-event-float-dismissed';
+        let eventFloatVisible = false;
+        let eventFloatDismissed = !!sessionStorage.getItem(storageKey);
 
-        if (!sessionStorage.getItem(storageKey)) {
+        if (!eventFloatDismissed) {
             setTimeout(() => {
+                eventFloatVisible = true;
                 eventFloat.classList.add('active');
             }, 2000);
+
+            // Hide when scrolling past hero
+            const heroSection = document.querySelector('.hero');
+            window.addEventListener('scroll', () => {
+                if (eventFloatDismissed) return;
+                const heroBottom = heroSection.getBoundingClientRect().bottom;
+                if (heroBottom < 0 && eventFloatVisible) {
+                    eventFloat.classList.remove('active');
+                } else if (heroBottom >= 0 && eventFloatVisible) {
+                    eventFloat.classList.add('active');
+                }
+            }, { passive: true });
         }
 
         document.getElementById('event-float-close').addEventListener('click', () => {
+            eventFloatDismissed = true;
             eventFloat.classList.remove('active');
             eventFloat.classList.add('hiding');
             sessionStorage.setItem(storageKey, '1');

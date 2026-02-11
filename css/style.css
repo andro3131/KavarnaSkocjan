@@ -1099,9 +1099,9 @@ a:hover {
 .event-float {
     position: fixed;
     top: calc(var(--nav-height) + 1rem);
-    left: 1.5rem;
+    left: 2.5rem;
     z-index: 900;
-    width: 180px;
+    width: 360px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
@@ -1132,13 +1132,13 @@ a:hover {
 
 .event-float-close {
     position: absolute;
-    top: 0.4rem;
-    right: 0.4rem;
+    top: 0.5rem;
+    right: 0.5rem;
     background: rgba(0, 0, 0, 0.55);
     border: none;
     border-radius: 50%;
-    width: 26px;
-    height: 26px;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1155,15 +1155,15 @@ a:hover {
 
 @media (max-width: 768px) {
     .event-float {
-        width: 140px;
-        left: 1rem;
+        width: 260px;
+        left: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
     .event-float {
-        width: 120px;
-        left: 0.75rem;
+        width: 200px;
+        left: 1rem;
         top: calc(var(--nav-height) + 0.5rem);
     }
 }

@@ -298,33 +298,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ============ EVENT FLOATING CARD ============
 
-    const eventFloat = document.getElementById('event-float');
-    if (eventFloat) {
-        let eventFloatVisible = false;
-        let eventFloatDismissed = false;
+    const eventFloats = document.querySelectorAll('.event-float');
+    if (eventFloats.length) {
+        const heroSection = document.querySelector('.hero');
+        const floatStates = [];
 
-        setTimeout(() => {
-            eventFloatVisible = true;
-            eventFloat.classList.add('active');
-        }, 2000);
+        eventFloats.forEach((ef) => {
+            const state = { el: ef, visible: false, dismissed: false };
+            floatStates.push(state);
+
+            setTimeout(() => {
+                state.visible = true;
+                ef.classList.add('active');
+            }, 2000);
+        });
 
         // Hide when scrolling past hero
-        const heroSection = document.querySelector('.hero');
         window.addEventListener('scroll', () => {
-            if (eventFloatDismissed) return;
             const heroBottom = heroSection.getBoundingClientRect().bottom;
-            if (heroBottom < 0 && eventFloatVisible) {
-                eventFloat.classList.remove('active');
-            } else if (heroBottom >= 0 && eventFloatVisible) {
-                eventFloat.classList.add('active');
-            }
+            floatStates.forEach(s => {
+                if (s.dismissed) return;
+                if (heroBottom < 0 && s.visible) {
+                    s.el.classList.remove('active');
+                } else if (heroBottom >= 0 && s.visible) {
+                    s.el.classList.add('active');
+                }
+            });
         }, { passive: true });
 
-        document.getElementById('event-float-close').addEventListener('click', () => {
-            eventFloatDismissed = true;
-            eventFloat.classList.remove('active');
-            eventFloat.classList.add('hiding');
-            setTimeout(() => eventFloat.remove(), 500);
+        // Close buttons
+        document.querySelectorAll('.event-float-close').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-close');
+                const target = document.getElementById(targetId);
+                const state = floatStates.find(s => s.el === target);
+                if (state) state.dismissed = true;
+                target.classList.remove('active');
+                target.classList.add('hiding');
+                setTimeout(() => target.remove(), 500);
+            });
         });
     }
 

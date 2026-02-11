@@ -596,10 +596,12 @@ a:hover {
     justify-content: center;
     gap: 1rem;
     position: relative;
+    min-height: 70vh;
 }
 
 .flipbook-container {
-    max-width: 1500px;
+    max-width: 1800px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -676,8 +678,13 @@ a:hover {
 }
 
 .hours-table-wrapper {
-    max-width: 500px;
+    max-width: 560px;
     margin: 2rem auto 0;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
 }
 
 .hours-table {
@@ -695,8 +702,8 @@ a:hover {
 }
 
 .hours-table td {
-    padding: 1.1rem 0.5rem;
-    font-size: 1.2rem;
+    padding: 1.2rem 0.5rem;
+    font-size: 1.25rem;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -710,7 +717,8 @@ a:hover {
     color: var(--color-accent);
     font-weight: 700;
     font-family: var(--font-heading);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -1125,6 +1133,7 @@ a:hover {
     .flipbook-wrapper {
         gap: 0;
         position: relative;
+        min-height: auto;
     }
 
     .flipbook-nav {
@@ -1187,13 +1196,17 @@ a:hover {
         aspect-ratio: 4/3;
     }
 
+    .hours-table-wrapper {
+        padding: 1rem 1.2rem;
+    }
+
     .hours-table td {
-        font-size: 0.95rem;
-        padding: 0.8rem 0.25rem;
+        font-size: 1.05rem;
+        padding: 0.9rem 0.25rem;
     }
 
     .hours-table td:last-child {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 }
 

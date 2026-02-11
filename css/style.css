@@ -584,6 +584,10 @@ a:hover {
     font-weight: 600;
 }
 
+.menu-tab.active:hover {
+    color: var(--color-bg);
+}
+
 .menu-tab[disabled] {
     opacity: 0.35;
     cursor: not-allowed;
@@ -1175,12 +1179,12 @@ a:hover {
     }
 
     .menu-tabs {
-        gap: 0.35rem;
+        gap: 0.4rem;
     }
 
     .menu-tab {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.8rem;
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
     }
 
     .gallery-grid {
@@ -1422,6 +1426,10 @@ a:hover {
     font-weight: 600;
 }
 
+.gallery-filter.active:hover {
+    color: var(--color-bg);
+}
+
 /* Full gallery grid */
 .gallery-full-grid {
     display: grid;
@@ -1621,6 +1629,61 @@ a:hover {
     .lightbox-nav {
         width: 36px;
         height: 36px;
+    }
+}
+
+/* Touch devices — disable sticky hover effects */
+@media (hover: none) {
+    .menu-tab:hover:not([disabled]) {
+        border-color: var(--color-border);
+        color: var(--color-text-muted);
+    }
+
+    .menu-tab.active:hover {
+        background: var(--color-accent);
+        color: var(--color-bg);
+    }
+
+    .gallery-filter:hover {
+        border-color: var(--color-border);
+        color: var(--color-text-muted);
+    }
+
+    .gallery-filter.active:hover {
+        background: var(--color-accent);
+        color: var(--color-bg);
+    }
+
+    .btn-primary:hover {
+        background: var(--color-accent);
+        color: var(--color-bg);
+        transform: none;
+        box-shadow: none;
+    }
+
+    .gallery-full-item:hover img {
+        transform: none;
+    }
+
+    .gallery-full-item:hover::after {
+        opacity: 0;
+    }
+
+    .gallery-item:hover img {
+        transform: none;
+    }
+
+    .gallery-item:hover::after {
+        opacity: 0;
+    }
+
+    .contact-item:hover {
+        transform: none;
+    }
+
+    .social-link:hover {
+        transform: none;
+        box-shadow: none;
     }
 }
 

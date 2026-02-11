@@ -1104,15 +1104,17 @@ a:hover {
     overflow: hidden;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
     opacity: 0;
-    transform: translateX(-120%) scale(0.95);
+    transform: translateX(-120%);
     transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    animation: eventFloat 3s ease-in-out infinite paused;
 }
 
 .event-float.active {
     opacity: 1;
-    transform: translateX(0) scale(1);
-    animation-play-state: running;
+    transform: translateX(0);
+}
+
+.event-float.active .event-float-img {
+    animation: eventFloat 3s ease-in-out infinite;
 }
 
 .event-float.hiding {

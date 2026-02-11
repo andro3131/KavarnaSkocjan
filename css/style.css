@@ -221,15 +221,15 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    background: none;
-    border: 1px solid var(--color-border);
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 4px;
     padding: 0.35rem 0.7rem;
     cursor: pointer;
     font-family: var(--font-body);
     font-size: 0.8rem;
-    color: var(--color-text-muted);
-    transition: border-color var(--transition), transform var(--transition);
+    color: var(--color-text);
+    transition: border-color var(--transition), transform var(--transition), background var(--transition);
 }
 
 .lang-toggle:hover {
@@ -626,6 +626,10 @@ a:hover {
     z-index: 2;
 }
 
+.hours-content .section-title {
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
 .hours-table-wrapper {
     max-width: 500px;
     margin: 2rem auto 0;
@@ -647,30 +651,31 @@ a:hover {
 
 .hours-table td {
     padding: 1.1rem 0.5rem;
-    font-size: 1.15rem;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    font-size: 1.2rem;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .hours-table td:first-child {
-    color: var(--color-text);
+    color: #fff;
     font-weight: 600;
 }
 
 .hours-table td:last-child {
     text-align: right;
     color: var(--color-accent);
-    font-weight: 600;
+    font-weight: 700;
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.3rem;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .hours-note {
     text-align: center;
-    color: var(--color-text-muted);
+    color: var(--color-text);
     font-size: 0.95rem;
     margin-top: 1.5rem;
     font-style: italic;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 /* ===== GALLERY ===== */
@@ -1174,7 +1179,7 @@ a:hover {
 @media (max-width: 480px) {
     .event-float {
         width: 55vw;
-        left: 47%;
+        left: 48.5%;
         top: auto;
         bottom: 5vh;
         transform: translateX(-50%) translateY(120%);

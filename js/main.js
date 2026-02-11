@@ -356,7 +356,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Hide when scrolling past ~half of hero
-        const hideThreshold = () => window.innerHeight * 0.5;
+        const hideThreshold = () => window.innerWidth <= 768
+            ? window.innerHeight * 0.85
+            : window.innerHeight * 0.5;
         window.addEventListener('scroll', () => {
             const heroBottom = heroSection.getBoundingClientRect().bottom;
             floatStates.forEach(s => {

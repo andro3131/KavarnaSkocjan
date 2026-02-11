@@ -233,8 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!isMobile && window.St && window.St.PageFlip) {
             const pageFlip = new St.PageFlip(container, {
-                width: 550,
-                height: 770,
+                width: 715,
+                height: 1000,
                 size: 'stretch',
                 maxShadowOpacity: 0.3,
                 showCover: false,

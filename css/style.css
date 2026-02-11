@@ -600,7 +600,7 @@ a:hover {
     justify-content: center;
     gap: 1rem;
     position: relative;
-    min-height: 70vh;
+    min-height: 90vh;
 }
 
 .flipbook-container {

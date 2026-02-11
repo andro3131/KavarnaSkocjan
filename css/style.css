@@ -918,7 +918,7 @@ a:hover {
 }
 
 .footer-logo {
-    height: 35px;
+    height: 55px;
     width: auto;
     opacity: 0.5;
     transition: opacity var(--transition);

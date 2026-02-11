@@ -216,19 +216,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ============ FLIPBOOK / SLIDER ============
 
-    const flipbookContainer = document.getElementById('book-general');
     const currentEl = document.getElementById('flipbook-current');
     const totalEl = document.getElementById('flipbook-total');
     const prevBtn = document.querySelector('.flipbook-prev');
     const nextBtn = document.querySelector('.flipbook-next');
     const isMobile = window.innerWidth <= 768;
+    const books = {};
+    let activeBook = null;
 
-    if (flipbookContainer) {
-        const pages = flipbookContainer.querySelectorAll('.flipbook-page');
+    function initBook(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container || books[containerId]) return books[containerId];
+
+        const pages = container.querySelectorAll('.flipbook-page');
+        const book = { container, pages, id: containerId };
 
         if (!isMobile && window.St && window.St.PageFlip) {
-            // Desktop: flipbook with page turn
-            const pageFlip = new St.PageFlip(flipbookContainer, {
+            const pageFlip = new St.PageFlip(container, {
                 width: 400,
                 height: 560,
                 size: 'stretch',
@@ -240,61 +244,95 @@ document.addEventListener('DOMContentLoaded', () => {
                 swipeDistance: 30,
                 autoSize: true,
             });
-
             pageFlip.loadFromHTML(pages);
-            const totalPages = pageFlip.getPageCount();
-            totalEl.textContent = totalPages;
-            currentEl.textContent = '1–2';
+            book.pageFlip = pageFlip;
+            book.totalPages = pageFlip.getPageCount();
 
             pageFlip.on('flip', (e) => {
                 const p = e.data;
                 const left = p + 1;
-                const right = Math.min(p + 2, totalPages);
+                const right = Math.min(p + 2, book.totalPages);
                 currentEl.textContent = left === right ? left : left + '–' + right;
             });
-
-            prevBtn.addEventListener('click', () => pageFlip.flipPrev());
-            nextBtn.addEventListener('click', () => pageFlip.flipNext());
-
         } else {
-            // Mobile: simple single-page slider
-            let currentPage = 0;
-            totalEl.textContent = pages.length;
-            flipbookContainer.classList.add('slider-mode');
-
-            function showPage(index) {
-                pages.forEach((p, i) => {
-                    p.style.display = i === index ? 'block' : 'none';
-                });
-                currentPage = index;
-                currentEl.textContent = index + 1;
-            }
-
-            showPage(0);
-
-            prevBtn.addEventListener('click', () => {
-                if (currentPage > 0) showPage(currentPage - 1);
-            });
-
-            nextBtn.addEventListener('click', () => {
-                if (currentPage < pages.length - 1) showPage(currentPage + 1);
-            });
+            container.classList.add('slider-mode');
+            book.currentPage = 0;
+            book.totalPages = pages.length;
+            pages.forEach((p, i) => { p.style.display = i === 0 ? 'block' : 'none'; });
 
             // Swipe support
             let touchStartX = 0;
-            flipbookContainer.addEventListener('touchstart', (e) => {
+            container.addEventListener('touchstart', (e) => {
                 touchStartX = e.touches[0].clientX;
             }, { passive: true });
-
-            flipbookContainer.addEventListener('touchend', (e) => {
+            container.addEventListener('touchend', (e) => {
                 const diff = touchStartX - e.changedTouches[0].clientX;
                 if (Math.abs(diff) > 40) {
-                    if (diff > 0 && currentPage < pages.length - 1) showPage(currentPage + 1);
-                    else if (diff < 0 && currentPage > 0) showPage(currentPage - 1);
+                    if (diff > 0 && book.currentPage < pages.length - 1) showBookPage(book, book.currentPage + 1);
+                    else if (diff < 0 && book.currentPage > 0) showBookPage(book, book.currentPage - 1);
                 }
             }, { passive: true });
         }
+
+        books[containerId] = book;
+        return book;
     }
+
+    function showBookPage(book, index) {
+        book.pages.forEach((p, i) => { p.style.display = i === index ? 'block' : 'none'; });
+        book.currentPage = index;
+        currentEl.textContent = index + 1;
+    }
+
+    function switchBook(bookId) {
+        // Hide all containers
+        document.querySelectorAll('.flipbook-container').forEach(c => c.style.display = 'none');
+
+        const book = initBook(bookId);
+        book.container.style.display = '';
+        activeBook = book;
+
+        // Update indicator
+        totalEl.textContent = book.totalPages;
+        if (book.pageFlip) {
+            currentEl.textContent = '1–2';
+            book.pageFlip.turnToPage(0);
+        } else {
+            showBookPage(book, 0);
+        }
+    }
+
+    // Init first book
+    switchBook('book-general');
+
+    // Tab click handlers
+    document.querySelectorAll('.menu-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            if (tab.disabled) return;
+            document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            switchBook(tab.dataset.book);
+        });
+    });
+
+    // Prev / Next buttons
+    prevBtn.addEventListener('click', () => {
+        if (!activeBook) return;
+        if (activeBook.pageFlip) {
+            activeBook.pageFlip.flipPrev();
+        } else if (activeBook.currentPage > 0) {
+            showBookPage(activeBook, activeBook.currentPage - 1);
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (!activeBook) return;
+        if (activeBook.pageFlip) {
+            activeBook.pageFlip.flipNext();
+        } else if (activeBook.currentPage < activeBook.pages.length - 1) {
+            showBookPage(activeBook, activeBook.currentPage + 1);
+        }
+    });
 
     // ============ EVENT FLOATING CARD ============
 

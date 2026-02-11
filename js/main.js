@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 height: 560,
                 size: 'stretch',
                 maxShadowOpacity: 0.3,
-                showCover: true,
+                showCover: false,
                 mobileScrollSupport: false,
                 flippingTime: 800,
                 useMouseEvents: true,
@@ -242,10 +242,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             pageFlip.loadFromHTML(pages);
-            totalEl.textContent = pageFlip.getPageCount();
+            const totalPages = pageFlip.getPageCount();
+            totalEl.textContent = totalPages;
+            currentEl.textContent = '1–2';
 
             pageFlip.on('flip', (e) => {
-                currentEl.textContent = e.data + 1;
+                const p = e.data;
+                const left = p + 1;
+                const right = Math.min(p + 2, totalPages);
+                currentEl.textContent = left === right ? left : left + '–' + right;
             });
 
             prevBtn.addEventListener('click', () => pageFlip.flipPrev());

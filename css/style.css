@@ -643,7 +643,8 @@ a:hover {
 
 /* Mobile slider mode */
 .flipbook-container.slider-mode {
-    max-width: 90vw;
+    max-width: 95vw;
+    width: 95vw;
     margin: 0 auto;
 }
 

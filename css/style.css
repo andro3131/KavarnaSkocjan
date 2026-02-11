@@ -641,6 +641,24 @@ a:hover {
     font-family: var(--font-body);
 }
 
+/* Mobile slider mode */
+.flipbook-container.slider-mode {
+    max-width: 90vw;
+    margin: 0 auto;
+}
+
+.flipbook-container.slider-mode .flipbook-page {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.flipbook-container.slider-mode .flipbook-page img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* ===== HOURS ===== */
 .hours {
     background: var(--color-bg-alt);

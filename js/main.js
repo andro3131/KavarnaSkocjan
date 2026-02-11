@@ -214,41 +214,81 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // ============ FLIPBOOK ============
+    // ============ FLIPBOOK / SLIDER ============
 
     const flipbookContainer = document.getElementById('book-general');
-    if (flipbookContainer && window.St && window.St.PageFlip) {
-        const pageFlip = new St.PageFlip(flipbookContainer, {
-            width: 400,
-            height: 560,
-            size: 'stretch',
-            maxShadowOpacity: 0.3,
-            showCover: true,
-            mobileScrollSupport: true,
-            flippingTime: 800,
-            useMouseEvents: true,
-            swipeDistance: 30,
-            clickEventForward: true,
-            autoSize: true,
-        });
+    const currentEl = document.getElementById('flipbook-current');
+    const totalEl = document.getElementById('flipbook-total');
+    const prevBtn = document.querySelector('.flipbook-prev');
+    const nextBtn = document.querySelector('.flipbook-next');
+    const isMobile = window.innerWidth <= 768;
 
-        pageFlip.loadFromHTML(document.querySelectorAll('#book-general .flipbook-page'));
+    if (flipbookContainer) {
+        const pages = flipbookContainer.querySelectorAll('.flipbook-page');
 
-        const currentEl = document.getElementById('flipbook-current');
-        const totalEl = document.getElementById('flipbook-total');
-        totalEl.textContent = pageFlip.getPageCount();
+        if (!isMobile && window.St && window.St.PageFlip) {
+            // Desktop: flipbook with page turn
+            const pageFlip = new St.PageFlip(flipbookContainer, {
+                width: 400,
+                height: 560,
+                size: 'stretch',
+                maxShadowOpacity: 0.3,
+                showCover: true,
+                mobileScrollSupport: false,
+                flippingTime: 800,
+                useMouseEvents: true,
+                swipeDistance: 30,
+                autoSize: true,
+            });
 
-        pageFlip.on('flip', (e) => {
-            currentEl.textContent = e.data + 1;
-        });
+            pageFlip.loadFromHTML(pages);
+            totalEl.textContent = pageFlip.getPageCount();
 
-        document.querySelector('.flipbook-prev').addEventListener('click', () => {
-            pageFlip.flipPrev();
-        });
+            pageFlip.on('flip', (e) => {
+                currentEl.textContent = e.data + 1;
+            });
 
-        document.querySelector('.flipbook-next').addEventListener('click', () => {
-            pageFlip.flipNext();
-        });
+            prevBtn.addEventListener('click', () => pageFlip.flipPrev());
+            nextBtn.addEventListener('click', () => pageFlip.flipNext());
+
+        } else {
+            // Mobile: simple single-page slider
+            let currentPage = 0;
+            totalEl.textContent = pages.length;
+            flipbookContainer.classList.add('slider-mode');
+
+            function showPage(index) {
+                pages.forEach((p, i) => {
+                    p.style.display = i === index ? 'block' : 'none';
+                });
+                currentPage = index;
+                currentEl.textContent = index + 1;
+            }
+
+            showPage(0);
+
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 0) showPage(currentPage - 1);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentPage < pages.length - 1) showPage(currentPage + 1);
+            });
+
+            // Swipe support
+            let touchStartX = 0;
+            flipbookContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+            }, { passive: true });
+
+            flipbookContainer.addEventListener('touchend', (e) => {
+                const diff = touchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 40) {
+                    if (diff > 0 && currentPage < pages.length - 1) showPage(currentPage + 1);
+                    else if (diff < 0 && currentPage > 0) showPage(currentPage - 1);
+                }
+            }, { passive: true });
+        }
     }
 
     // ============ EVENT FLOATING CARD ============

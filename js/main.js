@@ -224,12 +224,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.querySelector('.flipbook-prev');
     const nextBtn = document.querySelector('.flipbook-next');
     const isMobile = window.innerWidth <= 768;
-    const books = {};
+    let books = {};
     let activeBook = null;
 
     function initBook(containerId) {
         const container = document.getElementById(containerId);
-        if (!container || books[containerId]) return books[containerId];
+        if (!container) return null;
+        if (books[containerId]) return books[containerId];
 
         const pages = container.querySelectorAll('.flipbook-page');
         const book = { container, pages, id: containerId };
@@ -292,6 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.flipbook-container').forEach(c => c.style.display = 'none');
 
         const book = initBook(bookId);
+        if (!book) return;
         book.container.style.display = '';
         activeBook = book;
 
@@ -305,6 +307,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function reinitFlipbooks() {
+        // Destroy old PageFlip instances
+        Object.keys(books).forEach(k => {
+            if (books[k].pageFlip) {
+                try { books[k].pageFlip.destroy(); } catch (e) {}
+            }
+        });
+        books = {};
+        activeBook = null;
+
+        // Find the first visible book (or default to book-general)
+        const firstContainer = document.querySelector('.flipbook-container');
+        const firstId = firstContainer ? firstContainer.id : 'book-general';
+        switchBook(firstId);
+    }
+
+    // Expose for content-loader
+    window.__reinitFlipbooks = reinitFlipbooks;
+
     // Init first book
     switchBook('book-general');
 
@@ -316,12 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!tab || tab.disabled) return;
             menuTabs.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            // Clear cached books so new containers get initialized
-            const bookId = tab.dataset.book;
-            if (!books[bookId]) {
-                // Force re-init for CMS-loaded containers
-            }
-            switchBook(bookId);
+            switchBook(tab.dataset.book);
         });
     }
 

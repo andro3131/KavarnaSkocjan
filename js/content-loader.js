@@ -265,9 +265,10 @@
             wrapper.insertBefore(container, nextBtn);
         });
 
-        // Signal to main.js that books need re-init
-        window.__menusUpdated = true;
-        window.__menusData = data;
+        // Re-init flipbooks after replacing containers
+        if (window.__reinitFlipbooks) {
+            window.__reinitFlipbooks();
+        }
     }
 
     // Run on DOM ready

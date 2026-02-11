@@ -599,7 +599,7 @@ a:hover {
 }
 
 .flipbook-container {
-    max-width: 800px;
+    max-width: 920px;
     margin: 0 auto;
 }
 
@@ -1117,9 +1117,24 @@ a:hover {
         display: none;
     }
 
+    .flipbook-wrapper {
+        gap: 0.25rem;
+    }
+
     .flipbook-nav {
-        width: 34px;
-        height: 34px;
+        width: 30px;
+        height: 30px;
+        min-width: 30px;
+    }
+
+    .flipbook-nav svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .flipbook-container.slider-mode {
+        max-width: none;
+        width: calc(100vw - 80px);
     }
 
     .menu-tabs {

@@ -224,24 +224,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const eventFloat = document.getElementById('event-float');
     if (eventFloat) {
-        const eventImg = eventFloat.querySelector('.event-float-img');
-        const storageKey = 'kavarna-event-seen-' + (eventImg?.src || '').split('/').pop();
-        const alreadySeen = sessionStorage.getItem(storageKey);
+        const storageKey = 'kavarna-event-float-dismissed';
 
-        if (!alreadySeen) {
+        if (!sessionStorage.getItem(storageKey)) {
             setTimeout(() => {
                 eventFloat.classList.add('active');
             }, 2000);
         }
 
-        function closeEventFloat() {
+        document.getElementById('event-float-close').addEventListener('click', () => {
             eventFloat.classList.remove('active');
             eventFloat.classList.add('hiding');
             sessionStorage.setItem(storageKey, '1');
             setTimeout(() => eventFloat.remove(), 500);
-        }
-
-        document.getElementById('event-float-close').addEventListener('click', closeEventFloat);
+        });
     }
 
     // ============ ACTIVE NAV LINK ON SCROLL ============

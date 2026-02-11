@@ -646,13 +646,14 @@ a:hover {
 }
 
 .hours-table td {
-    padding: 1rem 0.5rem;
-    font-size: 1.05rem;
+    padding: 1.1rem 0.5rem;
+    font-size: 1.15rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .hours-table td:first-child {
     color: var(--color-text);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .hours-table td:last-child {
@@ -660,15 +661,16 @@ a:hover {
     color: var(--color-accent);
     font-weight: 600;
     font-family: var(--font-heading);
-    font-size: 1.15rem;
+    font-size: 1.25rem;
 }
 
 .hours-note {
     text-align: center;
     color: var(--color-text-muted);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin-top: 1.5rem;
     font-style: italic;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* ===== GALLERY ===== */

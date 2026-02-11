@@ -941,8 +941,19 @@ a:hover {
         --section-padding: 4rem;
     }
 
+    .nav-container {
+        padding: 0 1.25rem;
+    }
+
     .nav-toggle {
         display: block;
+        order: 3;
+        margin-left: auto;
+    }
+
+    .lang-toggle {
+        order: 4;
+        margin-left: 0.75rem;
     }
 
     .nav-links {

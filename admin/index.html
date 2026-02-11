@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin — Kavarna Škocjan</title>
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dewf3zos0/image/upload/w_32,h_32,c_fit/v1770800196/faviconpravi_p0fheb.png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0f0d0a;
+            --bg-secondary: #1a1410;
+            --bg-card: #231e18;
+            --bg-card-hover: #2d261e;
+            --text-primary: #f5efe6;
+            --text-secondary: #a89a8a;
+            --text-muted: #6b5d50;
+            --accent: #c8965a;
+            --accent-dark: #a07040;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --warning: #eab308;
+            --border: rgba(200,150,90,0.12);
+            --radius: 12px;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* ===== LOGIN ===== */
+        .login-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .login-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 3rem;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-box h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .login-box p { color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.9rem; }
+
+        .login-error {
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.3);
+            color: #ef4444;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        /* ===== INPUTS ===== */
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        textarea { resize: vertical; min-height: 80px; }
+
+        label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+
+        .field { margin-bottom: 1rem; }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #1a1410;
+        }
+
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .btn-danger {
+            background: rgba(239,68,68,0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239,68,68,0.3);
+        }
+
+        .btn-danger:hover { background: rgba(239,68,68,0.25); }
+
+        .btn-add {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-secondary);
+            border: 1px dashed var(--border);
+            width: 100%;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .btn-add:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ===== LAYOUT ===== */
+        .admin-layout { display: none; min-height: 100vh; }
+
+        .admin-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-header h1 { font-size: 1.1rem; font-weight: 600; }
+        .admin-header h1 span { color: var(--accent); }
+
+        .btn-logout {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+
+        .btn-logout:hover { color: var(--text-primary); border-color: var(--text-muted); }
+
+        .admin-body { display: flex; min-height: calc(100vh - 57px); }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 220px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            padding: 1rem 0;
+            flex-shrink: 0;
+        }
+
+        .sidebar-item {
+            display: block;
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .sidebar-item:hover { color: var(--text-primary); background: rgba(255,255,255,0.03); }
+
+        .sidebar-item.active {
+            color: var(--accent);
+            background: rgba(200,150,90,0.08);
+            border-right: 2px solid var(--accent);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            flex: 1;
+            padding: 2rem 3rem;
+            max-width: 900px;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-header h2 { font-size: 1.3rem; font-weight: 600; }
+        .section-header p { color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.3rem; }
+
+        /* ===== ITEM CARDS ===== */
+        .item-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .item-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .item-card-header h3 {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* ===== IMAGE PREVIEW ===== */
+        .img-preview {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .img-preview-large {
+            max-width: 400px;
+        }
+
+        .img-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .img-row .field { flex: 1; }
+
+        /* ===== TOGGLE ===== */
+        .toggle-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .toggle.active { background: var(--accent); border-color: var(--accent); }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+
+        .toggle.active::after { transform: translateX(20px); }
+
+        .toggle-label { font-size: 0.85rem; color: var(--text-secondary); }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+        }
+
+        .toast.visible { transform: translateX(0); }
+        .toast.success { background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #22c55e; }
+        .toast.error { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #ef4444; }
+        .toast.warning { background: rgba(234,179,8,0.15); border: 1px solid rgba(234,179,8,0.3); color: #eab308; }
+
+        /* ===== SAVE BAR ===== */
+        .save-bar {
+            position: sticky;
+            bottom: 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                display: flex;
+                overflow-x: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 0;
+            }
+            .sidebar-item {
+                white-space: nowrap;
+                padding: 0.75rem 1rem;
+                border-right: none;
+            }
+            .sidebar-item.active { border-right: none; border-bottom: 2px solid var(--accent); }
+            .admin-body { flex-direction: column; }
+            .main-content { padding: 1.5rem; }
+            .field-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div class="login-screen" id="loginScreen">
+    <div class="login-box">
+        <h1>Kavarna Škocjan</h1>
+        <p>Prijavite se za urejanje vsebine</p>
+        <div class="login-error" id="loginError"></div>
+        <form id="loginForm">
+            <div class="field">
+                <input type="password" id="loginPassword" placeholder="Vnesite geslo" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;margin-top:0.5rem">Prijava</button>
+        </form>
+    </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-layout" id="adminLayout">
+    <header class="admin-header">
+        <h1><span>Kavarna Škocjan</span> Admin</h1>
+        <div style="display:flex;gap:1rem;align-items:center">
+            <a href="/" class="btn btn-logout" style="text-decoration:none">Nazaj na stran</a>
+            <button class="btn btn-logout" onclick="logout()">Odjava</button>
+        </div>
+    </header>
+
+    <div class="admin-body">
+        <nav class="sidebar" id="sidebar"></nav>
+        <div class="main-content">
+            <div class="section-header" id="sectionHeader"></div>
+            <div id="formContainer"></div>
+            <div class="save-bar">
+                <button class="btn btn-primary" id="saveBtn" onclick="saveCurrentSection()">Shrani spremembe</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== STATE =====
+let token = sessionStorage.getItem('admin_token');
+let currentSection = 'gallery';
+let sectionData = {};
+
+const SECTIONS = [
+    { key: 'gallery', label: 'Galerija', description: 'Slike na prvi strani — dodajanje, odstranjevanje, vrstni red' },
+    { key: 'events', label: 'Bannerji', description: 'Plavajoči bannerji za dogodke na hero sekciji' },
+    { key: 'about', label: 'O nas', description: 'Besedilo in slika v sekciji "O nas"' },
+    { key: 'hours', label: 'Odpiralni čas', description: 'Tabela odpiralnega časa in opomba' },
+    { key: 'contact', label: 'Kontakt', description: 'Telefonske številke, e-pošta, družabna omrežja' },
+    { key: 'menus', label: 'Jedilniki', description: 'Slike strani jedilnikov (ceniki, vinska karta, itd.)' }
+];
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', () => {
+    if (token) checkAuth();
+    buildSidebar();
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await login(document.getElementById('loginPassword').value);
+    });
+});
+
+async function checkAuth() {
+    try {
+        const res = await fetch('/api/content?section=gallery', {
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if (res.ok) {
+            showAdmin();
+        } else {
+            sessionStorage.removeItem('admin_token');
+            token = null;
+        }
+    } catch {
+        sessionStorage.removeItem('admin_token');
+        token = null;
+    }
+}
+
+// ===== AUTH =====
+async function login(password) {
+    const errorEl = document.getElementById('loginError');
+    errorEl.style.display = 'none';
+
+    try {
+        const res = await fetch('/api/auth', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password })
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+            token = data.token;
+            sessionStorage.setItem('admin_token', token);
+            showAdmin();
+        } else {
+            errorEl.textContent = data.error || 'Napaka pri prijavi';
+            errorEl.style.display = 'block';
+        }
+    } catch {
+        errorEl.textContent = 'Napaka pri povezavi s strežnikom';
+        errorEl.style.display = 'block';
+    }
+}
+
+function logout() {
+    sessionStorage.removeItem('admin_token');
+    token = null;
+    sectionData = {};
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('adminLayout').style.display = 'none';
+    document.getElementById('loginPassword').value = '';
+}
+
+function showAdmin() {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminLayout').style.display = 'block';
+    switchSection('gallery');
+}
+
+// ===== SIDEBAR =====
+function buildSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.innerHTML = SECTIONS.map(s =>
+        `<button class="sidebar-item" data-section="${s.key}" onclick="switchSection('${s.key}')">${s.label}</button>`
+    ).join('');
+}
+
+async function switchSection(key) {
+    currentSection = key;
+
+    document.querySelectorAll('.sidebar-item').forEach(el => {
+        el.classList.toggle('active', el.dataset.section === key);
+    });
+
+    const section = SECTIONS.find(s => s.key === key);
+    document.getElementById('sectionHeader').innerHTML = `<h2>${section.label}</h2><p>${section.description}</p>`;
+
+    if (!sectionData[key]) {
+        document.getElementById('formContainer').innerHTML = '<p style="color:var(--text-muted)">Nalagam...</p>';
+        await loadSection(key);
+    }
+
+    renderForm(key);
+}
+
+async function loadSection(key) {
+    try {
+        const res = await fetch('/api/content?section=' + key, {
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if (res.status === 401) { logout(); return; }
+        const result = await res.json();
+        sectionData[key] = { data: result.data, sha: result.sha };
+    } catch (err) {
+        showToast('Napaka pri nalaganju: ' + err.message, 'error');
+    }
+}
+
+// ===== SAVE =====
+async function saveCurrentSection() {
+    const btn = document.getElementById('saveBtn');
+    btn.disabled = true;
+    btn.textContent = 'Shranjujem...';
+
+    const newData = collectFormData(currentSection);
+
+    try {
+        const res = await fetch('/api/content?section=' + currentSection, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify({
+                data: newData,
+                sha: sectionData[currentSection].sha
+            })
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+            sectionData[currentSection] = { data: newData, sha: result.sha };
+            showToast('Spremembe shranjene! Stran se posodobi v ~30 sekundah.', 'success');
+        } else if (res.status === 409) {
+            showToast('Vsebina je bila spremenjena. Osvežujem...', 'warning');
+            delete sectionData[currentSection];
+            await switchSection(currentSection);
+        } else {
+            showToast('Napaka: ' + (result.error || 'Neznana napaka'), 'error');
+        }
+    } catch (err) {
+        showToast('Napaka pri shranjevanju: ' + err.message, 'error');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'Shrani spremembe';
+    }
+}
+
+// ===== TOAST =====
+function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.className = 'toast ' + type;
+    setTimeout(() => toast.classList.add('visible'), 10);
+    setTimeout(() => toast.classList.remove('visible'), 4000);
+}
+
+// ===== HELPERS =====
+function esc(str) {
+    return String(str ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+}
+
+function field(name, label, value, type = 'text') {
+    const escaped = esc(value);
+    if (type === 'textarea') {
+        return `<div class="field"><label>${label}</label><textarea data-field="${name}">${esc(value)}</textarea></div>`;
+    }
+    return `<div class="field"><label>${label}</label><input type="${type}" data-field="${name}" value="${escaped}"></div>`;
+}
+
+function imgField(name, label, value) {
+    const escaped = esc(value);
+    const preview = value ? `<img src="${escaped}" class="img-preview" onerror="this.style.display='none'">` : '';
+    return `<div class="field">
+        <label>${label}</label>
+        <input type="url" data-field="${name}" value="${escaped}" oninput="updatePreview(this)">
+        ${preview}
+    </div>`;
+}
+
+function updatePreview(input) {
+    let img = input.nextElementSibling;
+    if (input.value) {
+        if (!img || img.tagName !== 'IMG') {
+            img = document.createElement('img');
+            img.className = 'img-preview';
+            img.onerror = () => img.style.display = 'none';
+            input.after(img);
+        }
+        img.src = input.value;
+        img.style.display = '';
+    } else if (img && img.tagName === 'IMG') {
+        img.style.display = 'none';
+    }
+}
+
+function toggleField(name, label, value) {
+    return `<div class="toggle-wrapper">
+        <div class="toggle ${value ? 'active' : ''}" data-field="${name}" data-type="toggle" onclick="this.classList.toggle('active')"></div>
+        <span class="toggle-label">${label}</span>
+    </div>`;
+}
+
+// ===== FORM RENDERING =====
+function renderForm(key) {
+    const container = document.getElementById('formContainer');
+    const data = sectionData[key]?.data;
+    if (!data) { container.innerHTML = ''; return; }
+
+    switch (key) {
+        case 'gallery': container.innerHTML = renderGallery(data); break;
+        case 'events': container.innerHTML = renderEvents(data); break;
+        case 'about': container.innerHTML = renderAbout(data); break;
+        case 'hours': container.innerHTML = renderHours(data); break;
+        case 'contact': container.innerHTML = renderContact(data); break;
+        case 'menus': container.innerHTML = renderMenus(data); break;
+    }
+}
+
+// --- GALLERY ---
+function renderGallery(d) {
+    let html = '<div id="galleryList">';
+    d.items.forEach((item, i) => {
+        html += renderGalleryCard(item, i);
+    });
+    html += '</div>';
+    html += `<button class="btn btn-add" onclick="addGalleryItem()">+ Dodaj sliko</button>`;
+    return html;
+}
+
+function renderGalleryCard(item, i) {
+    return `
+        <div class="item-card" data-item-index="${i}">
+            <div class="item-card-header">
+                <h3>Slika ${i + 1} ${item.large ? '(velika)' : ''}</h3>
+                <button class="btn btn-danger" onclick="removeItem('galleryList', this)" style="font-size:0.8rem;padding:0.4rem 0.8rem">Odstrani</button>
+            </div>
+            ${imgField('items.' + i + '.src', 'URL slike (Cloudinary)', item.src)}
+            ${field('items.' + i + '.alt', 'Opis slike', item.alt)}
+            ${toggleField('items.' + i + '.large', 'Velika slika (čez 2 stolpca)', item.large)}
+        </div>
+    `;
+}
+
+function addGalleryItem() {
+    const list = document.getElementById('galleryList');
+    const i = list.querySelectorAll('.item-card').length;
+    const div = document.createElement('div');
+    div.innerHTML = renderGalleryCard({ src: '', alt: '', large: false }, i);
+    list.appendChild(div.firstElementChild);
+}
+
+// --- EVENTS / BANNERS ---
+function renderEvents(d) {
+    let html = '<div id="eventsList">';
+    d.items.forEach((item, i) => {
+        html += renderEventCard(item, i);
+    });
+    html += '</div>';
+    html += `<button class="btn btn-add" onclick="addEventItem()">+ Dodaj banner</button>`;
+    return html;
+}
+
+function renderEventCard(item, i) {
+    const posOptions = ['left', 'right'].map(p =>
+        `<option value="${p}" ${item.position === p ? 'selected' : ''}>${p === 'left' ? 'Levo' : 'Desno'}</option>`
+    ).join('');
+
+    return `
+        <div class="item-card" data-item-index="${i}">
+            <div class="item-card-header">
+                <h3>Banner ${i + 1}</h3>
+                <button class="btn btn-danger" onclick="removeItem('eventsList', this)" style="font-size:0.8rem;padding:0.4rem 0.8rem">Odstrani</button>
+            </div>
+            ${toggleField('items.' + i + '.enabled', 'Aktiven (prikazan na strani)', item.enabled)}
+            ${imgField('items.' + i + '.image', 'URL slike bannera', item.image)}
+            ${field('items.' + i + '.alt', 'Opis slike', item.alt)}
+            <div class="field">
+                <label>Pozicija</label>
+                <select data-field="items.${i}.position">${posOptions}</select>
+            </div>
+        </div>
+    `;
+}
+
+function addEventItem() {
+    const list = document.getElementById('eventsList');
+    const i = list.querySelectorAll('.item-card').length;
+    const div = document.createElement('div');
+    div.innerHTML = renderEventCard({ enabled: true, image: '', alt: '', position: 'left' }, i);
+    list.appendChild(div.firstElementChild);
+}
+
+// --- ABOUT ---
+function renderAbout(d) {
+    let html = '<div id="aboutParagraphs">';
+    d.paragraphs.forEach((p, i) => {
+        html += `
+            <div class="item-card" data-item-index="${i}">
+                <div class="item-card-header">
+                    <h3>Odstavek ${i + 1}</h3>
+                    <button class="btn btn-danger" onclick="removeItem('aboutParagraphs', this)" style="font-size:0.8rem;padding:0.4rem 0.8rem">Odstrani</button>
+                </div>
+                ${field('paragraphs.' + i + '.sl', 'Besedilo (slovensko)', p.sl, 'textarea')}
+                ${field('paragraphs.' + i + '.en', 'Besedilo (angleško)', p.en, 'textarea')}
+            </div>
+        `;
+    });
+    html += '</div>';
+    html += `<button class="btn btn-add" onclick="addAboutParagraph()">+ Dodaj odstavek</button>`;
+    html += `<div style="margin-top:2rem">`;
+    html += imgField('image', 'Slika v sekciji "O nas"', d.image);
+    html += `</div>`;
+    return html;
+}
+
+function addAboutParagraph() {
+    const list = document.getElementById('aboutParagraphs');
+    const i = list.querySelectorAll('.item-card').length;
+    const div = document.createElement('div');
+    div.innerHTML = `
+        <div class="item-card" data-item-index="${i}">
+            <div class="item-card-header">
+                <h3>Odstavek ${i + 1}</h3>
+                <button class="btn btn-danger" onclick="removeItem('aboutParagraphs', this)" style="font-size:0.8rem;padding:0.4rem 0.8rem">Odstrani</button>
+            </div>
+            ${field('paragraphs.' + i + '.sl', 'Besedilo (slovensko)', '', 'textarea')}
+            ${field('paragraphs.' + i + '.en', 'Besedilo (angleško)', '', 'textarea')}
+        </div>
+    `;
+    list.appendChild(div.firstElementChild);
+}
+
+// --- HOURS ---
+function renderHours(d) {
+    let html = '<div id="hoursList">';
+    d.rows.forEach((row, i) => {
+        html += `
+            <div class="item-card" data-item-index="${i}">
+                <div class="item-card-header">
+                    <h3>Vrstica ${i + 1}</h3>
+                    <button class="btn btn-danger" onclick="removeItem('hoursList', this)" style="font-size:0.8rem;padding:0.4rem 0.8rem">Odstrani</button>
+                </div>
+                <div class="field-row">
+                    ${field('rows.' + i + '.daysSl', 'Dnevi (slovensko)', row.daysSl)}
+                    ${field('rows.' + i + '.daysEn', 'Dnevi (angleško)', row.daysEn)}
+                </div>
+                ${field('rows.' + i + '.time', 'Čas', row.time)}
+            </div>
+        `;
+    });
+    html += '</div>';
+    html += `<button class="btn btn-add" onclick="addHoursRow()">+ Dodaj vrstico</button>`;
+    html += `<div style="margin-top:2rem">`;
+    html += field('noteSl', 'Opomba (slovensko)', d.noteSl, 'textarea');
+    html += field('noteEn', 'Opomba (angleško)', d.noteEn, 'textarea');
+    html += `</div>`;
+    return html;
+}
+
+function addHoursRow() {
+    const list = document.getElementById('hoursList');
+    const i = list.querySelectorAll('.item-card').length;
+    const div = document.createElement('div');
+    div.innerHTML = `
+        <div class="item-card" data-item-index="${i}">
+            <div class="item-card-header">
+                <h3>Vrstica ${i + 1}</h3>
+                <button class="btn btn-danger" onclick="removeItem('hoursList', this)" style="font-size:0.8rem;padding:0.4rem 0.8rem">Odstrani</button>
+            </div>
+            <div class="field-row">
+                ${field('rows.' + i + '.daysSl', 'Dnevi (slovensko)', '')}
+                ${field('rows.' + i + '.daysEn', 'Dnevi (angleško)', '')}
+            </div>
+            ${field('rows.' + i + '.time', 'Čas', '')}
+        </div>
+    `;
+    list.appendChild(div.firstElementChild);
+}
+
+// --- CONTACT ---
+function renderContact(d) {
+    return `
+        ${field('address', 'Naslov (uporabi \\n za novo vrstico)', d.address, 'textarea')}
+        <h3 style="font-size:1rem;margin:1.5rem 0 1rem;color:var(--text-secondary)">Telefonske številke</h3>
+        <div id="phonesList">
+            ${d.phones.map((p, i) => renderPhoneCard(p, i)).join('')}
+        </div>
+        <button class="btn btn-add" onclick="addPhone()">+ Dodaj telefon</button>
+        <div style="margin-top:2rem">
+            ${field('email', 'E-pošta', d.email, 'email')}
+            ${field('facebook', 'Facebook URL', d.facebook, 'url')}
+            ${field('instagram', 'Instagram URL', d.instagram, 'url')}
+        </div>
+    `;
+}
+
+function renderPhoneCard(p, i) {
+    return `
+        <div class="item-card" data-item-index="${i}">
+            <div class="item-card-header">
+                <h3>Telefon ${i + 1}</h3>
+                <button class="btn btn-danger" onclick="removeItem('phonesList', this)" style="font-size:0.8rem;padding:0.4rem 0.8rem">Odstrani</button>
+            </div>
+            ${field('phones.' + i + '.name', 'Ime', p.name)}
+            <div class="field-row">
+                ${field('phones.' + i + '.number', 'Številka (prikazano)', p.number)}
+                ${field('phones.' + i + '.link', 'Telefonska povezava (z +386...)', p.link)}
+            </div>
+        </div>
+    `;
+}
+
+function addPhone() {
+    const list = document.getElementById('phonesList');
+    const i = list.querySelectorAll('.item-card').length;
+    const div = document.createElement('div');
+    div.innerHTML = renderPhoneCard({ name: '', number: '', link: '' }, i);
+    list.appendChild(div.firstElementChild);
+}
+
+// --- MENUS ---
+function renderMenus(d) {
+    let html = '<div id="menuBooksList">';
+    d.books.forEach((book, i) => {
+        html += renderMenuBook(book, i);
+    });
+    html += '</div>';
+    html += `<button class="btn btn-add" onclick="addMenuBook()">+ Dodaj kategorijo jedilnika</button>`;
+    return html;
+}
+
+function renderMenuBook(book, i) {
+    let pagesHtml = `<div class="menu-pages-list" id="menuPages-${i}">`;
+    book.pages.forEach((page, j) => {
+        pagesHtml += `
+            <div class="item-card" style="background:var(--bg-primary);padding:1rem;margin-bottom:0.5rem" data-page-index="${j}">
+                <div class="item-card-header" style="margin-bottom:0.5rem">
+                    <h3 style="font-size:0.85rem">Stran ${j + 1}</h3>
+                    <button class="btn btn-danger" onclick="removeMenuPage(${i}, this)" style="font-size:0.75rem;padding:0.3rem 0.6rem">X</button>
+                </div>
+                ${imgField('books.' + i + '.pages.' + j, 'URL slike', page)}
+            </div>
+        `;
+    });
+    pagesHtml += '</div>';
+
+    return `
+        <div class="item-card" data-item-index="${i}">
+            <div class="item-card-header">
+                <h3>${esc(book.nameSl) || 'Kategorija ' + (i + 1)}</h3>
+                <button class="btn btn-danger" onclick="removeItem('menuBooksList', this)" style="font-size:0.8rem;padding:0.4rem 0.8rem">Odstrani kategorijo</button>
+            </div>
+            ${field('books.' + i + '.id', 'ID (ne spreminjajte)', book.id)}
+            <div class="field-row">
+                ${field('books.' + i + '.nameSl', 'Ime (slovensko)', book.nameSl)}
+                ${field('books.' + i + '.nameEn', 'Ime (angleško)', book.nameEn)}
+            </div>
+            <h4 style="font-size:0.9rem;margin:1rem 0 0.5rem;color:var(--text-secondary)">Strani jedilnika</h4>
+            ${pagesHtml}
+            <button class="btn btn-add" onclick="addMenuPage(${i})" style="font-size:0.85rem;padding:0.6rem">+ Dodaj stran</button>
+        </div>
+    `;
+}
+
+function addMenuPage(bookIndex) {
+    const list = document.getElementById('menuPages-' + bookIndex);
+    const j = list.querySelectorAll('[data-page-index]').length;
+    const div = document.createElement('div');
+    div.innerHTML = `
+        <div class="item-card" style="background:var(--bg-primary);padding:1rem;margin-bottom:0.5rem" data-page-index="${j}">
+            <div class="item-card-header" style="margin-bottom:0.5rem">
+                <h3 style="font-size:0.85rem">Stran ${j + 1}</h3>
+                <button class="btn btn-danger" onclick="removeMenuPage(${bookIndex}, this)" style="font-size:0.75rem;padding:0.3rem 0.6rem">X</button>
+            </div>
+            ${imgField('books.' + bookIndex + '.pages.' + j, 'URL slike', '')}
+        </div>
+    `;
+    list.appendChild(div.firstElementChild);
+}
+
+function removeMenuPage(bookIndex, btn) {
+    const list = document.getElementById('menuPages-' + bookIndex);
+    const pages = list.querySelectorAll('[data-page-index]');
+    if (pages.length <= 1) {
+        showToast('Vsaj ena stran mora ostati', 'warning');
+        return;
+    }
+    btn.closest('[data-page-index]').remove();
+    // Re-index
+    list.querySelectorAll('[data-page-index]').forEach((page, j) => {
+        page.dataset.pageIndex = j;
+        page.querySelector('h3').textContent = 'Stran ' + (j + 1);
+        page.querySelectorAll('[data-field]').forEach(input => {
+            input.dataset.field = input.dataset.field.replace(/books\.\d+\.pages\.\d+/, `books.${bookIndex}.pages.${j}`);
+        });
+    });
+}
+
+function addMenuBook() {
+    const list = document.getElementById('menuBooksList');
+    const i = list.querySelectorAll(':scope > .item-card').length;
+    const div = document.createElement('div');
+    div.innerHTML = renderMenuBook({ id: 'book-new-' + i, nameSl: '', nameEn: '', pages: [''] }, i);
+    list.appendChild(div.firstElementChild);
+}
+
+// ===== ADD / REMOVE ITEMS (GENERIC) =====
+function removeItem(listId, btn) {
+    const list = document.getElementById(listId);
+    const cards = list.querySelectorAll(':scope > .item-card');
+    if (listId !== 'galleryList' && cards.length <= 1) {
+        showToast('Vsaj en element mora ostati', 'warning');
+        return;
+    }
+    btn.closest('.item-card').remove();
+    reindexItems(listId);
+}
+
+function reindexItems(listId) {
+    const list = document.getElementById(listId);
+    const prefix = {
+        galleryList: 'items',
+        eventsList: 'items',
+        aboutParagraphs: 'paragraphs',
+        hoursList: 'rows',
+        phonesList: 'phones',
+        menuBooksList: 'books'
+    }[listId] || 'items';
+
+    const labels = {
+        galleryList: 'Slika',
+        eventsList: 'Banner',
+        aboutParagraphs: 'Odstavek',
+        hoursList: 'Vrstica',
+        phonesList: 'Telefon',
+        menuBooksList: 'Kategorija'
+    };
+
+    list.querySelectorAll(':scope > .item-card').forEach((card, i) => {
+        card.dataset.itemIndex = i;
+        const h3 = card.querySelector('.item-card-header h3');
+        if (h3) h3.textContent = (labels[listId] || 'Element') + ' ' + (i + 1);
+
+        card.querySelectorAll('[data-field]').forEach(input => {
+            const oldField = input.dataset.field;
+            input.dataset.field = oldField.replace(new RegExp(`${prefix}\\.\\d+\\.`), `${prefix}.${i}.`);
+        });
+    });
+}
+
+// ===== COLLECT FORM DATA =====
+function collectFormData(key) {
+    const container = document.getElementById('formContainer');
+    const inputs = container.querySelectorAll('[data-field]');
+    const result = {};
+
+    inputs.forEach(input => {
+        const path = input.dataset.field;
+        let value;
+
+        if (input.dataset.type === 'toggle') {
+            value = input.classList.contains('active');
+        } else if (input.tagName === 'SELECT') {
+            value = input.value;
+        } else if (input.type === 'number') {
+            value = Number(input.value);
+        } else {
+            value = input.tagName === 'TEXTAREA' ? input.value : input.value;
+        }
+
+        setNestedValue(result, path, value);
+    });
+
+    return result;
+}
+
+function setNestedValue(obj, path, value) {
+    const parts = path.split('.');
+    let current = obj;
+
+    for (let i = 0; i < parts.length - 1; i++) {
+        const part = parts[i];
+        const nextPart = parts[i + 1];
+
+        if (!(part in current)) {
+            current[part] = /^\d+$/.test(nextPart) ? [] : {};
+        }
+
+        current = current[part];
+    }
+
+    current[parts[parts.length - 1]] = value;
+}
+</script>
+</body>
+</html>

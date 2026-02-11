@@ -173,6 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
+    // Expose observer for content-loader
+    window.__scrollObserver = observer;
+
     // Section titles — animate with decoration line
     document.querySelectorAll('.section-title.has-decoration').forEach(el => {
         observer.observe(el);
@@ -305,15 +308,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Init first book
     switchBook('book-general');
 
-    // Tab click handlers
-    document.querySelectorAll('.menu-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            if (tab.disabled) return;
-            document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    // Tab click handlers (delegated for CMS-loaded tabs)
+    const menuTabs = document.querySelector('.menu-tabs');
+    if (menuTabs) {
+        menuTabs.addEventListener('click', (e) => {
+            const tab = e.target.closest('.menu-tab');
+            if (!tab || tab.disabled) return;
+            menuTabs.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            switchBook(tab.dataset.book);
+            // Clear cached books so new containers get initialized
+            const bookId = tab.dataset.book;
+            if (!books[bookId]) {
+                // Force re-init for CMS-loaded containers
+            }
+            switchBook(bookId);
         });
-    });
+    }
 
     // Prev / Next buttons
     prevBtn.addEventListener('click', () => {

@@ -1,0 +1,21 @@
+{
+  "rows": [
+    {
+      "daysSl": "Ponedeljek – Četrtek",
+      "daysEn": "Monday – Thursday",
+      "time": "7:00 – 22:00"
+    },
+    {
+      "daysSl": "Petek – Sobota",
+      "daysEn": "Friday – Saturday",
+      "time": "7:00 – 23:00"
+    },
+    {
+      "daysSl": "Nedelja",
+      "daysEn": "Sunday",
+      "time": "7:00 – 19:00"
+    }
+  ],
+  "noteSl": "Zaprto ob praznikih, razen ob prireditvah v Kulturnem centru.",
+  "noteEn": "Closed on holidays, except during events at the Cultural Centre."
+}

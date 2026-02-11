@@ -1304,16 +1304,16 @@ a:hover {
     .event-float {
         width: 48vw;
         top: auto;
-        bottom: 4vh;
+        bottom: 8vh;
     }
 
     .event-float-left {
-        left: 1vw;
+        left: 0;
         transform: translateX(-120%);
     }
 
     .event-float-right {
-        right: 1vw;
+        right: 0;
         transform: translateX(120%);
     }
 

@@ -550,6 +550,10 @@ a:hover {
     background: var(--color-bg);
 }
 
+.menu > .container {
+    max-width: 1500px;
+}
+
 /* Tabs */
 .menu-tabs {
     display: flex;
@@ -600,7 +604,6 @@ a:hover {
     justify-content: center;
     gap: 1rem;
     position: relative;
-    min-height: 90vh;
 }
 
 .flipbook-container {

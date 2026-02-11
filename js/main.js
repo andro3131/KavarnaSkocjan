@@ -220,35 +220,28 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // ============ EVENT POPUP MODAL ============
+    // ============ EVENT FLOATING CARD ============
 
-    const eventModal = document.getElementById('event-modal');
-    if (eventModal) {
-        const eventId = eventModal.querySelector('.event-modal-img')?.src || 'default';
-        const storageKey = 'kavarna-event-seen-' + eventId.split('/').pop();
+    const eventFloat = document.getElementById('event-float');
+    if (eventFloat) {
+        const eventImg = eventFloat.querySelector('.event-float-img');
+        const storageKey = 'kavarna-event-seen-' + (eventImg?.src || '').split('/').pop();
         const alreadySeen = sessionStorage.getItem(storageKey);
 
         if (!alreadySeen) {
-            // Show modal after short delay
             setTimeout(() => {
-                eventModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }, 1500);
+                eventFloat.classList.add('active');
+            }, 2000);
         }
 
-        function closeEventModal() {
-            eventModal.classList.remove('active');
-            document.body.style.overflow = '';
+        function closeEventFloat() {
+            eventFloat.classList.remove('active');
+            eventFloat.classList.add('hiding');
             sessionStorage.setItem(storageKey, '1');
+            setTimeout(() => eventFloat.remove(), 500);
         }
 
-        document.getElementById('event-modal-close').addEventListener('click', closeEventModal);
-        eventModal.querySelector('.event-modal-backdrop').addEventListener('click', closeEventModal);
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && eventModal.classList.contains('active')) {
-                closeEventModal();
-            }
-        });
+        document.getElementById('event-float-close').addEventListener('click', closeEventFloat);
     }
 
     // ============ ACTIVE NAV LINK ON SCROLL ============

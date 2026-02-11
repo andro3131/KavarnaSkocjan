@@ -328,7 +328,7 @@ a:hover {
 
 /* Hero image — extra brightness + contrast */
 .hero .hero-bg-img {
-    filter: saturate(1.15) brightness(1.15) contrast(1.08);
+    filter: saturate(1.15) brightness(1.35) contrast(1.08);
 }
 
 /* Slow Ken Burns zoom on hero background */

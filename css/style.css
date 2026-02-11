@@ -1194,9 +1194,17 @@ a:hover {
 
 /* ============ EVENT FLOATING CARD ============ */
 
-@keyframes eventFloat {
+@keyframes eventFloatLeft {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+    40% { transform: translateY(-10px); }
+    70% { transform: translateY(3px); }
+}
+
+@keyframes eventFloatRight {
+    0%, 100% { transform: translateY(0); }
+    30% { transform: translateY(4px); }
+    60% { transform: translateY(-9px); }
+    85% { transform: translateY(2px); }
 }
 
 .event-float {
@@ -1226,8 +1234,12 @@ a:hover {
     transform: translateX(0);
 }
 
-.event-float.active .event-float-img {
-    animation: eventFloat 3s ease-in-out infinite;
+.event-float-left.active .event-float-img {
+    animation: eventFloatLeft 3.5s ease-in-out infinite;
+}
+
+.event-float-right.active .event-float-img {
+    animation: eventFloatRight 4.2s ease-in-out infinite;
 }
 
 .event-float-left.hiding {

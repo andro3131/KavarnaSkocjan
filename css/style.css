@@ -1302,7 +1302,7 @@ a:hover {
 
 @media (max-width: 480px) {
     .event-float {
-        width: 48vw;
+        width: 49vw;
         top: auto;
         bottom: 8vh;
     }
@@ -1328,6 +1328,27 @@ a:hover {
     .event-float-right.hiding {
         transform: translateX(120%);
     }
+
+    .event-float-left.active .event-float-img {
+        animation: eventFloatLeftMobile 3.5s ease-in-out infinite;
+    }
+
+    .event-float-right.active .event-float-img {
+        animation: eventFloatRightMobile 4.2s ease-in-out infinite;
+    }
+}
+
+@keyframes eventFloatLeftMobile {
+    0%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    70% { transform: translateY(3px); }
+}
+
+@keyframes eventFloatRightMobile {
+    0%, 100% { transform: translateY(0); }
+    30% { transform: translateY(3px); }
+    60% { transform: translateY(-7px); }
+    85% { transform: translateY(2px); }
 }
 
 /* ===== GALLERY PAGE ===== */

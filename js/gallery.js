@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.add('active');
 
             items.forEach(item => {
-                const match = category === 'all' || item.dataset.category === category;
+                const match = item.dataset.category === category;
                 if (match) {
                     item.classList.remove('hidden');
                     item.classList.add('show');
@@ -76,8 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initial state — all visible
-    items.forEach(item => item.classList.add('show'));
+    // Initial state — show kavarna
+    items.forEach(item => {
+        if (item.dataset.category === 'kavarna') {
+            item.classList.add('show');
+        } else {
+            item.classList.add('hidden');
+        }
+    });
 
     // ============ LIGHTBOX ============
 

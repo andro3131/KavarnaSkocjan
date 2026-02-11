@@ -599,7 +599,7 @@ a:hover {
 }
 
 .flipbook-container {
-    max-width: 1320px;
+    max-width: 1500px;
     margin: 0 auto;
 }
 
@@ -1201,15 +1201,15 @@ a:hover {
 
 @keyframes eventFloatLeft {
     0%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    70% { transform: translateY(3px); }
+    40% { transform: translateY(-18px); }
+    70% { transform: translateY(6px); }
 }
 
 @keyframes eventFloatRight {
     0%, 100% { transform: translateY(0); }
-    30% { transform: translateY(4px); }
-    60% { transform: translateY(-9px); }
-    85% { transform: translateY(2px); }
+    30% { transform: translateY(7px); }
+    60% { transform: translateY(-16px); }
+    85% { transform: translateY(4px); }
 }
 
 .event-float {
@@ -1302,7 +1302,7 @@ a:hover {
 
 @media (max-width: 480px) {
     .event-float {
-        width: 46vw;
+        width: 48vw;
         top: auto;
         bottom: 4vh;
     }

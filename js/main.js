@@ -346,19 +346,24 @@ document.addEventListener('DOMContentLoaded', () => {
             floatStates.push(state);
 
             setTimeout(() => {
-                state.visible = true;
-                ef.classList.add('active');
+                // Only show if user is still near top of page
+                const heroBottom = heroSection.getBoundingClientRect().bottom;
+                if (heroBottom > window.innerHeight * 0.5) {
+                    state.visible = true;
+                    ef.classList.add('active');
+                }
             }, 2000);
         });
 
-        // Hide when scrolling past hero
+        // Hide when scrolling past ~half of hero
+        const hideThreshold = () => window.innerHeight * 0.5;
         window.addEventListener('scroll', () => {
             const heroBottom = heroSection.getBoundingClientRect().bottom;
             floatStates.forEach(s => {
                 if (s.dismissed) return;
-                if (heroBottom < 0 && s.visible) {
+                if (heroBottom < hideThreshold() && s.visible) {
                     s.el.classList.remove('active');
-                } else if (heroBottom >= 0 && s.visible) {
+                } else if (heroBottom >= hideThreshold() && s.visible) {
                     s.el.classList.add('active');
                 }
             });

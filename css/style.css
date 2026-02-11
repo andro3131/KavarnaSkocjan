@@ -599,7 +599,7 @@ a:hover {
 }
 
 .flipbook-container {
-    max-width: 1100px;
+    max-width: 1320px;
     margin: 0 auto;
 }
 
@@ -1302,18 +1302,18 @@ a:hover {
 
 @media (max-width: 480px) {
     .event-float {
-        width: 42vw;
+        width: 46vw;
         top: auto;
-        bottom: 5vh;
+        bottom: 4vh;
     }
 
     .event-float-left {
-        left: 2vw;
+        left: 1vw;
         transform: translateX(-120%);
     }
 
     .event-float-right {
-        right: 2vw;
+        right: 1vw;
         transform: translateX(120%);
     }
 

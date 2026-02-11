@@ -94,32 +94,51 @@
         <div class="container">
             <h2 class="section-title has-decoration" data-lang-sl="Naša ponudba" data-lang-en="Our Offer">Naša ponudba</h2>
             <p class="section-subtitle" data-lang-sl="Izstopamo z izjemno dobro kavo, najboljšimi vini in zelo prijazno postrežbo." data-lang-en="We stand out with exceptional coffee, the finest wines, and very friendly service.">Izstopamo z izjemno dobro kavo, najboljšimi vini in zelo prijazno postrežbo.</p>
-            <div class="menu-grid">
-                <div class="menu-card">
-                    <div class="menu-card-icon">&#9749;</div>
-                    <h3 data-lang-sl="Izjemna kava" data-lang-en="Exceptional Coffee">Izjemna kava</h3>
-                    <p data-lang-sl="Skrbno izbrana zrna in strokovna priprava za popoln kavni užitek." data-lang-en="Carefully selected beans and expert preparation for the perfect coffee experience.">Skrbno izbrana zrna in strokovna priprava za popoln kavni užitek.</p>
+
+            <!-- Menu category tabs -->
+            <div class="menu-tabs">
+                <button class="menu-tab active" data-book="book-general">
+                    <span data-lang-sl="Splošna ponudba" data-lang-en="General Menu">Splošna ponudba</span>
+                </button>
+                <button class="menu-tab" data-book="book-wine" disabled>
+                    <span data-lang-sl="Vinska karta" data-lang-en="Wine List">Vinska karta</span>
+                </button>
+                <button class="menu-tab" data-book="book-snacks" disabled>
+                    <span data-lang-sl="Prigrizki & Pizza" data-lang-en="Snacks & Pizza">Prigrizki & Pizza</span>
+                </button>
+                <button class="menu-tab" data-book="book-cocktails" disabled>
+                    <span data-lang-sl="Koktajli" data-lang-en="Cocktails">Koktajli</span>
+                </button>
+            </div>
+
+            <!-- Flipbook wrapper -->
+            <div class="flipbook-wrapper">
+                <button class="flipbook-nav flipbook-prev" aria-label="Prejšnja stran">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+
+                <div class="flipbook-container" id="book-general">
+                    <div class="flipbook-page"><img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770805466/Cenik1_aistp7.jpg" alt="Ponudba 1"></div>
+                    <div class="flipbook-page"><img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770805458/Cenik2_mdwpwz.jpg" alt="Ponudba 2"></div>
+                    <div class="flipbook-page"><img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770805287/Cenik3-1_gegvbf.jpg" alt="Ponudba 3"></div>
+                    <div class="flipbook-page"><img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770805462/Cenik4-1_djkah2.jpg" alt="Ponudba 4"></div>
+                    <div class="flipbook-page"><img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770805453/Cenik5-1_vpjhwg.jpg" alt="Ponudba 5"></div>
+                    <div class="flipbook-page"><img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770805449/Cenik6-1_e6zoif.jpg" alt="Ponudba 6"></div>
+                    <div class="flipbook-page"><img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770805493/Cenik7-1_rztsao.jpg" alt="Ponudba 7"></div>
+                    <div class="flipbook-page"><img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770805489/Cenik8-1_eolhal.jpg" alt="Ponudba 8"></div>
+                    <div class="flipbook-page"><img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770805498/Cenik9-1_fjrrkw.jpg" alt="Ponudba 9"></div>
+                    <div class="flipbook-page"><img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770805485/Cenik10-1_bregbq.jpg" alt="Ponudba 10"></div>
+                    <div class="flipbook-page"><img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770805480/Cenik11-1_v3rhms.jpg" alt="Ponudba 11"></div>
+                    <div class="flipbook-page"><img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770805502/Cenik12_dxxzrv.jpg" alt="Ponudba 12"></div>
                 </div>
-                <div class="menu-card">
-                    <div class="menu-card-icon">&#127798;</div>
-                    <h3 data-lang-sl="Sveži rogljički" data-lang-en="Fresh Croissants">Sveži rogljički</h3>
-                    <p data-lang-sl="Vsako jutro sveže pečeni rogljički in izbrana pekovska ponudba." data-lang-en="Freshly baked croissants every morning and selected bakery offerings.">Vsako jutro sveže pečeni rogljički in izbrana pekovska ponudba.</p>
-                </div>
-                <div class="menu-card">
-                    <div class="menu-card-icon">&#127829;</div>
-                    <h3 data-lang-sl="Pizza" data-lang-en="Pizza">Pizza</h3>
-                    <p data-lang-sl="Okusna pizza, pripravljena z izbranimi sestavinami." data-lang-en="Delicious pizza made with carefully chosen ingredients.">Okusna pizza, pripravljena z izbranimi sestavinami.</p>
-                </div>
-                <div class="menu-card">
-                    <div class="menu-card-icon">&#127863;</div>
-                    <h3 data-lang-sl="Butična vina" data-lang-en="Boutique Wines">Butična vina</h3>
-                    <p data-lang-sl="Izbor najboljših butičnih vin iz slovenskih in tujih vinogradov." data-lang-en="A selection of the finest boutique wines from Slovenian and international vineyards.">Izbor najboljših butičnih vin iz slovenskih in tujih vinogradov.</p>
-                </div>
-                <div class="menu-card">
-                    <div class="menu-card-icon">&#128170;</div>
-                    <h3 data-lang-sl="Proteinske ploščice" data-lang-en="Protein Bars">Proteinske ploščice</h3>
-                    <p data-lang-sl="Za vse, ki iščejo zdrav in energijski prigrizek." data-lang-en="For those looking for a healthy and energizing snack.">Za vse, ki iščejo zdrav in energijski prigrizek.</p>
-                </div>
+
+                <button class="flipbook-nav flipbook-next" aria-label="Naslednja stran">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+            </div>
+
+            <div class="flipbook-page-indicator" id="flipbook-indicator">
+                <span data-lang-sl="Stran" data-lang-en="Page">Stran</span> <span id="flipbook-current">1</span> / <span id="flipbook-total">12</span>
             </div>
         </div>
     </section>
@@ -246,6 +265,7 @@
         <img src="https://res.cloudinary.com/dewf3zos0/image/upload/v1770799105/632322172_122123120655117458_1228919039777791808_n_ialm25.jpg" alt="Dogodek v Kavarni Škocjan" class="event-float-img">
     </div>
 
+    <script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

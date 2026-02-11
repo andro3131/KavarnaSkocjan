@@ -184,12 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // Menu cards — staggered fade up
-    document.querySelectorAll('.menu-card').forEach(el => {
-        el.classList.add('animate-on-scroll');
-        observer.observe(el);
-    });
-
     // About text — slide from left
     document.querySelectorAll('.about-text').forEach(el => {
         el.classList.add('animate-slide-left');
@@ -219,6 +213,43 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add('animate-on-scroll');
         observer.observe(el);
     });
+
+    // ============ FLIPBOOK ============
+
+    const flipbookContainer = document.getElementById('book-general');
+    if (flipbookContainer && window.St && window.St.PageFlip) {
+        const pageFlip = new St.PageFlip(flipbookContainer, {
+            width: 400,
+            height: 560,
+            size: 'stretch',
+            maxShadowOpacity: 0.3,
+            showCover: true,
+            mobileScrollSupport: true,
+            flippingTime: 800,
+            useMouseEvents: true,
+            swipeDistance: 30,
+            clickEventForward: true,
+            autoSize: true,
+        });
+
+        pageFlip.loadFromHTML(document.querySelectorAll('#book-general .flipbook-page'));
+
+        const currentEl = document.getElementById('flipbook-current');
+        const totalEl = document.getElementById('flipbook-total');
+        totalEl.textContent = pageFlip.getPageCount();
+
+        pageFlip.on('flip', (e) => {
+            currentEl.textContent = e.data + 1;
+        });
+
+        document.querySelector('.flipbook-prev').addEventListener('click', () => {
+            pageFlip.flipPrev();
+        });
+
+        document.querySelector('.flipbook-next').addEventListener('click', () => {
+            pageFlip.flipNext();
+        });
+    }
 
     // ============ EVENT FLOATING CARD ============
 

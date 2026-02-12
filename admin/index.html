@@ -337,6 +337,52 @@
             gap: 1rem;
         }
 
+        /* ===== UPLOAD BUTTON ===== */
+        .img-upload-row {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+
+        .img-upload-row input { flex: 1; }
+
+        .btn-upload {
+            flex-shrink: 0;
+            padding: 0.75rem 1rem;
+            background: rgba(200,150,90,0.15);
+            color: var(--accent);
+            border: 1px solid rgba(200,150,90,0.3);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-upload:hover { background: rgba(200,150,90,0.25); }
+        .btn-upload:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .btn-upload.uploading {
+            position: relative;
+            color: transparent;
+        }
+
+        .btn-upload.uploading::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 16px; height: 16px;
+            margin: -8px 0 0 -8px;
+            border: 2px solid var(--accent);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .sidebar {
@@ -614,6 +660,79 @@ function updatePreview(input) {
     }
 }
 
+// ===== CLOUDINARY UPLOAD =====
+const CLOUDINARY_CLOUD = 'dewf3zos0';
+const CLOUDINARY_PRESETS = {
+    events: 'Kavarna_bannerji'
+};
+
+function imgFieldWithUpload(name, label, value, presetKey) {
+    const escaped = esc(value);
+    const preview = value ? `<img src="${escaped}" class="img-preview" onerror="this.style.display='none'">` : '';
+    return `<div class="field">
+        <label>${label}</label>
+        <div class="img-upload-row">
+            <input type="url" data-field="${name}" value="${escaped}" oninput="updatePreview(this)">
+            <button type="button" class="btn-upload" onclick="pickAndUpload(this, '${presetKey}')">Naloži sliko</button>
+        </div>
+        ${preview}
+    </div>`;
+}
+
+async function pickAndUpload(btn, presetKey) {
+    const preset = CLOUDINARY_PRESETS[presetKey];
+    if (!preset) { showToast('Upload preset ni nastavljen', 'error'); return; }
+
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+
+    input.onchange = async () => {
+        const file = input.files[0];
+        if (!file) return;
+
+        // Validate file size (max 10 MB)
+        if (file.size > 10 * 1024 * 1024) {
+            showToast('Slika je prevelika (max 10 MB)', 'error');
+            return;
+        }
+
+        btn.disabled = true;
+        btn.classList.add('uploading');
+        btn.textContent = 'Nalagam...';
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', preset);
+
+            const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.error?.message || 'Upload ni uspel');
+            }
+
+            const data = await res.json();
+            const urlInput = btn.parentElement.querySelector('input[data-field]');
+            urlInput.value = data.secure_url;
+            urlInput.dispatchEvent(new Event('input'));
+            showToast('Slika naložena!', 'success');
+        } catch (err) {
+            showToast('Napaka pri nalaganju: ' + err.message, 'error');
+        } finally {
+            btn.disabled = false;
+            btn.classList.remove('uploading');
+            btn.textContent = 'Naloži sliko';
+        }
+    };
+
+    input.click();
+}
+
 function toggleField(name, label, value) {
     return `<div class="toggle-wrapper">
         <div class="toggle ${value ? 'active' : ''}" data-field="${name}" data-type="toggle" onclick="this.classList.toggle('active')"></div>
@@ -693,7 +812,7 @@ function renderEventCard(item, i) {
                 <button class="btn btn-danger" onclick="removeItem('eventsList', this)" style="font-size:0.8rem;padding:0.4rem 0.8rem">Odstrani</button>
             </div>
             ${toggleField('items.' + i + '.enabled', 'Aktiven (prikazan na strani)', item.enabled)}
-            ${imgField('items.' + i + '.image', 'URL slike bannera', item.image)}
+            ${imgFieldWithUpload('items.' + i + '.image', 'URL slike bannera', item.image, 'events')}
             ${field('items.' + i + '.alt', 'Opis slike', item.alt)}
             <div class="field">
                 <label>Pozicija</label>

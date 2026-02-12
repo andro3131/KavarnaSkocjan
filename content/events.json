@@ -1,18 +1,16 @@
 {
   "items": [
     {
-      "id": "event-float-left",
-      "position": "left",
-      "image": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770799105/632322172_122123120655117458_1228919039777791808_n_ialm25.jpg",
+      "enabled": true,
+      "image": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770890088/12bc0674-75f1-42fc-915c-2cc7506dff4d_pvxw9m.jpg",
       "alt": "Dogodek v Kavarni Škocjan",
-      "enabled": true
+      "position": "left"
     },
     {
-      "id": "event-float-right",
-      "position": "right",
+      "enabled": true,
       "image": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770807588/2a8f235d-5b34-42b9-a4f6-f1e2fed496d3_r5fls0.jpg",
       "alt": "Dogodek v Kavarni Škocjan",
-      "enabled": true
+      "position": "right"
     }
   ]
 }

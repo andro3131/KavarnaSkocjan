@@ -45,11 +45,15 @@
 
     // --- GALLERY ---
     function applyGallery(data) {
+        // Main page: show only featured items
         const grid = document.querySelector('.gallery-grid');
         if (!grid || !data.items || !data.items.length) return;
 
+        const featured = data.items.filter(item => item.featured);
+        if (!featured.length) return;
+
         grid.innerHTML = '';
-        data.items.forEach(item => {
+        featured.forEach(item => {
             const div = document.createElement('div');
             div.className = 'gallery-item' + (item.large ? ' gallery-item-large' : '');
             div.innerHTML = `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.alt)}" loading="lazy">`;

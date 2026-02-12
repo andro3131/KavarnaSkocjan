@@ -1,46 +1,59 @@
 {
   "items": [
-    {
-      "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770802505/kavarnafinal_yhp7jw.jpg",
-      "alt": "Kavarna",
-      "large": true
-    },
-    {
-      "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757566/594164446_122109990651117458_4959221109618354069_n_kttaaf.jpg",
-      "alt": "Kavarna"
-    },
-    {
-      "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757488/kavarna-okno_cvp99f.jpg",
-      "alt": "Kavarna"
-    },
-    {
-      "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758357/626372023_122122076889117458_6868749493293363267_n_rm5uzc.jpg",
-      "alt": "Kavarna"
-    },
-    {
-      "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758360/616062990_122118489825117458_2707568472131635231_n_hfkur8.jpg",
-      "alt": "Kavarna"
-    },
-    {
-      "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758174/607080892_122115867399117458_994190581542325220_n_sps7t7.jpg",
-      "alt": "Ponudba"
-    },
-    {
-      "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758167/611272443_122116901607117458_2416099240214775376_n_wjncbp.jpg",
-      "alt": "Ponudba"
-    },
-    {
-      "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757605/595539020_122110921233117458_5012139609405359096_n_swil4r.jpg",
-      "alt": "Ponudba"
-    },
-    {
-      "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758359/619825511_122119930677117458_4374415492720581275_n_jflpyo.jpg",
-      "alt": "Ponudba"
-    },
-    {
-      "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770800988/Keep_the_exact_2k_202602110945_jhycn1.jpg",
-      "alt": "Ponudba",
-      "large": true
-    }
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770802505/kavarnafinal_yhp7jw.jpg", "alt": "Kavarna", "category": "kavarna", "featured": true, "large": true },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758367/616582623_122120089527117458_2617787667626666547_n_cwp54s.jpg", "alt": "Kavarna", "category": "kavarna" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758366/617551560_122120089461117458_7613287835439679179_n_ky6ujp.jpg", "alt": "Kavarna", "category": "kavarna" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758360/616062990_122118489825117458_2707568472131635231_n_hfkur8.jpg", "alt": "Kavarna", "category": "kavarna", "featured": true },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758357/626372023_122122076889117458_6868749493293363267_n_rm5uzc.jpg", "alt": "Kavarna", "category": "kavarna", "featured": true },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758356/598796250_122113783965117458_2740445375062275196_n_mwl9if.jpg", "alt": "Kavarna", "category": "kavarna" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758355/625315308_122122076835117458_6939812273858379662_n_zgjtyt.jpg", "alt": "Kavarna", "category": "kavarna" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758188/630901292_122122818591117458_7782845933209342532_n_ivlz4u.jpg", "alt": "Kavarna", "category": "kavarna" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758182/605300137_122114695839117458_2524835790767382995_n_c82mz4.jpg", "alt": "Kavarna", "category": "kavarna" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758177/598935635_122113783953117458_8131046362781261656_n_afpueb.jpg", "alt": "Kavarna", "category": "kavarna" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757566/594164446_122109990651117458_4959221109618354069_n_kttaaf.jpg", "alt": "Kavarna", "category": "kavarna", "featured": true },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757488/kavarna-okno_cvp99f.jpg", "alt": "Kavarna", "category": "kavarna", "featured": true },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758361/630422587_122122523457117458_1754449191949839673_n_xycl1f.jpg", "alt": "Kavarna", "category": "kavarna" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770800988/Keep_the_exact_2k_202602110945_jhycn1.jpg", "alt": "Ponudba", "category": "ponudba", "featured": true, "large": true },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758372/613070000_122117360715117458_5145832903352653219_n_bdgybo.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758370/613422187_122117497845117458_4669559277227713903_n_r9z87v.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758369/617388223_122119155597117458_773437597338146812_n_eqyrxg.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758359/619825511_122119930677117458_4374415492720581275_n_jflpyo.jpg", "alt": "Ponudba", "category": "ponudba", "featured": true },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758184/616850599_122120089479117458_7294899477857865845_n_nv5hme.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758183/609190638_122116390815117458_3163833047856732999_n_bkoqfs.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758180/625158634_122122076823117458_5579151284581205546_n_tto7ik.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758174/607080892_122115867399117458_994190581542325220_n_sps7t7.jpg", "alt": "Ponudba", "category": "ponudba", "featured": true },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758172/614857414_122117707689117458_6048775685321772088_n_mbh4bq.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758171/616843308_122120089491117458_6462208180639703812_n_y6ovyc.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758170/605621015_122115053511117458_5419094148246172618_n_yikzm2.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758167/611272443_122116901607117458_2416099240214775376_n_wjncbp.jpg", "alt": "Ponudba", "category": "ponudba", "featured": true },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757626/603774515_122113984479117458_5398784713168098708_n_ey5uoh.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757623/600287037_122113347999117458_2944037888960068091_n_fh6d4v.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757622/599961588_122112484509117458_2965177265532864985_n_x8wyec.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757620/600895932_122113785231117458_8993738654405303156_n_g74eb6.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757618/597599411_122111532777117458_506866125911442843_n_o4ibph.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757614/597816256_122112058233117458_9006015049472124752_n_op9iaa.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757609/597902673_122111886585117458_6163739642467159890_n_pgjkqx.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757607/594977602_122110706823117458_3417459156338649906_n_oemvq9.jpg", "alt": "Ponudba", "category": "ponudba" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757605/595539020_122110921233117458_5012139609405359096_n_swil4r.jpg", "alt": "Ponudba", "category": "ponudba", "featured": true },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770807588/2a8f235d-5b34-42b9-a4f6-f1e2fed496d3_r5fls0.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770799105/632322172_122123120655117458_1228919039777791808_n_ialm25.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758373/616841945_122120089455117458_6909587737884675156_n_rem53w.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758363/617224964_122120089515117458_1511303764677795110_n_fqlike.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758353/612336535_122117156181117458_5579463909597520143_n_m93cff.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758179/592560366_122109042543117458_2592848206601311951_n_r1mgvd.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758165/614241371_122118275697117458_8066251075471582378_n_scknmg.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757616/600352285_122113783917117458_7365733771595204494_n_xp9xlh.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757613/596520871_122111175603117458_8281908731180468725_n_kvpnhi.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/f_auto/v1770814453/IMG_9199_vu3iqn.heic", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770814453/IMG_9201_utdcf2.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770814452/IMG_9075_a1bjxj.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770814451/IMG_9061_yjvvxe.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770814450/att.tq_yHwMJKkdiEjELkEE8QikzRzMhso8DIkOsvAC-qM0_a9qppf.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770814451/IMG_9074_r5pc7q.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770814450/att.tURncqvePPSgjn0-6disg2IGNtJrNGIkhrhBL4MOUvE_dhubcp.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770814450/IMG_9079_whwxby.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/f_auto/v1770814449/IMG_9689_yh0aua.heic", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770814449/att.ZXfw2mgpCABxJy8RSCocjIbr0yXBSKND7oOaHfj4Gbw_dku7gt.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770814449/att.abUB2VVKxtyaWcguHADqU-R0b3Q2tpvGnPXS5oAf3Zs_nwb0sg.jpg", "alt": "Dogodek", "category": "dogodki" }
   ]
 }

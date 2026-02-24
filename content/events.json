@@ -2,15 +2,15 @@
   "items": [
     {
       "enabled": true,
-      "image": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770807588/2a8f235d-5b34-42b9-a4f6-f1e2fed496d3_r5fls0.jpg",
-      "alt": "Dogodek v Kavarni Škocjan",
-      "position": "left"
-    },
-    {
-      "enabled": true,
       "image": "https://res.cloudinary.com/dewf3zos0/image/upload/v1771316339/att.ZXfw2mgpCABxJy8RSCocjIbr0yXBSKND7oOaHfj4Gbw_riomfv.jpg",
       "alt": "Rojstni dan v kavarni Škocjan",
       "position": "right"
+    },
+    {
+      "enabled": true,
+      "image": "https://res.cloudinary.com/dewf3zos0/image/upload/v1771973678/att.XCO045w4b7pHvD664YpI1jIO3h0u850g3gcWYC4usoQ_oxnqhq.jpg",
+      "alt": "Dogodek v Kavarni Škocjan",
+      "position": "left"
     }
   ]
 }

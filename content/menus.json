@@ -5,18 +5,18 @@
       "nameSl": "Splošna ponudba",
       "nameEn": "General Menu",
       "pages": [
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770806731/Cenik1_copy_ssqacv.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770805458/Cenik2_mdwpwz.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770805287/Cenik3-1_gegvbf.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770805462/Cenik4-1_djkah2.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770805453/Cenik5-1_vpjhwg.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770805449/Cenik6-1_e6zojf.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770805493/Cenik7-1_rztsao.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770805489/Cenik8-1_eolhal.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770805498/Cenik9-1_fjrrkw.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770806726/Cenik10-1_up38ju.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770806722/Cenik12_mwdjtg.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770810500/Cenik12pravi_xw8yjp.jpg"
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni1.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni2.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni3.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni4.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni5.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni6.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni7.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni8.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni9.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni10.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni11.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni12.jpg"
       ]
     },
     {
@@ -24,10 +24,10 @@
       "nameSl": "Vinska karta",
       "nameEn": "Wine List",
       "pages": [
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770810809/Vinski_list1_miqrkm.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770810798/Vinski_list2-1_eefwwb.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770810804/Vinski_list3-1_xwh5op.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770810794/Vinski_list4-1_bpojnl.jpg"
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Vinski1.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Vinski2.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Vinski3.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Vinski4.jpg"
       ]
     },
     {
@@ -35,8 +35,8 @@
       "nameSl": "Prigrizki & Pizza",
       "nameEn": "Snacks & Pizza",
       "pages": [
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770811817/Prigrizki_s_picami1_pypaib.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770811806/Prigrizki_s_picami2-1_iryws5.jpg"
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Prigrizki1.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Prigrizki2.jpg"
       ]
     },
     {
@@ -44,8 +44,8 @@
       "nameSl": "Koktajli",
       "nameEn": "Cocktails",
       "pages": [
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770811812/Koktajli1_hhtzjg.jpg",
-        "https://res.cloudinary.com/dewf3zos0/image/upload/v1770811801/Koktajli2-1_e8ciax.jpg"
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Koktajli1.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Koktajli2.jpg"
       ]
     }
   ]

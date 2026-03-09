@@ -703,8 +703,8 @@ async function pickAndUpload(btn) {
             });
 
             if (!res.ok) {
-                const err = await res.json();
-                throw new Error(err.error || 'Upload ni uspel');
+                const err = await res.json().catch(() => ({}));
+                throw new Error(err.error + (err.details ? ' (' + err.details + ')' : '') || 'Upload ni uspel (HTTP ' + res.status + ')');
             }
 
             const data = await res.json();

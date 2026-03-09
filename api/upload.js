@@ -1,12 +1,5 @@
 const jwt = require('jsonwebtoken');
 
-// Disable Vercel body parser so we get raw Buffer
-module.exports.config = {
-    api: {
-        bodyParser: false
-    }
-};
-
 function verifyToken(req) {
     const auth = req.headers.authorization;
     if (!auth || !auth.startsWith('Bearer ')) return null;
@@ -26,7 +19,7 @@ function getRawBody(req) {
     });
 }
 
-module.exports = async function handler(req, res) {
+async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'PUT, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -98,7 +91,11 @@ module.exports = async function handler(req, res) {
 
         if (!uploadRes.ok) {
             const errorText = await uploadRes.text();
-            return res.status(502).json({ error: 'Bunny upload ni uspel.', details: errorText });
+            return res.status(502).json({
+                error: 'Bunny upload ni uspel.',
+                details: errorText,
+                status: uploadRes.status
+            });
         }
 
         const publicUrl = `${cdnBase}/${storagePath}`;
@@ -107,4 +104,13 @@ module.exports = async function handler(req, res) {
     } catch (err) {
         return res.status(500).json({ error: 'Napaka strežnika', details: err.message });
     }
+}
+
+// Disable Vercel body parser so we get raw Buffer
+handler.config = {
+    api: {
+        bodyParser: false
+    }
 };
+
+module.exports = handler;

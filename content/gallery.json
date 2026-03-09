@@ -35,6 +35,9 @@
     { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757609/597902673_122111886585117458_6163739642467159890_n_pgjkqx.jpg", "alt": "Ponudba", "category": "ponudba" },
     { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757607/594977602_122110706823117458_3417459156338649906_n_oemvq9.jpg", "alt": "Ponudba", "category": "ponudba" },
     { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770757605/595539020_122110921233117458_5012139609405359096_n_swil4r.jpg", "alt": "Ponudba", "category": "ponudba", "featured": true },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1772057835/641512739_122200931498526583_8375380989858160578_n_trhlxi.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1772057835/641263064_122200931486526583_8440560812982550491_n_poh7oh.jpg", "alt": "Dogodek", "category": "dogodki" },
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1771973678/att.XCO045w4b7pHvD664YpI1jIO3h0u850g3gcWYC4usoQ_oxnqhq.jpg", "alt": "Dogodek", "category": "dogodki" },
     { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770807588/2a8f235d-5b34-42b9-a4f6-f1e2fed496d3_r5fls0.jpg", "alt": "Dogodek", "category": "dogodki" },
     { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770799105/632322172_122123120655117458_1228919039777791808_n_ialm25.jpg", "alt": "Dogodek", "category": "dogodki" },
     { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770758373/616841945_122120089455117458_6909587737884675156_n_rem53w.jpg", "alt": "Dogodek", "category": "dogodki" },
@@ -54,9 +57,6 @@
     { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770814450/IMG_9079_whwxby.jpg", "alt": "Dogodek", "category": "dogodki" },
     { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/f_auto/v1770814449/IMG_9689_yh0aua.heic", "alt": "Dogodek", "category": "dogodki" },
     { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770814449/att.ZXfw2mgpCABxJy8RSCocjIbr0yXBSKND7oOaHfj4Gbw_dku7gt.jpg", "alt": "Dogodek", "category": "dogodki" },
-    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770814449/att.abUB2VVKxtyaWcguHADqU-R0b3Q2tpvGnPXS5oAf3Zs_nwb0sg.jpg", "alt": "Dogodek", "category": "dogodki" },
-    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1772057835/641512739_122200931498526583_8375380989858160578_n_trhlxi.jpg", "alt": "Dogodek", "category": "dogodki" },
-    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1772057835/641263064_122200931486526583_8440560812982550491_n_poh7oh.jpg", "alt": "Dogodek", "category": "dogodki" },
-    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1771973678/att.XCO045w4b7pHvD664YpI1jIO3h0u850g3gcWYC4usoQ_oxnqhq.jpg", "alt": "Dogodek", "category": "dogodki" }
+    { "src": "https://res.cloudinary.com/dewf3zos0/image/upload/v1770814449/att.abUB2VVKxtyaWcguHADqU-R0b3Q2tpvGnPXS5oAf3Zs_nwb0sg.jpg", "alt": "Dogodek", "category": "dogodki" }
   ]
 }

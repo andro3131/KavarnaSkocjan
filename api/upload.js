@@ -1,5 +1,12 @@
 const jwt = require('jsonwebtoken');
 
+// Disable Vercel body parser so we get raw Buffer
+module.exports.config = {
+    api: {
+        bodyParser: false
+    }
+};
+
 function verifyToken(req) {
     const auth = req.headers.authorization;
     if (!auth || !auth.startsWith('Bearer ')) return null;
@@ -8,6 +15,15 @@ function verifyToken(req) {
     } catch {
         return null;
     }
+}
+
+function getRawBody(req) {
+    return new Promise((resolve, reject) => {
+        const chunks = [];
+        req.on('data', chunk => chunks.push(chunk));
+        req.on('end', () => resolve(Buffer.concat(chunks)));
+        req.on('error', reject);
+    });
 }
 
 module.exports = async function handler(req, res) {
@@ -49,12 +65,15 @@ module.exports = async function handler(req, res) {
     const storagePath = `UPLOAD/${safeFilename}`;
 
     try {
-        // Read raw body as buffer
-        const chunks = [];
-        for await (const chunk of req) {
-            chunks.push(chunk);
+        // Get raw body - handle both parsed and unparsed cases
+        let body;
+        if (Buffer.isBuffer(req.body)) {
+            body = req.body;
+        } else if (req.body) {
+            body = Buffer.from(req.body);
+        } else {
+            body = await getRawBody(req);
         }
-        const body = Buffer.concat(chunks);
 
         if (body.length === 0) {
             return res.status(400).json({ error: 'Prazna datoteka.' });

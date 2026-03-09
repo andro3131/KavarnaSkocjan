@@ -9,8 +9,7 @@
   ],
   "functions": {
     "api/upload.js": {
-      "maxDuration": 30,
-      "maxBodyLength": 10485760
+      "maxDuration": 30
     }
   }
 }

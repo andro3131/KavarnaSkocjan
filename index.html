@@ -32,6 +32,7 @@
                 <li><a href="#menu" data-lang-sl="Ponudba & cenik" data-lang-en="Menu & Prices">Ponudba & cenik</a></li>
                 <li><a href="#hours" data-lang-sl="Odpiralni čas" data-lang-en="Opening Hours">Odpiralni čas</a></li>
                 <li><a href="galerija.html" data-lang-sl="Galerija" data-lang-en="Gallery">Galerija</a></li>
+                <li><a href="#novice" data-lang-sl="Novice" data-lang-en="News">Novice</a></li>
                 <li><a href="#contact" data-lang-sl="Kontakt" data-lang-en="Contact">Kontakt</a></li>
             </ul>
             <button class="lang-toggle" id="lang-toggle" aria-label="Zamenjaj jezik">
@@ -264,6 +265,34 @@
             </div>
         </div>
     </section>
+
+    <!-- NOVICE / NEWS -->
+    <section class="section novice" id="novice">
+        <div class="container">
+            <h2 class="section-title has-decoration" data-lang-sl="Novice" data-lang-en="News">Novice</h2>
+            <p class="section-subtitle" data-lang-sl="Kaj je novega v Kavarni Škocjan" data-lang-en="What's new at Café Škocjan">Kaj je novega v Kavarni Škocjan</p>
+            <div class="novice-grid" id="novice-grid">
+                <!-- Filled by JS from novice.json -->
+            </div>
+            <div class="novice-empty" id="novice-empty" style="display:none;">
+                <p data-lang-sl="Trenutno ni novic. Spremljajte nas na družabnih omrežjih!" data-lang-en="No news at the moment. Follow us on social media!">Trenutno ni novic. Spremljajte nas na družabnih omrežjih!</p>
+            </div>
+            <div class="novice-cta">
+                <a href="novice.html" class="btn btn-primary" data-lang-sl="Pokaži vse" data-lang-en="Show all">Pokaži vse</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOVICE MODAL -->
+    <div class="novice-modal" id="novice-modal">
+        <div class="novice-modal-overlay"></div>
+        <div class="novice-modal-content">
+            <button class="novice-modal-close" id="novice-modal-close" aria-label="Zapri">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="novice-modal-body" id="novice-modal-body"></div>
+        </div>
+    </div>
 
     <!-- CONTACT -->
     <section class="section contact" id="contact">

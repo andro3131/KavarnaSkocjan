@@ -3,7 +3,7 @@
 // Falls back to hardcoded HTML content if fetch fails.
 
 (function () {
-    const SECTIONS = ['gallery', 'events', 'promo', 'about', 'hours', 'contact', 'menus'];
+    const SECTIONS = ['gallery', 'events', 'promo', 'about', 'hours', 'contact', 'menus', 'novice'];
 
     async function loadAllContent() {
         try {
@@ -27,6 +27,7 @@
             if (content.hours) applyHours(content.hours);
             if (content.contact) applyContact(content.contact);
             if (content.menus) applyMenus(content.menus);
+            if (content.novice) applyNovice(content.novice);
 
         } catch (err) {
             console.warn('Content loader: uporaba fallback HTML vsebine', err);
@@ -372,6 +373,139 @@
         // Re-init flipbooks after replacing containers
         if (window.__reinitFlipbooks) {
             window.__reinitFlipbooks();
+        }
+    }
+
+    // --- NOVICE ---
+    function applyNovice(data) {
+        const grid = document.querySelector('#novice-grid');
+        const emptyEl = document.querySelector('#novice-empty');
+        if (!grid) return;
+
+        if (!data.items || !data.items.length) {
+            if (emptyEl) emptyEl.style.display = 'block';
+            grid.style.display = 'none';
+            // Hide the CTA button too
+            const cta = document.querySelector('.novice-cta');
+            if (cta) cta.style.display = 'none';
+            return;
+        }
+
+        const lang = getCurrentLang();
+
+        // Sort by date descending, take first 3
+        const sorted = [...data.items].sort((a, b) => new Date(b.date) - new Date(a.date));
+        const latest = sorted.slice(0, 3);
+
+        grid.innerHTML = '';
+        latest.forEach(item => {
+            const title = lang === 'en' ? (item.titleEn || item.titleSl) : item.titleSl;
+            const text = lang === 'en' ? (item.textEn || item.textSl) : item.textSl;
+            const mainImage = item.images && item.images.length ? item.images[0] : '';
+            const hasVideo = item.youtube || item.video;
+
+            const card = document.createElement('div');
+            card.className = 'novica-card';
+
+            let mediaHtml = '';
+            if (mainImage) {
+                mediaHtml = `<div class="novica-card-media">
+                    <img src="${escapeHtml(mainImage)}" alt="${escapeHtml(title)}" loading="lazy">
+                    ${hasVideo ? '<div class="novica-card-play"><svg width="32" height="32" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>' : ''}
+                </div>`;
+            }
+
+            const date = formatNoviceDate(item.date);
+
+            card.innerHTML = `
+                ${mediaHtml}
+                <div class="novica-card-body">
+                    <span class="novica-card-date">${date}</span>
+                    <h3 class="novica-card-title">${escapeHtml(title)}</h3>
+                    <p class="novica-card-text">${escapeHtml(text)}</p>
+                    <span class="novica-card-more" data-lang-sl="Preberi več" data-lang-en="Read more">${lang === 'en' ? 'Read more' : 'Preberi več'}</span>
+                </div>
+            `;
+
+            card.addEventListener('click', () => openNovicaModal(item, lang));
+            grid.appendChild(card);
+        });
+
+        if (emptyEl) emptyEl.style.display = 'none';
+    }
+
+    function formatNoviceDate(dateStr) {
+        if (!dateStr) return '';
+        const d = new Date(dateStr);
+        if (isNaN(d)) return dateStr;
+        return d.toLocaleDateString('sl-SI', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    function openNovicaModal(item, lang) {
+        const modal = document.getElementById('novice-modal');
+        const modalBody = document.getElementById('novice-modal-body');
+        if (!modal || !modalBody) return;
+
+        const title = lang === 'en' ? (item.titleEn || item.titleSl) : item.titleSl;
+        const content = lang === 'en' ? (item.contentEn || item.contentSl || item.textEn || item.textSl) : (item.contentSl || item.textSl);
+
+        let html = `<span class="novica-modal-date">${formatNoviceDate(item.date)}</span>`;
+        html += `<h2 class="novica-modal-title">${escapeHtml(title)}</h2>`;
+
+        // YouTube embed
+        if (item.youtube) {
+            const ytMatch = item.youtube.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([a-zA-Z0-9_-]{11})/);
+            if (ytMatch) {
+                html += `<div class="novica-modal-video"><iframe src="https://www.youtube-nocookie.com/embed/${ytMatch[1]}" frameborder="0" allowfullscreen loading="lazy"></iframe></div>`;
+            }
+        }
+
+        // Video file
+        if (item.video && !item.youtube) {
+            html += `<div class="novica-modal-video"><video controls preload="metadata"><source src="${escapeHtml(item.video)}"></video></div>`;
+        }
+
+        // Images gallery
+        if (item.images && item.images.length) {
+            html += '<div class="novica-modal-images">';
+            item.images.forEach(img => {
+                html += `<img src="${escapeHtml(img)}" alt="${escapeHtml(title)}" loading="lazy" class="novica-modal-img">`;
+            });
+            html += '</div>';
+        }
+
+        // Content text
+        if (content) {
+            const paragraphs = content.split('\n').filter(p => p.trim());
+            html += '<div class="novica-modal-text">';
+            paragraphs.forEach(p => {
+                html += `<p>${escapeHtml(p)}</p>`;
+            });
+            html += '</div>';
+        }
+
+        modalBody.innerHTML = html;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Close handlers (only bind once)
+        if (!modal.__noviceBound) {
+            modal.__noviceBound = true;
+
+            const closeModal = () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                modalBody.querySelectorAll('iframe, video').forEach(el => {
+                    if (el.tagName === 'IFRAME') el.src = el.src;
+                    if (el.tagName === 'VIDEO') el.pause();
+                });
+            };
+
+            document.getElementById('novice-modal-close').addEventListener('click', closeModal);
+            modal.querySelector('.novice-modal-overlay').addEventListener('click', closeModal);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+            });
         }
     }
 

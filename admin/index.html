@@ -460,7 +460,8 @@ const SECTIONS = [
     { key: 'about', label: 'O nas', description: 'Besedilo in slika v sekciji "O nas"' },
     { key: 'hours', label: 'Odpiralni čas', description: 'Tabela odpiralnega časa in opomba' },
     { key: 'contact', label: 'Kontakt', description: 'Telefonske številke, e-pošta, družabna omrežja' },
-    { key: 'menus', label: 'Jedilniki', description: 'Slike strani jedilnikov (ceniki, vinska karta, itd.)' }
+    { key: 'menus', label: 'Jedilniki', description: 'Slike strani jedilnikov (ceniki, vinska karta, itd.)' },
+    { key: 'novice', label: 'Novice', description: 'Novice in novosti o Kavarni Škocjan' }
 ];
 
 // ===== INIT =====
@@ -580,9 +581,12 @@ async function saveCurrentSection() {
 
     let newData = collectFormData(currentSection);
 
-    // Auto-translate promo fields to English
+    // Auto-translate fields to English
     if (currentSection === 'promo') {
         newData = autoTranslatePromo(newData);
+    }
+    if (currentSection === 'novice') {
+        newData = autoTranslateNovice(newData);
     }
 
     try {
@@ -751,6 +755,7 @@ function renderForm(key) {
         case 'hours': container.innerHTML = renderHours(data); break;
         case 'contact': container.innerHTML = renderContact(data); break;
         case 'menus': container.innerHTML = renderMenus(data); break;
+        case 'novice': container.innerHTML = renderNovice(data); break;
     }
 }
 
@@ -1131,7 +1136,8 @@ function reindexItems(listId) {
         aboutParagraphs: 'paragraphs',
         hoursList: 'rows',
         phonesList: 'phones',
-        menuBooksList: 'books'
+        menuBooksList: 'books',
+        noviceList: 'items'
     }[listId] || 'items';
 
     const labels = {
@@ -1140,7 +1146,8 @@ function reindexItems(listId) {
         aboutParagraphs: 'Odstavek',
         hoursList: 'Vrstica',
         phonesList: 'Telefon',
-        menuBooksList: 'Kategorija'
+        menuBooksList: 'Kategorija',
+        noviceList: 'Novica'
     };
 
     list.querySelectorAll(':scope > .item-card').forEach((card, i) => {
@@ -1179,6 +1186,111 @@ function collectFormData(key) {
     });
 
     return result;
+}
+
+// --- NOVICE ---
+function renderNovice(d) {
+    if (!d.items) d.items = [];
+    let html = '<div id="noviceList">';
+    d.items.forEach((item, i) => {
+        html += renderNovicaCard(item, i);
+    });
+    html += '</div>';
+    html += `<button class="btn btn-add" onclick="addNovicaItem()">+ Dodaj novico</button>`;
+    html += `<p style="margin-top:1rem;color:#b8ad9e;font-size:0.9rem">
+        💡 Na prvi strani se prikažejo zadnje 3 novice. Angleško besedilo se prevede samodejno.
+        Možno je dodati več slik in/ali YouTube povezavo ali video datoteko.
+    </p>`;
+    return html;
+}
+
+function renderNovicaCard(item, i) {
+    let imagesHtml = `<div class="menu-pages-list" id="noviceImages-${i}">`;
+    if (item.images && item.images.length) {
+        item.images.forEach((img, j) => {
+            imagesHtml += `
+                <div class="item-card" style="background:var(--bg-primary);padding:1rem;margin-bottom:0.5rem" data-img-index="${j}">
+                    <div class="item-card-header" style="margin-bottom:0.5rem">
+                        <h3 style="font-size:0.85rem">Slika ${j + 1}</h3>
+                        <button class="btn btn-danger" onclick="removeNovicaImage(${i}, this)" style="font-size:0.75rem;padding:0.3rem 0.6rem">X</button>
+                    </div>
+                    ${imgFieldWithUpload('items.' + i + '.images.' + j, 'URL slike', img)}
+                </div>
+            `;
+        });
+    }
+    imagesHtml += '</div>';
+
+    return `
+        <div class="item-card" data-item-index="${i}">
+            <div class="item-card-header">
+                <h3>Novica ${i + 1}</h3>
+                <button class="btn btn-danger" onclick="removeItem('noviceList', this)" style="font-size:0.8rem;padding:0.4rem 0.8rem">Odstrani</button>
+            </div>
+            ${field('items.' + i + '.date', 'Datum', item.date || '', 'date')}
+            ${field('items.' + i + '.titleSl', 'Naslov', item.titleSl || '')}
+            ${field('items.' + i + '.textSl', 'Kratek opis (prikazan na kartici)', item.textSl || '', 'textarea')}
+            ${field('items.' + i + '.contentSl', 'Celotno besedilo (prikazano v podoknu)', item.contentSl || '', 'textarea')}
+            <h4 style="font-size:0.9rem;margin:1rem 0 0.5rem;color:var(--text-secondary)">Slike</h4>
+            ${imagesHtml}
+            <button class="btn btn-add" onclick="addNovicaImage(${i})" style="font-size:0.85rem;padding:0.6rem">+ Dodaj sliko</button>
+            <h4 style="font-size:0.9rem;margin:1.5rem 0 0.5rem;color:var(--text-secondary)">Video (opcijsko)</h4>
+            ${field('items.' + i + '.youtube', 'YouTube povezava', item.youtube || '', 'url')}
+            ${field('items.' + i + '.video', 'Video datoteka URL (alternativa YouTubu)', item.video || '', 'url')}
+        </div>
+    `;
+}
+
+function addNovicaItem() {
+    const list = document.getElementById('noviceList');
+    const i = list.querySelectorAll(':scope > .item-card').length;
+    const div = document.createElement('div');
+    div.innerHTML = renderNovicaCard({
+        date: new Date().toISOString().split('T')[0],
+        titleSl: '', textSl: '', contentSl: '',
+        images: [], youtube: '', video: ''
+    }, i);
+    list.appendChild(div.firstElementChild);
+}
+
+function addNovicaImage(novicaIndex) {
+    const list = document.getElementById('noviceImages-' + novicaIndex);
+    const j = list.querySelectorAll('[data-img-index]').length;
+    const div = document.createElement('div');
+    div.innerHTML = `
+        <div class="item-card" style="background:var(--bg-primary);padding:1rem;margin-bottom:0.5rem" data-img-index="${j}">
+            <div class="item-card-header" style="margin-bottom:0.5rem">
+                <h3 style="font-size:0.85rem">Slika ${j + 1}</h3>
+                <button class="btn btn-danger" onclick="removeNovicaImage(${novicaIndex}, this)" style="font-size:0.75rem;padding:0.3rem 0.6rem">X</button>
+            </div>
+            ${imgFieldWithUpload('items.' + novicaIndex + '.images.' + j, 'URL slike', '')}
+        </div>
+    `;
+    list.appendChild(div.firstElementChild);
+}
+
+function removeNovicaImage(novicaIndex, btn) {
+    const list = document.getElementById('noviceImages-' + novicaIndex);
+    btn.closest('[data-img-index]').remove();
+    // Re-index
+    list.querySelectorAll('[data-img-index]').forEach((el, j) => {
+        el.dataset.imgIndex = j;
+        el.querySelector('h3').textContent = 'Slika ' + (j + 1);
+        el.querySelectorAll('[data-field]').forEach(input => {
+            input.dataset.field = input.dataset.field.replace(/items\.\d+\.images\.\d+/, `items.${novicaIndex}.images.${j}`);
+        });
+    });
+}
+
+// Simple SL→EN auto-translation for novice
+function autoTranslateNovice(data) {
+    if (!data.items) return data;
+    data.items.forEach(item => {
+        item.titleEn = item.titleEn || item.titleSl || '';
+        item.textEn = item.textEn || item.textSl || '';
+        item.contentEn = item.contentEn || item.contentSl || '';
+    });
+    return data;
 }
 
 function setNestedValue(obj, path, value) {

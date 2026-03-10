@@ -516,21 +516,22 @@ a:hover {
         display: flex;
         align-items: center;
         gap: 1.2rem;
-        background: var(--color-bg-card);
-        border: 1px solid rgba(200, 169, 126, 0.25);
-        border-radius: 14px;
-        margin: 1rem;
-        padding: 1.2rem 1.4rem;
-        animation: mobilePromoFloat 4s ease-in-out infinite, mobilePromoGlow 3s ease-in-out infinite;
+        background: linear-gradient(135deg, var(--color-bg-card), var(--color-bg-card-hover));
+        border: 1px solid rgba(200, 169, 126, 0.4);
+        border-radius: 16px;
+        margin: 1.2rem;
+        padding: 1.3rem 1.4rem;
+        animation: mobilePromoFloat 3s ease-in-out infinite, mobilePromoGlow 3s ease-in-out infinite;
     }
 
     .mobile-promo-img {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
         border-radius: 12px;
         object-fit: cover;
         flex-shrink: 0;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(200, 169, 126, 0.2);
     }
 
     .mobile-promo-text {
@@ -560,12 +561,12 @@ a:hover {
 
     @keyframes mobilePromoFloat {
         0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-6px); }
+        50% { transform: translateY(-12px); }
     }
 
     @keyframes mobilePromoGlow {
-        0%, 100% { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(200, 169, 126, 0.1); }
-        50% { box-shadow: 0 6px 28px rgba(0, 0, 0, 0.3), 0 0 30px rgba(200, 169, 126, 0.3); }
+        0%, 100% { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(200, 169, 126, 0.15); }
+        50% { box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 45px rgba(200, 169, 126, 0.35), 0 0 80px rgba(200, 169, 126, 0.1); }
     }
 }
 

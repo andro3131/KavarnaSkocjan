@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const ALLOWED_SECTIONS = ['gallery', 'events', 'about', 'hours', 'contact', 'menus'];
+const ALLOWED_SECTIONS = ['gallery', 'events', 'promo', 'about', 'hours', 'contact', 'menus'];
 
 function verifyToken(req) {
     const auth = req.headers.authorization;

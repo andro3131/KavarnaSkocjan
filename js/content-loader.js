@@ -9,7 +9,7 @@
         try {
             const results = await Promise.allSettled(
                 SECTIONS.map(section =>
-                    fetch(`/content/${section}.json`).then(r => r.ok ? r.json() : null)
+                    fetch(`/content/${section}.json?t=${Date.now()}`).then(r => r.ok ? r.json() : null)
                 )
             );
 

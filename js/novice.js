@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadNovice() {
         try {
-            const res = await fetch('/content/novice.json');
+            const res = await fetch('/content/novice.json?t=' + Date.now());
             if (!res.ok) return;
             const data = await res.json();
             noviceData = data;
@@ -86,8 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             renderAllNovice(data.items);
-        } catch {
-            // Keep empty state
+        } catch (err) {
+            console.error('Novice load error:', err);
         }
     }
 

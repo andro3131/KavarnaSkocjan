@@ -372,6 +372,17 @@ a:hover {
 .hero.loaded .hero-anim-5 { transition-delay: 1.3s; }
 .hero.loaded .hero-anim-6 { transition-delay: 1.8s; }
 
+/* Override hero-anim transforms for absolutely positioned promo */
+.hero-promo.hero-anim {
+    transform: translateX(-50%) translateY(30px);
+}
+
+.hero.loaded .hero-promo.hero-anim {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    animation: heroPromoFloat 4s ease-in-out 2.5s infinite, heroPromoGlow 3s ease-in-out 2.5s infinite;
+}
+
 .hero-logo {
     max-width: 240px;
     margin: 0 auto 1.5rem;
@@ -405,6 +416,11 @@ a:hover {
 
 /* Hero promo banner */
 .hero-promo {
+    position: absolute;
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
     display: flex;
     align-items: stretch;
     background: rgba(36, 32, 25, 0.9);
@@ -412,12 +428,12 @@ a:hover {
     border: 1px solid rgba(200, 169, 126, 0.3);
     border-radius: 14px;
     overflow: hidden;
-    margin-top: 2rem;
     max-width: 680px;
+    width: 90%;
     text-align: left;
-    animation: heroPromoFloat 4s ease-in-out infinite, heroPromoGlow 3s ease-in-out infinite;
     cursor: default;
 }
+
 
 .hero-promo-img-wrap {
     flex: 0 0 40%;
@@ -475,8 +491,8 @@ a:hover {
 }
 
 @keyframes heroPromoFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
 }
 
 @keyframes heroPromoGlow {

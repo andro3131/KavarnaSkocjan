@@ -2300,17 +2300,21 @@ a:hover {
 
 .novica-modal-main-media {
     position: relative;
-    aspect-ratio: 16/9;
     border-radius: 10px;
     overflow: hidden;
-    background: #000;
     margin-bottom: 0.75rem;
 }
 
 .novica-modal-main-media img {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    display: block;
+    border-radius: 10px;
+}
+
+.novica-modal-main-media:has(iframe),
+.novica-modal-main-media:has(video) {
+    aspect-ratio: 16/9;
+    background: #000;
 }
 
 .novica-modal-main-media iframe,

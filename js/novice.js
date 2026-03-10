@@ -149,25 +149,42 @@ document.addEventListener('DOMContentLoaded', () => {
         let html = `<span class="novica-modal-date">${formatDate(item.date)}</span>`;
         html += `<h2 class="novica-modal-title">${escapeHtml(title)}</h2>`;
 
-        // YouTube embed
+        // Build media items array (images + videos)
+        const mediaItems = [];
+
         if (item.youtube) {
             const ytId = extractYouTubeId(item.youtube);
             if (ytId) {
-                html += `<div class="novica-modal-video"><iframe src="https://www.youtube-nocookie.com/embed/${ytId}" frameborder="0" allowfullscreen loading="lazy"></iframe></div>`;
+                mediaItems.push({ type: 'youtube', id: ytId, thumb: `https://img.youtube.com/vi/${ytId}/mqdefault.jpg` });
             }
         }
 
-        // Video file
         if (item.video && !item.youtube) {
-            html += `<div class="novica-modal-video"><video controls preload="metadata"><source src="${escapeHtml(item.video)}"></video></div>`;
+            mediaItems.push({ type: 'video', src: item.video, thumb: (item.images && item.images[0]) || '' });
         }
 
-        // Images gallery
         if (item.images && item.images.length) {
-            html += '<div class="novica-modal-images">';
             item.images.forEach(img => {
-                html += `<img src="${escapeHtml(img)}" alt="${escapeHtml(title)}" loading="lazy" class="novica-modal-img">`;
+                mediaItems.push({ type: 'image', src: img });
             });
+        }
+
+        // Gallery with main viewer + thumbnails
+        if (mediaItems.length) {
+            html += '<div class="novica-modal-gallery">';
+            html += '<div class="novica-modal-main-media" id="novica-main-media"></div>';
+            if (mediaItems.length > 1) {
+                html += '<div class="novica-modal-thumbs">';
+                mediaItems.forEach((m, i) => {
+                    const thumbSrc = m.type === 'youtube' ? m.thumb : (m.type === 'video' ? (m.thumb || '') : m.src);
+                    const playIcon = (m.type === 'youtube' || m.type === 'video') ? '<div class="novica-modal-thumb-play"><svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>' : '';
+                    html += `<div class="novica-modal-thumb${i === 0 ? ' active' : ''}" data-media-index="${i}">
+                        ${thumbSrc ? `<img src="${escapeHtml(thumbSrc)}" alt="" loading="lazy">` : ''}
+                        ${playIcon}
+                    </div>`;
+                });
+                html += '</div>';
+            }
             html += '</div>';
         }
 
@@ -182,6 +199,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         modalBody.innerHTML = html;
+
+        // Gallery interaction
+        if (mediaItems.length) {
+            const mainMedia = document.getElementById('novica-main-media');
+            const thumbs = modalBody.querySelectorAll('.novica-modal-thumb');
+
+            function showMedia(index) {
+                const m = mediaItems[index];
+                if (m.type === 'youtube') {
+                    mainMedia.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${m.id}?autoplay=1" frameborder="0" allowfullscreen></iframe>`;
+                } else if (m.type === 'video') {
+                    mainMedia.innerHTML = `<video controls autoplay preload="metadata"><source src="${escapeHtml(m.src)}"></video>`;
+                } else {
+                    mainMedia.innerHTML = `<img src="${escapeHtml(m.src)}" alt="${escapeHtml(title)}">`;
+                }
+                thumbs.forEach((t, i) => t.classList.toggle('active', i === index));
+            }
+
+            showMedia(0);
+            thumbs.forEach(t => {
+                t.addEventListener('click', () => showMedia(parseInt(t.dataset.mediaIndex)));
+            });
+        }
+
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }

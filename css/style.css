@@ -506,6 +506,57 @@ a:hover {
     }
 }
 
+/* Mobile promo strip */
+.mobile-promo {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .mobile-promo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: var(--color-bg-card);
+        border-bottom: 1px solid var(--color-border);
+        padding: 1rem 1.2rem;
+    }
+
+    .mobile-promo-img {
+        width: 70px;
+        height: 70px;
+        border-radius: 10px;
+        object-fit: cover;
+        flex-shrink: 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .mobile-promo-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .mobile-promo-text strong {
+        color: var(--color-accent);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        animation: promoPulse 2s ease-in-out infinite;
+        width: fit-content;
+        padding: 0.15rem 0.5rem;
+        background: var(--color-accent);
+        color: var(--color-bg);
+        border-radius: 4px;
+        font-weight: 700;
+    }
+
+    .mobile-promo-text span {
+        color: var(--color-text-muted);
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+}
+
 /* Buttons */
 .btn {
     display: inline-block;

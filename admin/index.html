@@ -807,7 +807,6 @@ function renderEvents(d) {
         html += renderEventCard(item, i);
     });
     html += '</div>';
-    html += `<button class="btn btn-add" onclick="addEventItem()">+ Dodaj banner</button>`;
     return html;
 }
 
@@ -820,7 +819,6 @@ function renderEventCard(item, i) {
         <div class="item-card" data-item-index="${i}">
             <div class="item-card-header">
                 <h3>Banner ${i + 1}</h3>
-                <button class="btn btn-danger" onclick="removeItem('eventsList', this)" style="font-size:0.8rem;padding:0.4rem 0.8rem">Odstrani</button>
             </div>
             ${toggleField('items.' + i + '.enabled', 'Aktiven (prikazan na strani)', item.enabled)}
             ${imgFieldWithUpload('items.' + i + '.image', 'URL slike bannera', item.image)}

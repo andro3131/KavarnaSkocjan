@@ -578,7 +578,12 @@ async function saveCurrentSection() {
     btn.disabled = true;
     btn.textContent = 'Shranjujem...';
 
-    const newData = collectFormData(currentSection);
+    let newData = collectFormData(currentSection);
+
+    // Auto-translate promo fields to English
+    if (currentSection === 'promo') {
+        newData = autoTranslatePromo(newData);
+    }
 
     try {
         const res = await fetch('/api/content?section=' + currentSection, {
@@ -843,19 +848,55 @@ function renderPromo(d) {
             <div class="item-card-header"><h3>Promocijski banner</h3></div>
             ${toggleField('enabled', 'Aktiven (prikazan na strani)', d.enabled)}
             ${imgFieldWithUpload('image', 'Slika promocije', d.image)}
-            ${field('badgeSl', 'Značka — slovensko (npr. "Novo v ponudbi!")', d.badgeSl)}
-            ${field('badgeEn', 'Značka — angleško', d.badgeEn)}
+            ${field('badgeSl', 'Značka (npr. "Novo v ponudbi!")', d.badgeSl)}
             ${field('title', 'Naslov (npr. "Latte macchiato z okusom")', d.title)}
-            ${field('textSl', 'Opis — slovensko', d.textSl, 'textarea')}
-            ${field('textEn', 'Opis — angleško', d.textEn, 'textarea')}
-            ${field('ctaSl', 'Poziv — slovensko (npr. "Pridi poskusit ❤️")', d.ctaSl)}
-            ${field('ctaEn', 'Poziv — angleško', d.ctaEn)}
+            ${field('textSl', 'Opis', d.textSl, 'textarea')}
+            ${field('ctaSl', 'Poziv (npr. "Pridi poskusit ❤️")', d.ctaSl)}
         </div>
         <p style="margin-top:1rem;color:#b8ad9e;font-size:0.9rem">
             💡 Ko je promocija aktivna, se prikaže v heroju na namizju in kot strip pod herojem na mobilcu.
-            Ko jo izklopiš, oba bannerja izgineta.
+            Ko jo izklopiš, oba bannerja izgineta. Angleško besedilo se ustvari samodejno.
         </p>
     `;
+}
+
+// Simple SL→EN translation map for promo fields
+const PROMO_TRANSLATIONS = {
+    'Novo v ponudbi!': 'New on the menu!',
+    'Pridi poskusit': 'Come and try it',
+    'Pridi poskusit ❤️': 'Come and try it ❤️',
+    'Pridi poskusti ❤️': 'Come and try it ❤️'
+};
+
+function autoTranslatePromo(data) {
+    // Badge
+    data.badgeEn = PROMO_TRANSLATIONS[data.badgeSl] || data.badgeSl;
+    // CTA
+    data.ctaEn = PROMO_TRANSLATIONS[data.ctaSl] || data.ctaSl;
+    // Text — simple word-level translation for common café terms
+    data.textEn = translatePromoText(data.textSl);
+    return data;
+}
+
+function translatePromoText(sl) {
+    if (!sl) return '';
+    const replacements = [
+        [/\bIzberi svojega favorita\b/gi, 'Choose your favourite'],
+        [/\bvanilija\b/gi, 'vanilla'],
+        [/\bkokos\b/gi, 'coconut'],
+        [/\bčokoladni piškot\b/gi, 'chocolate cookie'],
+        [/\bčokolada\b/gi, 'chocolate'],
+        [/\bcimet\b/gi, 'cinnamon'],
+        [/\bMalo sladkega razvajanja v skodelici\.?\b/gi, 'A little sweet indulgence in a cup.'],
+        [/\bali\b/gi, 'or'],
+        [/\bin\b/gi, 'and'],
+    ];
+    let en = sl;
+    for (const [pattern, replacement] of replacements) {
+        en = en.replace(pattern, replacement);
+    }
+    // If nothing changed, return original (better than bad translation)
+    return en === sl ? sl : en;
 }
 
 // --- ABOUT ---

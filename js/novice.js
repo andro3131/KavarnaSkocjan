@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============ LANGUAGE SWITCHING ============
 
     let currentLang = localStorage.getItem('kavarna-lang') || 'sl';
+    let noviceData = null;
 
     function setLanguage(lang) {
         currentLang = lang;
@@ -58,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const grid = document.getElementById('novice-full-grid');
     const emptyEl = document.getElementById('novice-empty');
-    let noviceData = null;
 
     function escapeHtml(str) {
         const div = document.createElement('div');

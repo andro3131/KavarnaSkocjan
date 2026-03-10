@@ -557,15 +557,50 @@ a:hover {
 
 /* Promo card */
 .promo-card {
+    position: relative;
     display: flex;
     align-items: stretch;
     background: var(--color-bg-card);
     border: 1px solid rgba(200, 169, 126, 0.3);
     border-radius: 14px;
-    overflow: hidden;
+    overflow: visible;
     margin: 2.5rem auto 3rem;
     max-width: 800px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    animation: cardGlow 3s ease-in-out infinite;
+}
+
+.promo-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(200, 169, 126, 0.4), transparent 40%, transparent 60%, rgba(200, 169, 126, 0.4));
+    z-index: -1;
+    animation: borderShimmer 3s linear infinite;
+}
+
+.promo-card > * {
+    overflow: hidden;
+}
+
+.promo-card > :first-child {
+    border-radius: 14px 0 0 14px;
+}
+
+.promo-card > :last-child {
+    border-radius: 0 14px 14px 0;
+}
+
+@keyframes cardGlow {
+    0%, 100% { box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 0 0 20px rgba(200, 169, 126, 0.1); }
+    50% { box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), 0 0 40px rgba(200, 169, 126, 0.25), 0 0 80px rgba(200, 169, 126, 0.1); }
+}
+
+@keyframes borderShimmer {
+    0% { background-position: 0% 50%; opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { background-position: 200% 50%; opacity: 0.5; }
 }
 
 .promo-card-img {
@@ -630,6 +665,14 @@ a:hover {
 @media (max-width: 600px) {
     .promo-card {
         flex-direction: column;
+    }
+
+    .promo-card > :first-child {
+        border-radius: 14px 14px 0 0;
+    }
+
+    .promo-card > :last-child {
+        border-radius: 0 0 14px 14px;
     }
 
     .promo-card-img {

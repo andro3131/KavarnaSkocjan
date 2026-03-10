@@ -3,7 +3,7 @@
 // Falls back to hardcoded HTML content if fetch fails.
 
 (function () {
-    const SECTIONS = ['gallery', 'events', 'about', 'hours', 'contact', 'menus'];
+    const SECTIONS = ['gallery', 'events', 'promo', 'about', 'hours', 'contact', 'menus'];
 
     async function loadAllContent() {
         try {
@@ -22,6 +22,7 @@
 
             if (content.gallery) applyGallery(content.gallery);
             if (content.events) applyEvents(content.events);
+            applyPromo(content.promo);
             if (content.about) applyAbout(content.about);
             if (content.hours) applyHours(content.hours);
             if (content.contact) applyContact(content.contact);
@@ -148,6 +149,105 @@
                 }
             });
         });
+    }
+
+    // --- PROMO ---
+    function applyPromo(data) {
+        const heroPromo = document.querySelector('.hero-promo');
+        const mobilePromo = document.querySelector('.mobile-promo');
+
+        // If no data or disabled, hide both
+        if (!data || !data.enabled) {
+            if (heroPromo) heroPromo.style.display = 'none';
+            if (mobilePromo) mobilePromo.style.display = 'none';
+            // Also hide promo-card in ponudba section
+            const sectionPromo = document.querySelector('.promo-card');
+            if (sectionPromo) sectionPromo.style.display = 'none';
+            return;
+        }
+
+        const lang = getCurrentLang();
+        const badge = lang === 'en' ? data.badgeEn : data.badgeSl;
+        const text = lang === 'en' ? data.textEn : data.textSl;
+        const cta = lang === 'en' ? data.ctaEn : data.ctaSl;
+        const imgSrc = escapeHtml(data.image);
+        const title = escapeHtml(data.title);
+
+        // Desktop hero promo
+        if (heroPromo) {
+            const img = heroPromo.querySelector('.hero-promo-img');
+            const badgeEl = heroPromo.querySelector('.hero-promo-badge');
+            const titleEl = heroPromo.querySelector('.hero-promo-title');
+            const descEl = heroPromo.querySelector('.hero-promo-desc');
+            const ctaEl = heroPromo.querySelector('.hero-promo-cta');
+
+            if (img) img.src = imgSrc;
+            if (badgeEl) {
+                badgeEl.textContent = badge;
+                badgeEl.setAttribute('data-lang-sl', data.badgeSl);
+                badgeEl.setAttribute('data-lang-en', data.badgeEn);
+            }
+            if (titleEl) titleEl.textContent = title;
+            if (descEl) {
+                descEl.textContent = text;
+                descEl.setAttribute('data-lang-sl', data.textSl);
+                descEl.setAttribute('data-lang-en', data.textEn);
+            }
+            if (ctaEl) {
+                ctaEl.textContent = cta;
+                ctaEl.setAttribute('data-lang-sl', data.ctaSl);
+                ctaEl.setAttribute('data-lang-en', data.ctaEn);
+            }
+        }
+
+        // Mobile promo strip
+        if (mobilePromo) {
+            const img = mobilePromo.querySelector('.mobile-promo-img');
+            const strong = mobilePromo.querySelector('.mobile-promo-text strong');
+            const span = mobilePromo.querySelector('.mobile-promo-text span');
+
+            if (img) img.src = imgSrc;
+            if (strong) {
+                strong.textContent = badge;
+                strong.setAttribute('data-lang-sl', data.badgeSl);
+                strong.setAttribute('data-lang-en', data.badgeEn);
+            }
+            if (span) {
+                span.textContent = lang === 'en'
+                    ? data.title + ' – ' + data.textEn
+                    : data.title + ' – ' + data.textSl;
+                span.setAttribute('data-lang-sl', data.title + ' – ' + data.textSl);
+                span.setAttribute('data-lang-en', data.title + ' – ' + data.textEn);
+            }
+        }
+
+        // Section promo card
+        const sectionPromo = document.querySelector('.promo-card');
+        if (sectionPromo) {
+            const img = sectionPromo.querySelector('.promo-card-img img');
+            const badgeEl = sectionPromo.querySelector('.promo-card-badge');
+            const titleEl = sectionPromo.querySelector('.promo-card-title');
+            const textEl = sectionPromo.querySelector('.promo-card-text');
+            const ctaEl = sectionPromo.querySelector('.promo-card-cta');
+
+            if (img) img.src = imgSrc;
+            if (badgeEl) {
+                badgeEl.textContent = badge;
+                badgeEl.setAttribute('data-lang-sl', data.badgeSl);
+                badgeEl.setAttribute('data-lang-en', data.badgeEn);
+            }
+            if (titleEl) titleEl.textContent = title;
+            if (textEl) {
+                textEl.textContent = text;
+                textEl.setAttribute('data-lang-sl', data.textSl);
+                textEl.setAttribute('data-lang-en', data.textEn);
+            }
+            if (ctaEl) {
+                ctaEl.textContent = cta;
+                ctaEl.setAttribute('data-lang-sl', data.ctaSl);
+                ctaEl.setAttribute('data-lang-en', data.ctaEn);
+            }
+        }
     }
 
     // --- ABOUT ---

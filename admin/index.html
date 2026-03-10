@@ -456,6 +456,7 @@ let sectionData = {};
 const SECTIONS = [
     { key: 'gallery', label: 'Galerija', description: 'Vse slike galerije — kategorije, nalaganje, prikaz na prvi strani' },
     { key: 'events', label: 'Bannerji', description: 'Plavajoči bannerji za dogodke na hero sekciji' },
+    { key: 'promo', label: 'Promocija', description: 'Promocijski banner za novo ponudbo (prikazan v heroju in na mobilcu)' },
     { key: 'about', label: 'O nas', description: 'Besedilo in slika v sekciji "O nas"' },
     { key: 'hours', label: 'Odpiralni čas', description: 'Tabela odpiralnega časa in opomba' },
     { key: 'contact', label: 'Kontakt', description: 'Telefonske številke, e-pošta, družabna omrežja' },
@@ -740,6 +741,7 @@ function renderForm(key) {
     switch (key) {
         case 'gallery': container.innerHTML = renderGallery(data); break;
         case 'events': container.innerHTML = renderEvents(data); break;
+        case 'promo': container.innerHTML = renderPromo(data); break;
         case 'about': container.innerHTML = renderAbout(data); break;
         case 'hours': container.innerHTML = renderHours(data); break;
         case 'contact': container.innerHTML = renderContact(data); break;
@@ -832,6 +834,28 @@ function addEventItem() {
     const div = document.createElement('div');
     div.innerHTML = renderEventCard({ enabled: true, image: '', alt: '', position: 'left' }, i);
     list.appendChild(div.firstElementChild);
+}
+
+// --- PROMO ---
+function renderPromo(d) {
+    return `
+        <div class="item-card">
+            <div class="item-card-header"><h3>Promocijski banner</h3></div>
+            ${toggleField('enabled', 'Aktiven (prikazan na strani)', d.enabled)}
+            ${imgFieldWithUpload('image', 'Slika promocije', d.image)}
+            ${field('badgeSl', 'Značka — slovensko (npr. "Novo v ponudbi!")', d.badgeSl)}
+            ${field('badgeEn', 'Značka — angleško', d.badgeEn)}
+            ${field('title', 'Naslov (npr. "Latte macchiato z okusom")', d.title)}
+            ${field('textSl', 'Opis — slovensko', d.textSl, 'textarea')}
+            ${field('textEn', 'Opis — angleško', d.textEn, 'textarea')}
+            ${field('ctaSl', 'Poziv — slovensko (npr. "Pridi poskusit ❤️")', d.ctaSl)}
+            ${field('ctaEn', 'Poziv — angleško', d.ctaEn)}
+        </div>
+        <p style="margin-top:1rem;color:#b8ad9e;font-size:0.9rem">
+            💡 Ko je promocija aktivna, se prikaže v heroju na namizju in kot strip pod herojem na mobilcu.
+            Ko jo izklopiš, oba bannerja izgineta.
+        </p>
+    `;
 }
 
 // --- ABOUT ---

@@ -222,9 +222,10 @@
             }
         }
 
-        // Section promo card
+        // Section promo card — hidden (kept only as hero/mobile banner)
         const sectionPromo = document.querySelector('.promo-card');
         if (sectionPromo) {
+            sectionPromo.style.display = 'none';
             const img = sectionPromo.querySelector('.promo-card-img img');
             const badgeEl = sectionPromo.querySelector('.promo-card-badge');
             const titleEl = sectionPromo.querySelector('.promo-card-title');

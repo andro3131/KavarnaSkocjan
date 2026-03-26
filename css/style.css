@@ -444,6 +444,7 @@ a:hover {
     overflow: hidden;
     max-width: 680px;
     width: 90%;
+    max-height: 220px;
     text-align: left;
     cursor: default;
 }
@@ -451,7 +452,7 @@ a:hover {
 
 .hero-promo-img-wrap {
     flex: 0 0 40%;
-    min-height: 200px;
+    min-height: 0;
 }
 
 .hero-promo-img {

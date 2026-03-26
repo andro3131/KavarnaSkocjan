@@ -414,6 +414,20 @@ a:hover {
     font-style: italic;
 }
 
+/* Promo carousel fade */
+.promo-fade-out {
+    opacity: 0 !important;
+    transition: opacity 0.5s ease;
+}
+.promo-fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+.hero-promo,
+.mobile-promo {
+    transition: opacity 0.5s ease;
+}
+
 /* Hero promo banner */
 .hero-promo {
     position: absolute;

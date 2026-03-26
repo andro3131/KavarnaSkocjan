@@ -846,21 +846,35 @@ function addEventItem() {
 
 // --- PROMO ---
 function renderPromo(d) {
-    return `
-        <div class="item-card">
-            <div class="item-card-header"><h3>Promocijski banner</h3></div>
-            ${toggleField('enabled', 'Aktiven (prikazan na strani)', d.enabled)}
-            ${imgFieldWithUpload('image', 'Slika promocije', d.image)}
-            ${field('badgeSl', 'Značka (npr. "Novo v ponudbi!")', d.badgeSl)}
-            ${field('title', 'Naslov (npr. "Latte macchiato z okusom")', d.title)}
-            ${field('textSl', 'Opis', d.textSl, 'textarea')}
-            ${field('ctaSl', 'Poziv (npr. "Pridi poskusit ❤️")', d.ctaSl)}
+    // Support both old flat format and new items array format
+    const items = d.items || [d];
+    const enabled = d.enabled !== undefined ? d.enabled : true;
+
+    let html = `
+        <div class="item-card" style="margin-bottom:1rem">
+            <div class="item-card-header"><h3>Nastavitve</h3></div>
+            ${toggleField('enabled', 'Aktivno (prikazano na strani)', enabled)}
         </div>
+        <div id="promoItems">`;
+
+    items.forEach((item, i) => {
+        html += `
+        <div class="item-card" data-item-index="${i}" style="margin-bottom:1rem">
+            <div class="item-card-header"><h3>Kartica ${i + 1}</h3></div>
+            ${imgFieldWithUpload('items.' + i + '.image', 'Slika', item.image)}
+            ${field('items.' + i + '.badgeSl', 'Značka (npr. "Novo v ponudbi!")', item.badgeSl)}
+            ${field('items.' + i + '.title', 'Naslov', item.title)}
+            ${field('items.' + i + '.textSl', 'Opis', item.textSl, 'textarea')}
+            ${field('items.' + i + '.ctaSl', 'Poziv (npr. "Pridi poskusit ❤️")', item.ctaSl)}
+        </div>`;
+    });
+
+    html += `</div>
         <p style="margin-top:1rem;color:#b8ad9e;font-size:0.9rem">
-            💡 Ko je promocija aktivna, se prikaže v heroju na namizju in kot strip pod herojem na mobilcu.
-            Ko jo izklopiš, oba bannerja izgineta. Angleško besedilo se ustvari samodejno.
-        </p>
-    `;
+            💡 Kartice se izmenjujejo vsakih 5 sekund v heroju in na mobilcu.
+            Ko izklopiš, vsi bannerji izginejo. Angleško besedilo se ustvari samodejno.
+        </p>`;
+    return html;
 }
 
 // Simple SL→EN translation map for promo fields
@@ -872,12 +886,17 @@ const PROMO_TRANSLATIONS = {
 };
 
 function autoTranslatePromo(data) {
-    // Badge
-    data.badgeEn = PROMO_TRANSLATIONS[data.badgeSl] || data.badgeSl;
-    // CTA
-    data.ctaEn = PROMO_TRANSLATIONS[data.ctaSl] || data.ctaSl;
-    // Text — simple word-level translation for common café terms
-    data.textEn = translatePromoText(data.textSl);
+    if (data.items) {
+        data.items.forEach(item => {
+            item.badgeEn = PROMO_TRANSLATIONS[item.badgeSl] || item.badgeSl;
+            item.ctaEn = PROMO_TRANSLATIONS[item.ctaSl] || item.ctaSl;
+            item.textEn = translatePromoText(item.textSl);
+        });
+    } else {
+        data.badgeEn = PROMO_TRANSLATIONS[data.badgeSl] || data.badgeSl;
+        data.ctaEn = PROMO_TRANSLATIONS[data.ctaSl] || data.ctaSl;
+        data.textEn = translatePromoText(data.textSl);
+    }
     return data;
 }
 

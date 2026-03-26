@@ -1,11 +1,25 @@
 {
   "enabled": true,
-  "image": "https://kavarna-skocjan.b-cdn.net/Ponudba/650046686_122126652189117458_5336329714101965638_n.jpg",
-  "badgeSl": "Novo v ponudbi!",
-  "badgeEn": "New on the menu!",
-  "title": "Latte macchiato z okusom",
-  "textSl": "Izberi svojega favorita: vanilija, kokos, čokoladni piškot ali cimet. Malo sladkega razvajanja v skodelici.",
-  "textEn": "Choose your favourite: vanilla, coconut, chocolate cookie or cinnamon. A little sweet indulgence in a cup.",
-  "ctaSl": "Pridi poskusit ❤️",
-  "ctaEn": "Come and try it ❤️"
+  "items": [
+    {
+      "image": "https://kavarna-skocjan.b-cdn.net/Ponudba/650046686_122126652189117458_5336329714101965638_n.jpg",
+      "badgeSl": "Novo v ponudbi!",
+      "badgeEn": "New on the menu!",
+      "title": "Latte macchiato z okusom",
+      "textSl": "Izberi svojega favorita: vanilija, kokos, čokoladni piškot ali cimet. Malo sladkega razvajanja v skodelici.",
+      "textEn": "Choose your favourite: vanilla, coconut, chocolate cookie or cinnamon. A little sweet indulgence in a cup.",
+      "ctaSl": "Pridi poskusit ❤️",
+      "ctaEn": "Come and try it ❤️"
+    },
+    {
+      "image": "https://kavarna-skocjan.b-cdn.net/Ponudba/659249724_122128982343117458_2195267618998720917_n.jpg",
+      "badgeSl": "Novo v ponudbi!",
+      "badgeEn": "New on the menu!",
+      "title": "Sladoled je tu! 🍦",
+      "textSl": "Kar 12 različnih okusov! Kremast, svež in popoln za vsak trenutek. Poletje se začne pri nas!",
+      "textEn": "12 different flavours! Creamy, fresh and perfect for any moment. Summer starts here!",
+      "ctaSl": "Pridi poskusit 💛",
+      "ctaEn": "Come and try it 💛"
+    }
+  ]
 }

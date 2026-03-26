@@ -156,99 +156,128 @@
     function applyPromo(data) {
         const heroPromo = document.querySelector('.hero-promo');
         const mobilePromo = document.querySelector('.mobile-promo');
+        const sectionPromo = document.querySelector('.promo-card');
 
-        // If no data or disabled, hide both
-        if (!data || !data.enabled) {
+        // Support both old (single object) and new (items array) format
+        let items = [];
+        if (data && data.items && data.items.length > 0) {
+            items = data.items;
+        } else if (data && data.enabled && data.image) {
+            items = [data]; // legacy single promo
+        }
+
+        // If no data, disabled, or no items, hide all
+        if (!data || !data.enabled || items.length === 0) {
             if (heroPromo) heroPromo.style.display = 'none';
             if (mobilePromo) mobilePromo.style.display = 'none';
-            // Also hide promo-card in ponudba section
-            const sectionPromo = document.querySelector('.promo-card');
             if (sectionPromo) sectionPromo.style.display = 'none';
             return;
         }
 
-        const lang = getCurrentLang();
-        const badge = lang === 'en' ? data.badgeEn : data.badgeSl;
-        const text = lang === 'en' ? data.textEn : data.textSl;
-        const cta = lang === 'en' ? data.ctaEn : data.ctaSl;
-        const imgSrc = escapeHtml(data.image);
-        const title = escapeHtml(data.title);
+        // Hide section promo card (kept only as hero/mobile banner)
+        if (sectionPromo) sectionPromo.style.display = 'none';
 
-        // Desktop hero promo
-        if (heroPromo) {
-            const img = heroPromo.querySelector('.hero-promo-img');
-            const badgeEl = heroPromo.querySelector('.hero-promo-badge');
-            const titleEl = heroPromo.querySelector('.hero-promo-title');
-            const descEl = heroPromo.querySelector('.hero-promo-desc');
-            const ctaEl = heroPromo.querySelector('.hero-promo-cta');
+        let currentIndex = 0;
 
-            if (img) img.src = imgSrc;
-            if (badgeEl) {
-                badgeEl.textContent = badge;
-                badgeEl.setAttribute('data-lang-sl', data.badgeSl);
-                badgeEl.setAttribute('data-lang-en', data.badgeEn);
+        function showPromoItem(index, animate) {
+            const item = items[index];
+            const lang = getCurrentLang();
+            const badge = lang === 'en' ? item.badgeEn : item.badgeSl;
+            const text = lang === 'en' ? item.textEn : item.textSl;
+            const cta = lang === 'en' ? item.ctaEn : item.ctaSl;
+            const imgSrc = item.image;
+            const title = item.title;
+
+            // Desktop hero promo
+            if (heroPromo) {
+                if (animate) heroPromo.classList.add('promo-fade-out');
+
+                const applyDesktop = () => {
+                    const img = heroPromo.querySelector('.hero-promo-img');
+                    const badgeEl = heroPromo.querySelector('.hero-promo-badge');
+                    const titleEl = heroPromo.querySelector('.hero-promo-title');
+                    const descEl = heroPromo.querySelector('.hero-promo-desc');
+                    const ctaEl = heroPromo.querySelector('.hero-promo-cta');
+
+                    if (img) img.src = imgSrc;
+                    if (badgeEl) {
+                        badgeEl.textContent = badge;
+                        badgeEl.setAttribute('data-lang-sl', item.badgeSl);
+                        badgeEl.setAttribute('data-lang-en', item.badgeEn);
+                    }
+                    if (titleEl) titleEl.textContent = title;
+                    if (descEl) {
+                        descEl.textContent = text;
+                        descEl.setAttribute('data-lang-sl', item.textSl);
+                        descEl.setAttribute('data-lang-en', item.textEn);
+                    }
+                    if (ctaEl) {
+                        ctaEl.textContent = cta;
+                        ctaEl.setAttribute('data-lang-sl', item.ctaSl);
+                        ctaEl.setAttribute('data-lang-en', item.ctaEn);
+                    }
+
+                    if (animate) {
+                        heroPromo.classList.remove('promo-fade-out');
+                        heroPromo.classList.add('promo-fade-in');
+                        setTimeout(() => heroPromo.classList.remove('promo-fade-in'), 500);
+                    }
+                };
+
+                if (animate) {
+                    setTimeout(applyDesktop, 500);
+                } else {
+                    applyDesktop();
+                }
             }
-            if (titleEl) titleEl.textContent = title;
-            if (descEl) {
-                descEl.textContent = text;
-                descEl.setAttribute('data-lang-sl', data.textSl);
-                descEl.setAttribute('data-lang-en', data.textEn);
-            }
-            if (ctaEl) {
-                ctaEl.textContent = cta;
-                ctaEl.setAttribute('data-lang-sl', data.ctaSl);
-                ctaEl.setAttribute('data-lang-en', data.ctaEn);
+
+            // Mobile promo strip
+            if (mobilePromo) {
+                if (animate) mobilePromo.classList.add('promo-fade-out');
+
+                const applyMobile = () => {
+                    const img = mobilePromo.querySelector('.mobile-promo-img');
+                    const strong = mobilePromo.querySelector('.mobile-promo-text strong');
+                    const span = mobilePromo.querySelector('.mobile-promo-text span');
+
+                    if (img) img.src = imgSrc;
+                    if (strong) {
+                        strong.textContent = badge;
+                        strong.setAttribute('data-lang-sl', item.badgeSl);
+                        strong.setAttribute('data-lang-en', item.badgeEn);
+                    }
+                    if (span) {
+                        span.textContent = lang === 'en'
+                            ? title + ' – ' + item.textEn
+                            : title + ' – ' + item.textSl;
+                        span.setAttribute('data-lang-sl', title + ' – ' + item.textSl);
+                        span.setAttribute('data-lang-en', title + ' – ' + item.textEn);
+                    }
+
+                    if (animate) {
+                        mobilePromo.classList.remove('promo-fade-out');
+                        mobilePromo.classList.add('promo-fade-in');
+                        setTimeout(() => mobilePromo.classList.remove('promo-fade-in'), 500);
+                    }
+                };
+
+                if (animate) {
+                    setTimeout(applyMobile, 500);
+                } else {
+                    applyMobile();
+                }
             }
         }
 
-        // Mobile promo strip
-        if (mobilePromo) {
-            const img = mobilePromo.querySelector('.mobile-promo-img');
-            const strong = mobilePromo.querySelector('.mobile-promo-text strong');
-            const span = mobilePromo.querySelector('.mobile-promo-text span');
+        // Show first item immediately
+        showPromoItem(0, false);
 
-            if (img) img.src = imgSrc;
-            if (strong) {
-                strong.textContent = badge;
-                strong.setAttribute('data-lang-sl', data.badgeSl);
-                strong.setAttribute('data-lang-en', data.badgeEn);
-            }
-            if (span) {
-                span.textContent = lang === 'en'
-                    ? data.title + ' – ' + data.textEn
-                    : data.title + ' – ' + data.textSl;
-                span.setAttribute('data-lang-sl', data.title + ' – ' + data.textSl);
-                span.setAttribute('data-lang-en', data.title + ' – ' + data.textEn);
-            }
-        }
-
-        // Section promo card — hidden (kept only as hero/mobile banner)
-        const sectionPromo = document.querySelector('.promo-card');
-        if (sectionPromo) {
-            sectionPromo.style.display = 'none';
-            const img = sectionPromo.querySelector('.promo-card-img img');
-            const badgeEl = sectionPromo.querySelector('.promo-card-badge');
-            const titleEl = sectionPromo.querySelector('.promo-card-title');
-            const textEl = sectionPromo.querySelector('.promo-card-text');
-            const ctaEl = sectionPromo.querySelector('.promo-card-cta');
-
-            if (img) img.src = imgSrc;
-            if (badgeEl) {
-                badgeEl.textContent = badge;
-                badgeEl.setAttribute('data-lang-sl', data.badgeSl);
-                badgeEl.setAttribute('data-lang-en', data.badgeEn);
-            }
-            if (titleEl) titleEl.textContent = title;
-            if (textEl) {
-                textEl.textContent = text;
-                textEl.setAttribute('data-lang-sl', data.textSl);
-                textEl.setAttribute('data-lang-en', data.textEn);
-            }
-            if (ctaEl) {
-                ctaEl.textContent = cta;
-                ctaEl.setAttribute('data-lang-sl', data.ctaSl);
-                ctaEl.setAttribute('data-lang-en', data.ctaEn);
-            }
+        // Rotate every 5 seconds if more than one item
+        if (items.length > 1) {
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % items.length;
+                showPromoItem(currentIndex, true);
+            }, 5000);
         }
     }
 

@@ -20,6 +20,21 @@
       "contentEn": "Thank you to everyone who joined us yesterday for another acoustic evening on our terrace. 🎶\n\nTo all of you heading off on a well-deserved holiday: we wish you wonderful, relaxed and sunny days. Enjoy, recharge, and come back safely! ☀️\n\nWe're already looking forward to the next gathering at Café Škocjan. 😊"
     },
     {
+      "date": "2026-06-30",
+      "titleSl": "NOVO V PONUDBI! 🥐",
+      "textSl": "Od danes naprej je pri nas na voljo tudi brezglutenski rogljiček z ribezovim polnilom. Vabljeni na sladko razvajanje!",
+      "contentSl": "NOVO V PONUDBI! 🥐\n\nOd danes naprej je pri nas na voljo tudi brezglutenski rogljiček z ribezovim polnilom. 😋\n\nKer želimo ugoditi prav vsem našim gostom – tudi tistim, ki ne uživajo glutena.\n\nVabljeni na sladko razvajanje! ☕💛",
+      "images": [
+        "https://kavarna-skocjan.b-cdn.net/Ponudba/727059522_122140208013117458_7614584432009707868_n.jpg",
+        "https://kavarna-skocjan.b-cdn.net/Ponudba/726734204_122140208007117458_3452997884985790303_n.jpg"
+      ],
+      "youtube": "",
+      "video": "",
+      "titleEn": "NEW ON THE MENU! 🥐",
+      "textEn": "From today we also offer a gluten-free croissant with blackcurrant filling. Treat yourself!",
+      "contentEn": "NEW ON THE MENU! 🥐\n\nFrom today we also offer a gluten-free croissant with blackcurrant filling. 😋\n\nBecause we want to welcome all our guests – including those who don't eat gluten.\n\nCome treat yourself! ☕💛"
+    },
+    {
       "date": "2026-03-26",
       "titleSl": "Sladoled je tu! 🍦",
       "textSl": "Osvežitev, ki smo jo vsi čakali… Kar 12 različnih okusov!",
@@ -62,23 +77,6 @@
       "contentEn": "New in our offer! ☕🍋\nBesides flavoured Latte macchiato, you can now find refreshment in our flavoured lemonades.\n\nChoose from:\n🍓 strawberry\n🌴 coconut\n🌼 vanilla\n🍊 passion fruit\n🌿 cinnamon\n\nPerfect refreshment for sunny days.\nCome try them at Café Škocjan. 🙂"
     },
     {
-      "date": "2026-03-07",
-      "titleSl": "2. vinski večer – hvala vsem! 🍷",
-      "textSl": "Hvala vsem, ki ste bili z nami na našem 2. vinskem večeru. Ustvarili ste odlično vzdušje in res lep večer.",
-      "contentSl": "Hvala vsem, ki ste bili z nami na našem 2. vinskem večeru. Ustvarili ste odlično vzdušje in res lep večer. 🍷\n\nPosebna zahvala Davidu za zanimivo predstavitev njegovih vin, kmetiji Mehak za vrhunske prigrizke, ki so se odlično podali k degustaciji, Roku Petančiču za izvrstno povezovanje večera ter ansamblu Nemir za lepo petje, ki je večer še dodatno povezalo in polepšalo. 🎶\n\nBil je res prekrasen večer – zagotovo vreden ponovitve.\nSe že veselimo naslednjega druženja. 😊",
-      "images": [
-        "https://kavarna-skocjan.b-cdn.net/Ponudba/646498965_122126413287117458_463278617980134195_n.jpg",
-        "https://kavarna-skocjan.b-cdn.net/Ponudba/648586558_122126413281117458_1707670026398095797_n.jpg",
-        "https://kavarna-skocjan.b-cdn.net/Ponudba/649053454_122126413239117458_7715882736489207012_n.jpg",
-        "https://kavarna-skocjan.b-cdn.net/Ponudba/649173220_122126413245117458_7503795528875894996_n.jpg"
-      ],
-      "youtube": "",
-      "video": "",
-      "titleEn": "2nd Wine Evening – thank you all! 🍷",
-      "textEn": "Thank you to everyone who joined us for our 2nd wine evening. You created a wonderful atmosphere and a truly lovely evening.",
-      "contentEn": "Thank you to everyone who joined us for our 2nd wine evening. You created a wonderful atmosphere and a truly lovely evening. 🍷\n\nSpecial thanks to David for an interesting presentation of his wines, Mehak farm for excellent appetizers that paired perfectly with the tasting, Rok Petančič for superb hosting, and the Nemir ensemble for beautiful singing that made the evening even more special. 🎶\n\nIt was a truly wonderful evening – definitely worth repeating.\nWe're already looking forward to the next gathering. 😊"
-    },
-    {
       "date": "2026-03-10",
       "titleSl": "Akustični večer Miky & Igor – 21.2. 🎶",
       "textSl": "Slike povedo vse o krasnem vzdušju, ki ga ustvarimo na takih večerih.",
@@ -95,6 +93,23 @@
       "titleEn": "Akustični večer Miky & Igor – 21.2. 🎶",
       "textEn": "Slike povedo vse o krasnem vzdušju, ki ga ustvarimo na takih večerih.",
       "contentEn": "Akustični večer Miky & Igor – 21.2. 🎶\nSlike povedo vse o krasnem vzdušju, ki ga ustvarimo na takih večerih.\n📸 Foto: Patricija Kokove\nNaslednji akustični večer v Kavarni Škocjan bo 21.3. – Nika & Johnny.\nRezerviraj si svojo mizo in bodi del še enega lepega glasbenega večera. 🎸"
+    },
+    {
+      "date": "2026-03-07",
+      "titleSl": "2. vinski večer – hvala vsem! 🍷",
+      "textSl": "Hvala vsem, ki ste bili z nami na našem 2. vinskem večeru. Ustvarili ste odlično vzdušje in res lep večer.",
+      "contentSl": "Hvala vsem, ki ste bili z nami na našem 2. vinskem večeru. Ustvarili ste odlično vzdušje in res lep večer. 🍷\n\nPosebna zahvala Davidu za zanimivo predstavitev njegovih vin, kmetiji Mehak za vrhunske prigrizke, ki so se odlično podali k degustaciji, Roku Petančiču za izvrstno povezovanje večera ter ansamblu Nemir za lepo petje, ki je večer še dodatno povezalo in polepšalo. 🎶\n\nBil je res prekrasen večer – zagotovo vreden ponovitve.\nSe že veselimo naslednjega druženja. 😊",
+      "images": [
+        "https://kavarna-skocjan.b-cdn.net/Ponudba/646498965_122126413287117458_463278617980134195_n.jpg",
+        "https://kavarna-skocjan.b-cdn.net/Ponudba/648586558_122126413281117458_1707670026398095797_n.jpg",
+        "https://kavarna-skocjan.b-cdn.net/Ponudba/649053454_122126413239117458_7715882736489207012_n.jpg",
+        "https://kavarna-skocjan.b-cdn.net/Ponudba/649173220_122126413245117458_7503795528875894996_n.jpg"
+      ],
+      "youtube": "",
+      "video": "",
+      "titleEn": "2nd Wine Evening – thank you all! 🍷",
+      "textEn": "Thank you to everyone who joined us for our 2nd wine evening. You created a wonderful atmosphere and a truly lovely evening.",
+      "contentEn": "Thank you to everyone who joined us for our 2nd wine evening. You created a wonderful atmosphere and a truly lovely evening. 🍷\n\nSpecial thanks to David for an interesting presentation of his wines, Mehak farm for excellent appetizers that paired perfectly with the tasting, Rok Petančič for superb hosting, and the Nemir ensemble for beautiful singing that made the evening even more special. 🎶\n\nIt was a truly wonderful evening – definitely worth repeating.\nWe're already looking forward to the next gathering. 😊"
     },
     {
       "date": "2026-03-01",
@@ -125,20 +140,6 @@
       "contentEn": "Sunshine and the weekend call for a beer 🍻\nHeineken on special this Thursday and Friday.\nWelcome to Café Škocjan!"
     },
     {
-      "date": "2026-02-12",
-      "titleSl": "Pustna akcija & vinska valentinova ponudba 🍷❤️",
-      "textSl": "Kakav v akciji za šeme, v soboto in nedeljo pa posebna vinska akcija za zaljubljene!",
-      "contentSl": "Poleg slastnega kakava (akcija v petek in soboto), ki se bo pustnim šemam odlično podal h krofu, bomo v soboto in nedeljo pripravili tudi posebno vinsko akcijo za zaljubljene 🍷\n\n👉 Bela frankinja\n👉 Modra frankinja\n\nVabljeni zaljubljenčki – in vsi, ki imate radi dobre okuse – da skupaj nazdravimo ljubezni ❤️\nSe vidimo na kozarčku! 🥂",
-      "images": [
-        "https://kavarna-skocjan.b-cdn.net/DOGODKI/12bc0674-75f1-42fc-915c-2cc7506dff4d.jpg"
-      ],
-      "youtube": "",
-      "video": "",
-      "titleEn": "Carnival special & Valentine's wine offer 🍷❤️",
-      "textEn": "Hot cocoa on special for carnival, plus a special wine offer for Valentine's weekend!",
-      "contentEn": "Besides delicious hot cocoa (on special Friday and Saturday), perfect for carnival revellers with a doughnut, we're also preparing a special wine offer for lovers on Saturday and Sunday 🍷\n\n👉 Bela frankinja (white)\n👉 Modra frankinja (red)\n\nAll lovebirds welcome – and everyone who appreciates good flavours – let's toast to love together ❤️\nSee you for a glass! 🥂"
-    },
-    {
       "date": "2026-02-14",
       "titleSl": "🎉 Rojstni dan v Kavarni Škocjan 🎉",
       "textSl": "Iščete prostor, kjer bo otroški rojstni dan res nekaj posebnega? V Kavarni Škocjan poskrbimo za nepozabno praznovanje!",
@@ -151,6 +152,20 @@
       "titleEn": "🎉 Birthday Party at Café Škocjan 🎉",
       "textEn": "Looking for a place where your child's birthday will be truly special? At Café Škocjan we make sure it's an unforgettable celebration!",
       "contentEn": "🎉 Birthday Party at Café Škocjan 🎉\n\nLooking for a place where your child's birthday will be truly special?\nAt Café Škocjan we make sure it's an unforgettable celebration, full of laughter, play and joy! 🥳\n\n✨ What we offer?\n🎬 movie/cartoon screening (your choice) in our cozy \"mini cinema\" corner\n🍿 snacks and drinks\n🎈 a real birthday atmosphere\n🌳 free play on outdoor playground\n🎠 inflatable play equipment by arrangement\n🎁 we're happy to customize the program to your wishes\n\n📞 Reservations and info:\nIgor – 041 942 315\n📧 kavarna.kc@gmail.com\n\nJoin us to create a wonderful birthday! 🎂💛"
+    },
+    {
+      "date": "2026-02-12",
+      "titleSl": "Pustna akcija & vinska valentinova ponudba 🍷❤️",
+      "textSl": "Kakav v akciji za šeme, v soboto in nedeljo pa posebna vinska akcija za zaljubljene!",
+      "contentSl": "Poleg slastnega kakava (akcija v petek in soboto), ki se bo pustnim šemam odlično podal h krofu, bomo v soboto in nedeljo pripravili tudi posebno vinsko akcijo za zaljubljene 🍷\n\n👉 Bela frankinja\n👉 Modra frankinja\n\nVabljeni zaljubljenčki – in vsi, ki imate radi dobre okuse – da skupaj nazdravimo ljubezni ❤️\nSe vidimo na kozarčku! 🥂",
+      "images": [
+        "https://kavarna-skocjan.b-cdn.net/DOGODKI/12bc0674-75f1-42fc-915c-2cc7506dff4d.jpg"
+      ],
+      "youtube": "",
+      "video": "",
+      "titleEn": "Carnival special & Valentine's wine offer 🍷❤️",
+      "textEn": "Hot cocoa on special for carnival, plus a special wine offer for Valentine's weekend!",
+      "contentEn": "Besides delicious hot cocoa (on special Friday and Saturday), perfect for carnival revellers with a doughnut, we're also preparing a special wine offer for lovers on Saturday and Sunday 🍷\n\n👉 Bela frankinja (white)\n👉 Modra frankinja (red)\n\nAll lovebirds welcome – and everyone who appreciates good flavours – let's toast to love together ❤️\nSee you for a glass! 🥂"
     }
   ]
 }

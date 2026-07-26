@@ -459,6 +459,7 @@ a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center;
     display: block;
 }
 
@@ -544,6 +545,7 @@ a:hover {
         height: 120px;
         border-radius: 12px;
         object-fit: cover;
+        object-position: center center;
         flex-shrink: 0;
         box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
         border: 1px solid rgba(200, 169, 126, 0.2);

@@ -199,7 +199,10 @@
                     const descEl = heroPromo.querySelector('.hero-promo-desc');
                     const ctaEl = heroPromo.querySelector('.hero-promo-cta');
 
-                    if (img) img.src = imgSrc;
+                    if (img) {
+                        img.src = imgSrc;
+                        img.style.objectPosition = item.imagePosition || 'center center';
+                    }
                     if (badgeEl) {
                         badgeEl.textContent = badge;
                         badgeEl.setAttribute('data-lang-sl', item.badgeSl);
@@ -240,7 +243,10 @@
                     const strong = mobilePromo.querySelector('.mobile-promo-text strong');
                     const span = mobilePromo.querySelector('.mobile-promo-text span');
 
-                    if (img) img.src = imgSrc;
+                    if (img) {
+                        img.src = imgSrc;
+                        img.style.objectPosition = item.imagePosition || 'center center';
+                    }
                     if (strong) {
                         strong.textContent = badge;
                         strong.setAttribute('data-lang-sl', item.badgeSl);

@@ -1,6 +1,13 @@
 {
   "items": [
     {
+      "src": "https://kavarna-skocjan.b-cdn.net/Ponudba/724757915_122139787611117458_2794105061289251634_n.jpg",
+      "alt": "Točeno Ožujsko",
+      "category": "ponudba",
+      "featured": false,
+      "large": false
+    },
+    {
       "src": "https://kavarna-skocjan.b-cdn.net/DOGODKI/720467684_922506230865543_8452985815795208287_n.jpg",
       "alt": "Akustični večer Zan Ograjšek & Gorazd Laznik",
       "category": "dogodki",

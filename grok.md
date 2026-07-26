@@ -60,7 +60,7 @@ Novejše: vrh seznama (sort po `date` desc).
 ```
 `imagePosition` (opcijsko) → `object-position` na hero/mobile sliki (Ožujsko: `center 72%`).
 
-**Trenutni promo (5):** Latte macchiato · Sladoled · Točeno Ožujsko · Brezglutenski rogljiček · Spritz z okusom
+**Trenutni promo (5):** Spritz z okusom · Brezglutenski rogljiček · Točeno Ožujsko · Latte macchiato · Sladoled
 
 ---
 

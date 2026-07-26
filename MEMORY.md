@@ -62,11 +62,11 @@ Ni `npm run build` za vsebino — samo JSON + push.
 - Opcijsko **`imagePosition`**: CSS `object-position` (npr. Ožujsko `"center 72%"` da se ne reže dno kozarca)
 
 ### Trenutni promo items (vrstni red)
-1. Latte macchiato z okusom  
-2. Sladoled je tu! 🍦  
+1. Spritz z okusom 🍹 (`imagePosition: center 35%`)  
+2. Brezglutenski rogljiček 🥐  
 3. Točeno Ožujsko 🍺 (`imagePosition: center 72%`)  
-4. Brezglutenski rogljiček 🥐  
-5. Spritz z okusom 🍹  
+4. Latte macchiato z okusom  
+5. Sladoled je tu! 🍦  
 
 JS ob zamenjavi kartice nastavi `img.style.objectPosition = item.imagePosition || 'center center'`.
 

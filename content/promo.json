@@ -2,6 +2,39 @@
   "enabled": true,
   "items": [
     {
+      "image": "https://kavarna-skocjan.b-cdn.net/Ponudba/709610288_122137456425117458_3189680612900096067_n.jpg",
+      "imagePosition": "center 35%",
+      "badgeSl": "Novo v ponudbi!",
+      "badgeEn": "New on the menu!",
+      "title": "Spritz z okusom 🍹",
+      "textSl": "Prosecco, Radenska in Monin – pasijonka, malina, jagoda, breskev, bezeg ali meta. Pridi po svoj poletni okus!",
+      "textEn": "Prosecco, sparkling water and Monin – passion fruit, raspberry, strawberry, peach, elderflower or mint. Pick your summer flavour!",
+      "ctaSl": "Pridi poskusit ☀️",
+      "ctaEn": "Come and try it ☀️"
+    },
+    {
+      "image": "https://kavarna-skocjan.b-cdn.net/Ponudba/727059522_122140208013117458_7614584432009707868_n.jpg",
+      "imagePosition": "center 40%",
+      "badgeSl": "Novo v ponudbi!",
+      "badgeEn": "New on the menu!",
+      "title": "Brezglutenski rogljiček 🥐",
+      "textSl": "Rogljiček z ribezovim polnilom – tudi za tiste, ki ne uživajo glutena. Vabljeni na sladko razvajanje!",
+      "textEn": "Croissant with blackcurrant filling – also for those who don't eat gluten. Treat yourself!",
+      "ctaSl": "Pridi poskusit 💛",
+      "ctaEn": "Come and try it 💛"
+    },
+    {
+      "image": "https://kavarna-skocjan.b-cdn.net/Ponudba/724757915_122139787611117458_2794105061289251634_n.jpg",
+      "imagePosition": "center 72%",
+      "badgeSl": "Novo v ponudbi!",
+      "badgeEn": "New on the menu!",
+      "title": "Točeno Ožujsko 🍺",
+      "textSl": "Hladna osvežitev enega najbolj priljubljenih piv. Pridi na kozarec – na zdravje!",
+      "textEn": "A cold pour of one of the most popular beers. Come for a glass – cheers!",
+      "ctaSl": "Pridi poskusit 🍻",
+      "ctaEn": "Come and try it 🍻"
+    },
+    {
       "image": "https://kavarna-skocjan.b-cdn.net/Ponudba/650046686_122126652189117458_5336329714101965638_n.jpg",
       "badgeSl": "Novo v ponudbi!",
       "badgeEn": "New on the menu!",
@@ -20,39 +53,6 @@
       "textEn": "12 different flavours! Creamy, fresh and perfect for any moment. Summer starts here!",
       "ctaSl": "Pridi poskusit 💛",
       "ctaEn": "Come and try it 💛"
-    },
-    {
-      "image": "https://kavarna-skocjan.b-cdn.net/Ponudba/724757915_122139787611117458_2794105061289251634_n.jpg",
-      "imagePosition": "center 72%",
-      "badgeSl": "Novo v ponudbi!",
-      "badgeEn": "New on the menu!",
-      "title": "Točeno Ožujsko 🍺",
-      "textSl": "Hladna osvežitev enega najbolj priljubljenih piv. Pridi na kozarec – na zdravje!",
-      "textEn": "A cold pour of one of the most popular beers. Come for a glass – cheers!",
-      "ctaSl": "Pridi poskusit 🍻",
-      "ctaEn": "Come and try it 🍻"
-    },
-    {
-      "image": "https://kavarna-skocjan.b-cdn.net/Ponudba/727059522_122140208013117458_7614584432009707868_n.jpg",
-      "imagePosition": "center 40%",
-      "badgeSl": "Novo v ponudbi!",
-      "badgeEn": "New on the menu!",
-      "title": "Brezglutenski rogljiček 🥐",
-      "textSl": "Rogljiček z ribezovim polnilom – tudi za tiste, ki ne uživajo glutena. Vabljeni na sladko razvajanje!",
-      "textEn": "Croissant with blackcurrant filling – also for those who don't eat gluten. Treat yourself!",
-      "ctaSl": "Pridi poskusit 💛",
-      "ctaEn": "Come and try it 💛"
-    },
-    {
-      "image": "https://kavarna-skocjan.b-cdn.net/Ponudba/709610288_122137456425117458_3189680612900096067_n.jpg",
-      "imagePosition": "center 35%",
-      "badgeSl": "Novo v ponudbi!",
-      "badgeEn": "New on the menu!",
-      "title": "Spritz z okusom 🍹",
-      "textSl": "Prosecco, Radenska in Monin – pasijonka, malina, jagoda, breskev, bezeg ali meta. Pridi po svoj poletni okus!",
-      "textEn": "Prosecco, sparkling water and Monin – passion fruit, raspberry, strawberry, peach, elderflower or mint. Pick your summer flavour!",
-      "ctaSl": "Pridi poskusit ☀️",
-      "ctaEn": "Come and try it ☀️"
     }
   ]
 }

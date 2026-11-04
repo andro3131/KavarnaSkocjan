@@ -793,6 +793,7 @@ function renderGalleryCard(item, i) {
             </div>
             ${toggleField('items.' + i + '.featured', 'Prikaži na prvi strani', item.featured)}
             ${toggleField('items.' + i + '.large', 'Velika slika (čez 2 stolpca)', item.large)}
+            ${toggleField('items.' + i + '.alkohol', 'Alkohol – prikaži zakonsko opozorilo', item.alkohol)}
         </div>
     `;
 }
@@ -866,6 +867,8 @@ function renderPromo(d) {
             ${field('items.' + i + '.title', 'Naslov', item.title)}
             ${field('items.' + i + '.textSl', 'Opis', item.textSl, 'textarea')}
             ${field('items.' + i + '.ctaSl', 'Poziv (npr. "Pridi poskusit ❤️")', item.ctaSl)}
+            ${field('items.' + i + '.imagePosition', 'Položaj slike (opcijsko, npr. "center 35%")', item.imagePosition || '')}
+            ${toggleField('items.' + i + '.alkohol', 'Alkohol – prikaži zakonsko opozorilo', item.alkohol)}
         </div>`;
     });
 
@@ -1250,6 +1253,7 @@ function renderNovicaCard(item, i) {
             ${field('items.' + i + '.titleSl', 'Naslov', item.titleSl || '')}
             ${field('items.' + i + '.textSl', 'Kratek opis (prikazan na kartici)', item.textSl || '', 'textarea')}
             ${field('items.' + i + '.contentSl', 'Celotno besedilo (prikazano v podoknu)', item.contentSl || '', 'textarea')}
+            ${toggleField('items.' + i + '.alkohol', 'Alkohol – prikaži zakonsko opozorilo', item.alkohol)}
             <h4 style="font-size:0.9rem;margin:1rem 0 0.5rem;color:var(--text-secondary)">Slike</h4>
             ${imagesHtml}
             <button class="btn btn-add" onclick="addNovicaImage(${i})" style="font-size:0.85rem;padding:0.6rem">+ Dodaj sliko</button>

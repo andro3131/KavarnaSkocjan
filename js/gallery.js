@@ -69,7 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const div = document.createElement('div');
                 div.className = 'gallery-full-item';
                 div.dataset.category = item.category || 'kavarna';
-                div.innerHTML = `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.alt)}" loading="lazy">`;
+                if (item.alkohol) div.dataset.alkohol = '1';
+                div.innerHTML = `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.alt)}" loading="lazy">`
+                    + (item.alkohol ? `<div class="alkohol-opozorilo na-sliki" data-lang-sl="Minister za zdravje opozarja: Prekomerno pitje alkohola škoduje zdravju!" data-lang-en="The Minister of Health warns: Excessive drinking of alcohol is harmful to health!">${currentLang === 'en' ? 'The Minister of Health warns: Excessive drinking of alcohol is harmful to health!' : 'Minister za zdravje opozarja: Prekomerno pitje alkohola škoduje zdravju!'}</div>` : '');
                 grid.appendChild(div);
             });
 
@@ -122,6 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCounter = document.getElementById('lightbox-counter');
+        const lightboxOpoz = document.getElementById('lightbox-opozorilo');
+        function toggleOpozorilo(itemEl) {
+            if (lightboxOpoz) lightboxOpoz.style.display = itemEl.dataset.alkohol ? '' : 'none';
+        }
         const closeBtn = lightbox.querySelector('.lightbox-close');
         const prevBtn = lightbox.querySelector('.lightbox-prev');
         const nextBtn = lightbox.querySelector('.lightbox-next');
@@ -140,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             lightboxImg.src = img.src;
             lightboxImg.alt = img.alt;
             lightboxCounter.textContent = `${index + 1} / ${visible.length}`;
+            toggleOpozorilo(visible[index]);
 
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -157,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             lightboxImg.src = img.src;
             lightboxImg.alt = img.alt;
             lightboxCounter.textContent = `${currentIndex + 1} / ${visible.length}`;
+            toggleOpozorilo(visible[currentIndex]);
         }
 
         // Click on gallery item → open lightbox (delegated for dynamic items)

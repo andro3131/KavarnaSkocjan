@@ -82,7 +82,8 @@
       "alt": "Rok Petančič – sommelier vinskih večerov",
       "category": "dogodki",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/DOGODKI/svet24-kavarniski-utrip-3-2026-08.jpg",
@@ -110,21 +111,24 @@
       "alt": "Teden akcije v Kavarni Škocjan – 23.–27. september 2026",
       "category": "ponudba",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/DOGODKI/vinski-vecer-2026-10-02.jpg",
       "alt": "Vinski večer Huba × Gregor Čož – 2. oktober 2026",
       "category": "dogodki",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/Ponudba/709610288_122137456425117458_3189680612900096067_n.jpg",
       "alt": "Spritz z okusom Monin",
       "category": "ponudba",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/Ponudba/714955415_122138242389117458_2058123982060927906_n.jpg",
@@ -145,14 +149,16 @@
       "alt": "Aperol Spritz",
       "category": "ponudba",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/Ponudba/724757915_122139787611117458_2794105061289251634_n.jpg",
       "alt": "Točeno Ožujsko",
       "category": "ponudba",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/DOGODKI/720467684_922506230865543_8452985815795208287_n.jpg",
@@ -243,7 +249,8 @@
       "alt": "Kavarna",
       "category": "kavarna",
       "featured": true,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/Kavarna/626372023_122122076889117458_6868749493293363267_n_rm5uzc.jpg",
@@ -348,7 +355,8 @@
       "alt": "Ponudba",
       "category": "ponudba",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/Ponudba/609190638_122116390815117458_3163833047856732999_n_bkoqfs.jpg",
@@ -369,28 +377,32 @@
       "alt": "Ponudba",
       "category": "ponudba",
       "featured": true,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/Ponudba/614857414_122117707689117458_6048775685321772088_n_mbh4bq.jpg",
       "alt": "Ponudba",
       "category": "ponudba",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/Ponudba/616843308_122120089491117458_6462208180639703812_n_y6ovyc.jpg",
       "alt": "Ponudba",
       "category": "ponudba",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/Ponudba/605621015_122115053511117458_5419094148246172618_n_yikzm2.jpg",
       "alt": "Ponudba",
       "category": "ponudba",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/Ponudba/611272443_122116901607117458_2416099240214775376_n_wjncbp.jpg",
@@ -404,28 +416,32 @@
       "alt": "Ponudba",
       "category": "ponudba",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/Ponudba/600287037_122113347999117458_2944037888960068091_n_fh6d4v.jpg",
       "alt": "Ponudba",
       "category": "ponudba",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/Ponudba/599961588_122112484509117458_2965177265532864985_n_x8wyec.jpg",
       "alt": "Ponudba",
       "category": "ponudba",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/Ponudba/600895932_122113785231117458_8993738654405303156_n_g74eb6.jpg",
       "alt": "Ponudba",
       "category": "ponudba",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/Ponudba/597599411_122111532777117458_506866125911442843_n_o4ibph.jpg",
@@ -439,7 +455,8 @@
       "alt": "Ponudba",
       "category": "ponudba",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/Ponudba/597902673_122111886585117458_6163739642467159890_n_pgjkqx.jpg",
@@ -481,7 +498,8 @@
       "alt": "Dogodek",
       "category": "dogodki",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/DOGODKI/2a8f235d-5b34-42b9-a4f6-f1e2fed496d3_r5fls0.jpg",
@@ -516,7 +534,8 @@
       "alt": "Dogodek",
       "category": "dogodki",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/DOGODKI/592560366_122109042543117458_2592848206601311951_n_r1mgvd.jpg",
@@ -544,7 +563,8 @@
       "alt": "Dogodek",
       "category": "dogodki",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/DOGODKI/IMG_9199_vu3iqn%20copy.jpg",
@@ -558,7 +578,8 @@
       "alt": "Dogodek",
       "category": "dogodki",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     },
     {
       "src": "https://kavarna-skocjan.b-cdn.net/DOGODKI/IMG_9075_a1bjxj.jpg",
@@ -621,7 +642,8 @@
       "alt": "Dogodek",
       "category": "dogodki",
       "featured": false,
-      "large": false
+      "large": false,
+      "alkohol": true
     }
   ]
 }

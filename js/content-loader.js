@@ -41,6 +41,14 @@
         return div.innerHTML;
     }
 
+    // Zakonsko opozorilo (15.b člen ZZUZIS) za objave o alkoholnih pijačah
+    const ALKOHOL_SL = 'Minister za zdravje opozarja: Prekomerno pitje alkohola škoduje zdravju!';
+    const ALKOHOL_EN = 'The Minister of Health warns: Excessive drinking of alcohol is harmful to health!';
+    function alkoholOpozorilo(extraClass) {
+        const lang = getCurrentLang();
+        return `<div class="alkohol-opozorilo${extraClass ? ' ' + extraClass : ''}" data-lang-sl="${ALKOHOL_SL}" data-lang-en="${ALKOHOL_EN}">${lang === 'en' ? ALKOHOL_EN : ALKOHOL_SL}</div>`;
+    }
+
     function getCurrentLang() {
         return localStorage.getItem('kavarna-lang') || 'sl';
     }
@@ -58,7 +66,8 @@
         featured.forEach(item => {
             const div = document.createElement('div');
             div.className = 'gallery-item' + (item.large ? ' gallery-item-large' : '');
-            div.innerHTML = `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.alt)}" loading="lazy">`;
+            div.innerHTML = `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.alt)}" loading="lazy">`
+                + (item.alkohol ? alkoholOpozorilo('na-sliki') : '');
             grid.appendChild(div);
         });
 
@@ -209,6 +218,8 @@
                         badgeEl.setAttribute('data-lang-en', item.badgeEn);
                     }
                     if (titleEl) titleEl.textContent = title;
+                    const opozEl = heroPromo.querySelector('.alkohol-opozorilo');
+                    if (opozEl) opozEl.style.display = item.alkohol ? '' : 'none';
                     if (descEl) {
                         descEl.textContent = text;
                         descEl.setAttribute('data-lang-sl', item.textSl);
@@ -242,6 +253,8 @@
                     const img = mobilePromo.querySelector('.mobile-promo-img');
                     const strong = mobilePromo.querySelector('.mobile-promo-text strong');
                     const span = mobilePromo.querySelector('.mobile-promo-text span');
+                    const opozMob = mobilePromo.querySelector('.alkohol-opozorilo');
+                    if (opozMob) opozMob.style.display = item.alkohol ? '' : 'none';
 
                     if (img) {
                         img.src = imgSrc;
@@ -448,7 +461,7 @@
                 mediaHtml = `<div class="novica-card-media">
                     <img src="${escapeHtml(mainImage)}" alt="${escapeHtml(title)}" loading="lazy">
                     ${hasVideo ? '<div class="novica-card-play"><svg width="32" height="32" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>' : ''}
-                </div>`;
+                </div>${item.alkohol ? alkoholOpozorilo() : ''}`;
             }
 
             const date = formatNoviceDate(item.date);
@@ -512,6 +525,7 @@
         if (mediaItems.length) {
             html += '<div class="novica-modal-gallery">';
             html += '<div class="novica-modal-main-media" id="novica-main-media"></div>';
+            if (item.alkohol) html += alkoholOpozorilo();
             if (mediaItems.length > 1) {
                 html += '<div class="novica-modal-thumbs">';
                 mediaItems.forEach((m, i) => {

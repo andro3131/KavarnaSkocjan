@@ -66,6 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return div.innerHTML;
     }
 
+    // Zakonsko opozorilo (15.b člen ZZUZIS) za objave o alkoholnih pijačah
+    function alkoholOpozorilo() {
+        const besedilo = currentLang === 'en'
+            ? 'The Minister of Health warns: Excessive drinking of alcohol is harmful to health!'
+            : 'Minister za zdravje opozarja: Prekomerno pitje alkohola škoduje zdravju!';
+        return `<div class="alkohol-opozorilo">${besedilo}</div>`;
+    }
+
     function formatDate(dateStr) {
         if (!dateStr) return '';
         const d = new Date(dateStr);
@@ -118,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mediaHtml = `<div class="novica-card-media">
                 <img src="${escapeHtml(mainImage)}" alt="${escapeHtml(title)}" loading="lazy">
                 ${hasVideo ? '<div class="novica-card-play"><svg width="32" height="32" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>' : ''}
-            </div>`;
+            </div>${item.alkohol ? alkoholOpozorilo() : ''}`;
         }
 
         div.innerHTML = `
@@ -173,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mediaItems.length) {
             html += '<div class="novica-modal-gallery">';
             html += '<div class="novica-modal-main-media" id="novica-main-media"></div>';
+            if (item.alkohol) html += alkoholOpozorilo();
             if (mediaItems.length > 1) {
                 html += '<div class="novica-modal-thumbs">';
                 mediaItems.forEach((m, i) => {

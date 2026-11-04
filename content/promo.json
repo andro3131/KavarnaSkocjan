@@ -10,7 +10,8 @@
       "textSl": "Prosecco, Radenska in Monin – pasijonka, malina, jagoda, breskev, bezeg ali meta. Pridi po svoj poletni okus!",
       "textEn": "Prosecco, sparkling water and Monin – passion fruit, raspberry, strawberry, peach, elderflower or mint. Pick your summer flavour!",
       "ctaSl": "Pridi poskusit ☀️",
-      "ctaEn": "Come and try it ☀️"
+      "ctaEn": "Come and try it ☀️",
+      "alkohol": true
     },
     {
       "image": "https://kavarna-skocjan.b-cdn.net/Ponudba/727059522_122140208013117458_7614584432009707868_n.jpg",
@@ -32,7 +33,8 @@
       "textSl": "Hladna osvežitev enega najbolj priljubljenih piv. Pridi na kozarec – na zdravje!",
       "textEn": "A cold pour of one of the most popular beers. Come for a glass – cheers!",
       "ctaSl": "Pridi poskusit 🍻",
-      "ctaEn": "Come and try it 🍻"
+      "ctaEn": "Come and try it 🍻",
+      "alkohol": true
     },
     {
       "image": "https://kavarna-skocjan.b-cdn.net/Ponudba/650046686_122126652189117458_5336329714101965638_n.jpg",

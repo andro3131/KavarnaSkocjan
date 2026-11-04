@@ -88,4 +88,11 @@ Slike iz novic → tudi v `gallery.json`.
 4. Po potrebi `promo.json`  
 5. `git commit` + `push origin main`
 
+---
+
+## Zaključek seje 2026-07-26
+
+- Promo strip: **1 Spritz · 2 rogljiček · 3 Ožujsko · 4 Latte · 5 sladoled**.  
+- Push `main` (npr. `31db92f`). **Mir** do novih novic.
+
 Detajli: `MEMORY.md`.

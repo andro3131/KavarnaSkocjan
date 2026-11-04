@@ -99,6 +99,15 @@ JS ob zamenjavi kartice nastavi `img.style.objectPosition = item.imagePosition |
 
 ---
 
+## Seja 2026-07-26 — zaključeno
+
+- Novice + gallery + promo narejeno; promo **Spritz prvi**, nato rogljiček, Ožujsko.
+- Zadnji push (vrstni red promo): `31db92f` na `main`.
+- **Status: mir** — nadaljevanje šele ob novem prilepku/naročilu.
+
+
+---
+
 ## Hitre poti
 
 ```bash
@@ -106,3 +115,18 @@ cd ~/Documents/Andrej_Codespaces/KavarnaSkocjan
 # uredi content/*.json
 git add content/ && git commit -m "..." && git push origin main
 ```
+
+---
+
+## 2026-11-04 — zakonsko opozorilo za alkohol (prijava)
+
+- Pravna podlaga: **15.b člen ZZUZIS** — oglas za alkohol mora imeti opozorilo ministra za zdravje (≥10 % površine, jasno ločeno od ozadja).
+- Besedilo na strani: **»Minister za zdravje opozarja: Prekomerno pitje alkohola škoduje zdravju!«** (EN prevod v JS).
+- Polje **`"alkohol": true`** v `novice.json`, `gallery.json`, `promo.json` → izriše trak (`.alkohol-opozorilo`, svetlo zlat `--color-accent-light`, temno besedilo).
+  - novice: trak pod sliko na kartici (majhen, 0.68rem) + večji v modalu (novice.html in prva stran)
+  - galerija: trak čez spodnji rob sličice + pod sliko v lightboxu; prva stran (featured) tudi
+  - promo: trak v hero kartici in mobilnem stripu (prikaz glede na item)
+  - cenik: stalno opozorilo pod flipbookom
+- **Admin:** dodano stikalo »Alkohol – prikaži zakonsko opozorilo« (novice, galerija, promo) + polje `imagePosition` pri promo — brez tega bi shranjevanje prek admina polja pobrisalo.
+- Pri novih objavah o alkoholu **vedno vklopi stikalo**.
+- Odprto/tveganje: French 75 (gin, >15 %?), slike z osebami, ki pijejo (Laško happy hour), hero ozadje s tablo »Špricer, Buteljčna vina«, opis »najboljša vina«. FB urejajo sami.

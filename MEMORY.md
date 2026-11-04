@@ -131,3 +131,4 @@ git add content/ && git commit -m "..." && git push origin main
 - Pri novih objavah o alkoholu **vedno vklopi stikalo**.
 - Odprto/tveganje: French 75 (gin, >15 %?), slike z osebami, ki pijejo (Laško happy hour), hero ozadje s tablo »Špricer, Buteljčna vina«, opis »najboljša vina«. FB urejajo sami.
 - **Umaknjeno 2026-11-04** (sporno po 15.b ZZUZIS): novica *French 75* (gin, 25. 3. 2026), fotka *Laško happy hour* z dekletom s špricerjem (galerija + rezervni HTML), hero ozadje `kavarnafinal_yhp7jw.jpg` (tabla »Špricer, Buteljčna vina«) → zamenjano s `kavarna-okno_cvp99f.jpg` (tudi og:image). Za vrnitev glej git zgodovino.
+- Hero ozadje + og:image **vrnjena** na `kavarnafinal_yhp7jw.jpg` (Andrej ni bil zadovoljen z oknom) — čaka morebitna obdelana fotka brez table.

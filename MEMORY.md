@@ -132,3 +132,14 @@ git add content/ && git commit -m "..." && git push origin main
 - Odprto/tveganje: French 75 (gin, >15 %?), slike z osebami, ki pijejo (Laško happy hour), hero ozadje s tablo »Špricer, Buteljčna vina«, opis »najboljša vina«. FB urejajo sami.
 - **Umaknjeno 2026-11-04** (sporno po 15.b ZZUZIS): novica *French 75* (gin, 25. 3. 2026), fotka *Laško happy hour* z dekletom s špricerjem (galerija + rezervni HTML), hero ozadje `kavarnafinal_yhp7jw.jpg` (tabla »Špricer, Buteljčna vina«) → zamenjano s `kavarna-okno_cvp99f.jpg` (tudi og:image). Za vrnitev glej git zgodovino.
 - Hero ozadje + og:image **vrnjena** na `kavarnafinal_yhp7jw.jpg` (Andrej ni bil zadovoljen z oknom) — čaka morebitna obdelana fotka brez table.
+
+## 2026-11-21 — opozorilo VPISANO v slike (zahteva inšpekcije)
+
+- Inšpekcija: opozorilo mora biti v sami sliki, HTML trak ni dovolj. HTML opozorila (in CSS `.alkohol-opozorilo`) so **odstranjena**.
+- Trak je dodan **pod** sliko (nič se ne odreže), enak videz kot prej: `#dfc9a3` podlaga, `#1a1714` tekst, Outfit SemiBold, max 2 vrstici, **≥ 11 % višine** (dejansko 12–19 % površine).
+- Nove datoteke na Bunnyju v isti mapi kot original s pripono **`_opozorilo.jpg`**; originali ostanejo. 33 fotk (novice/galerija/promo) + 18 strani cenikov (splošni, vinski, koktajli; prigrizki ne).
+- Orodja: `orodja/vpisi_opozorilo.py` (prenese + vpiše → `orodja/_izhod/`, ni v gitu) in `orodja/nalozi_bunny.py` (ključ v `bunny.env`, ni v gitu).
+- `js/opozorilo-slike.js`: slike z `_opozorilo` v imenu se v obrezanih okvirjih (cover) poravnajo na dno ali prikažejo cele (contain) → trak nikoli odrezan.
+- Flipbook: knjige s stranmi `_opozorilo` imajo višino 1155 (namesto 1000).
+- **Admin:** stikalo »Alkohol – ob shranjevanju vpiši opozorilo« (novice, galerija, promo + kategorije cenika `books[].alkohol`). Ob shranjevanju admin v brskalniku (canvas) vpiše trak v vse slike brez `_opozorilo`, jih naloži v `UPLOAD/` in zamenja URL-je.
+- Slike za FB/IG: `orodja/_izhod/opozorilo/` (lokalno) — FB/IG ureja Andrej z naročnikom.

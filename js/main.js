@@ -238,7 +238,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isMobile && window.St && window.St.PageFlip) {
             const pageFlip = new St.PageFlip(container, {
                 width: 715,
-                height: 1000,
+                // Strani z vpisanim opozorilom za alkohol so višje (trak pod cenikom)
+                height: container.querySelector('img[src*="_opozorilo."]') ? 1155 : 1000,
                 size: 'stretch',
                 maxShadowOpacity: 0.3,
                 showCover: false,

@@ -581,6 +581,15 @@ async function saveCurrentSection() {
 
     let newData = collectFormData(currentSection);
 
+    try {
+        await opremiAlkoholSlike(currentSection, newData);
+    } catch (err) {
+        showToast('Napaka pri vpisu opozorila v sliko: ' + err.message, 'error');
+        btn.disabled = false;
+        btn.textContent = 'Shrani spremembe';
+        return;
+    }
+
     // Auto-translate fields to English
     if (currentSection === 'promo') {
         newData = autoTranslatePromo(newData);
@@ -606,6 +615,7 @@ async function saveCurrentSection() {
 
         if (res.ok) {
             sectionData[currentSection] = { data: newData, sha: result.sha };
+            renderForm(currentSection);
             showToast('Spremembe shranjene! Stran se posodobi v ~30 sekundah.', 'success');
         } else if (res.status === 409) {
             showToast('Vsebina je bila spremenjena. Osvežujem...', 'warning');
@@ -620,6 +630,123 @@ async function saveCurrentSection() {
         btn.disabled = false;
         btn.textContent = 'Shrani spremembe';
     }
+}
+
+// ===== ZAKONSKO OPOZORILO ZA ALKOHOL (vpisano v sliko) =====
+// Enak trak kot orodja/vpisi_opozorilo.py: bež podlaga, temno besedilo, Outfit SemiBold, POD sliko.
+const OPOZORILO_BESEDILO = 'Minister za zdravje opozarja: Prekomerno pitje alkohola škoduje zdravju!';
+const OPOZORILO_MAX_STRAN = 2400;
+
+function imaOpozorilo(url) {
+    return /_opozorilo\.[a-z]+(\?|$)/i.test(url || '');
+}
+
+function razbijVrstice(ctx, besedilo, sirina) {
+    const vrstice = [];
+    let trenutna = '';
+    for (const beseda of besedilo.split(' ')) {
+        const poskus = (trenutna + ' ' + beseda).trim();
+        if (ctx.measureText(poskus).width <= sirina || !trenutna) trenutna = poskus;
+        else { vrstice.push(trenutna); trenutna = beseda; }
+    }
+    vrstice.push(trenutna);
+    return vrstice;
+}
+
+async function vpisiOpozoriloVSliko(url) {
+    await document.fonts.load('600 40px Outfit');
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.src = url + (url.includes('?') ? '&' : '?') + 'cors=1';
+    await img.decode();
+
+    const faktor = Math.min(1, OPOZORILO_MAX_STRAN / Math.max(img.naturalWidth, img.naturalHeight));
+    const w = Math.round(img.naturalWidth * faktor);
+    const h = Math.round(img.naturalHeight * faktor);
+    const rob = Math.round(w * 0.04);
+    const uporabno = w - 2 * rob;
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    let vel = Math.max(14, Math.round(Math.max(w, h) * 0.032));
+    let vrstice;
+    while (true) {
+        ctx.font = `600 ${vel}px Outfit`;
+        vrstice = razbijVrstice(ctx, OPOZORILO_BESEDILO, uporabno);
+        if (vrstice.length <= 2 || vel <= 14) break;
+        vel--;
+    }
+    if (vrstice.length === 2) {
+        const besede = OPOZORILO_BESEDILO.split(' ');
+        let najboljse = null, najmanj = Infinity;
+        for (let i = 1; i < besede.length; i++) {
+            const par = [besede.slice(0, i).join(' '), besede.slice(i).join(' ')];
+            const m = Math.max(ctx.measureText(par[0]).width, ctx.measureText(par[1]).width);
+            if (m < najmanj) { najmanj = m; najboljse = par; }
+        }
+        if (najmanj <= uporabno) vrstice = najboljse;
+    }
+
+    const visinaVrstice = Math.round(vel * 1.26 * 1.15);
+    let pad = Math.round(vel * 0.7);
+    let trak = pad * 2 + visinaVrstice * vrstice.length;
+    // Zakon: opozorilo vsaj 10 % površine → trak vsaj 11 % končne višine
+    const minTrak = Math.ceil(h * 11 / 89);
+    if (trak < minTrak) {
+        pad += Math.ceil((minTrak - trak) / 2);
+        trak = pad * 2 + visinaVrstice * vrstice.length;
+    }
+
+    canvas.width = w;
+    canvas.height = h + trak;
+    ctx.fillStyle = '#dfc9a3';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, w, h);
+    ctx.font = `600 ${vel}px Outfit`;
+    ctx.fillStyle = '#1a1714';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    vrstice.forEach((v, i) => ctx.fillText(v, w / 2, h + pad + visinaVrstice * (i + 0.5)));
+
+    const blob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.9));
+    const ime = (url.split('/').pop().split('?')[0].replace(/\.[^.]+$/, '') || 'slika') + '_opozorilo.jpg';
+    const res = await fetch('/api/upload?filename=' + encodeURIComponent(ime), {
+        method: 'PUT',
+        headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/octet-stream' },
+        body: blob
+    });
+    if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || 'Upload ni uspel (HTTP ' + res.status + ')');
+    }
+    return (await res.json()).url;
+}
+
+// Pred shranjevanjem: v vse slike objav z oznako "alkohol" vpiše opozorilo in zamenja URL-je.
+async function opremiAlkoholSlike(section, data) {
+    const opravila = [];   // [objekt, ključ]
+    const dodaj = (obj, kljuc) => {
+        if (obj && typeof obj[kljuc] === 'string' && obj[kljuc] && !imaOpozorilo(obj[kljuc])) opravila.push([obj, kljuc]);
+    };
+    const seznam = v => Array.isArray(v) ? v : (v && typeof v === 'object' ? Object.values(v) : []);
+
+    if (section === 'gallery') seznam(data.items).forEach(it => it.alkohol && dodaj(it, 'src'));
+    if (section === 'promo') seznam(data.items).forEach(it => it.alkohol && dodaj(it, 'image'));
+    if (section === 'novice') seznam(data.items).forEach(it => {
+        if (it.alkohol && it.images) Object.keys(it.images).forEach(k => dodaj(it.images, k));
+    });
+    if (section === 'menus') seznam(data.books).forEach(b => {
+        if (b.alkohol && b.pages) Object.keys(b.pages).forEach(k => dodaj(b.pages, k));
+    });
+    if (!opravila.length) return;
+
+    const btn = document.getElementById('saveBtn');
+    for (let i = 0; i < opravila.length; i++) {
+        btn.textContent = `Vpisujem opozorilo v slike (${i + 1}/${opravila.length})…`;
+        const [obj, kljuc] = opravila[i];
+        obj[kljuc] = await vpisiOpozoriloVSliko(obj[kljuc]);
+    }
+    btn.textContent = 'Shranjujem...';
 }
 
 // ===== TOAST =====
@@ -793,7 +920,7 @@ function renderGalleryCard(item, i) {
             </div>
             ${toggleField('items.' + i + '.featured', 'Prikaži na prvi strani', item.featured)}
             ${toggleField('items.' + i + '.large', 'Velika slika (čez 2 stolpca)', item.large)}
-            ${toggleField('items.' + i + '.alkohol', 'Alkohol – prikaži zakonsko opozorilo', item.alkohol)}
+            ${toggleField('items.' + i + '.alkohol', 'Alkohol – ob shranjevanju vpiši zakonsko opozorilo v slike', item.alkohol)}
         </div>
     `;
 }
@@ -868,7 +995,7 @@ function renderPromo(d) {
             ${field('items.' + i + '.textSl', 'Opis', item.textSl, 'textarea')}
             ${field('items.' + i + '.ctaSl', 'Poziv (npr. "Pridi poskusit ❤️")', item.ctaSl)}
             ${field('items.' + i + '.imagePosition', 'Položaj slike (opcijsko, npr. "center 35%")', item.imagePosition || '')}
-            ${toggleField('items.' + i + '.alkohol', 'Alkohol – prikaži zakonsko opozorilo', item.alkohol)}
+            ${toggleField('items.' + i + '.alkohol', 'Alkohol – ob shranjevanju vpiši zakonsko opozorilo v slike', item.alkohol)}
         </div>`;
     });
 
@@ -1085,6 +1212,7 @@ function renderMenuBook(book, i) {
                 <button class="btn btn-danger" onclick="removeItem('menuBooksList', this)" style="font-size:0.8rem;padding:0.4rem 0.8rem">Odstrani kategorijo</button>
             </div>
             ${field('books.' + i + '.id', 'ID (ne spreminjajte)', book.id)}
+            ${toggleField('books.' + i + '.alkohol', 'Alkohol – ob shranjevanju vpiši zakonsko opozorilo v strani cenika', book.alkohol)}
             <div class="field-row">
                 ${field('books.' + i + '.nameSl', 'Ime (slovensko)', book.nameSl)}
                 ${field('books.' + i + '.nameEn', 'Ime (angleško)', book.nameEn)}
@@ -1253,7 +1381,7 @@ function renderNovicaCard(item, i) {
             ${field('items.' + i + '.titleSl', 'Naslov', item.titleSl || '')}
             ${field('items.' + i + '.textSl', 'Kratek opis (prikazan na kartici)', item.textSl || '', 'textarea')}
             ${field('items.' + i + '.contentSl', 'Celotno besedilo (prikazano v podoknu)', item.contentSl || '', 'textarea')}
-            ${toggleField('items.' + i + '.alkohol', 'Alkohol – prikaži zakonsko opozorilo', item.alkohol)}
+            ${toggleField('items.' + i + '.alkohol', 'Alkohol – ob shranjevanju vpiši zakonsko opozorilo v slike', item.alkohol)}
             <h4 style="font-size:0.9rem;margin:1rem 0 0.5rem;color:var(--text-secondary)">Slike</h4>
             ${imagesHtml}
             <button class="btn btn-add" onclick="addNovicaImage(${i})" style="font-size:0.85rem;padding:0.6rem">+ Dodaj sliko</button>

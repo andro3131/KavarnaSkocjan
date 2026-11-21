@@ -5,30 +5,32 @@
       "nameSl": "Splošna ponudba",
       "nameEn": "General Menu",
       "pages": [
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni1.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni2.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/cenik_splosni3-nov.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni4.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni5.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni6.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni7.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni8.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni9.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni10.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni11.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni12.jpg"
-      ]
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni1_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni2_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/cenik_splosni3-nov_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni4_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni5_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni6_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni7_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni8_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni9_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni10_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni11_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Cenik_splosni12_opozorilo.jpg"
+      ],
+      "alkohol": true
     },
     {
       "id": "book-wine",
       "nameSl": "Vinska karta",
       "nameEn": "Wine List",
       "pages": [
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/vinski1.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/vinski2.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/vinski3.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/vinski4.jpg"
-      ]
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/vinski1_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/vinski2_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/vinski3_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/vinski4_opozorilo.jpg"
+      ],
+      "alkohol": true
     },
     {
       "id": "book-snacks",
@@ -44,9 +46,10 @@
       "nameSl": "Koktajli",
       "nameEn": "Cocktails",
       "pages": [
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/Koktajli1.jpg",
-        "https://kavarna-skocjan.b-cdn.net/CENIKI/Koktajli2.jpg"
-      ]
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Koktajli1_opozorilo.jpg",
+        "https://kavarna-skocjan.b-cdn.net/CENIKI/Koktajli2_opozorilo.jpg"
+      ],
+      "alkohol": true
     }
   ]
 }

@@ -95,4 +95,11 @@ Slike iz novic → tudi v `gallery.json`.
 - Promo strip: **1 Spritz · 2 rogljiček · 3 Ožujsko · 4 Latte · 5 sladoled**.  
 - Push `main` (npr. `31db92f`). **Mir** do novih novic.
 
+## 2026-11-21 — opozorilo za alkohol v slikah (inšpekcija)
+
+- Opozorilo ministra za zdravje je **vpisano v same slike** (trak pod sliko, ≥ 11 % višine), HTML trak odstranjen.
+- Datoteke `*_opozorilo.jpg` na Bunnyju (originali ostanejo); 33 fotk + 18 strani cenikov.
+- **Admin:** stikalo »Alkohol« → ob shranjevanju samodejno vpiše trak v slike (tudi kategorije cenika).
+- Orodja: `orodja/vpisi_opozorilo.py`, `orodja/nalozi_bunny.py` (ključ `bunny.env`, ni v gitu). FB/IG ureja Andrej.
+
 Detajli: `MEMORY.md`.
